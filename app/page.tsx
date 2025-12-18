@@ -104,7 +104,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.05] mb-8"
+            className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.05] mb-8"
           >
             Introducing <br/>
             <span className="text-white/40">
@@ -207,7 +207,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* THE PROBLEM SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -259,7 +259,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* THE SOLUTION SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto text-center mb-20">
           <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The iSuite Difference</h2>
           <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
@@ -298,7 +298,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* COMPARISON SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Comparison</h2>
@@ -307,8 +307,8 @@ export default function Home() {
             </h3>
           </div>
 
-          <div className="border border-white/10 overflow-hidden">
-            <div className="grid grid-cols-3 border-b border-white/10">
+          <div className="border border-white/10 overflow-hidden overflow-x-auto">
+            <div className="grid grid-cols-3 border-b border-white/10 min-w-[600px]">
               <div className="p-6 bg-white/5"></div>
               <div className="p-6 text-center border-l border-white/10">
                 <span className="text-sm uppercase tracking-wider text-white/40">Legacy ERP</span>
@@ -318,37 +318,39 @@ export default function Home() {
               </div>
             </div>
 
-            <ComparisonRow 
-              label="Implementation"
-              legacy="18-36 months"
-              isuite="4-12 weeks"
-            />
-            <ComparisonRow 
-              label="Customization"
-              legacy="Requires developers"
-              isuite="Visual configuration"
-            />
-            <ComparisonRow 
-              label="Changes"
-              legacy="Months + budget"
-              isuite="Days"
-            />
-            <ComparisonRow 
-              label="Total Cost"
-              legacy="$1M - $50M+"
-              isuite="Fraction of legacy"
-            />
-            <ComparisonRow 
-              label="Flexibility"
-              legacy="You adapt to it"
-              isuite="It adapts to you"
-            />
-            <ComparisonRow 
-              label="Upgrades"
-              legacy="Break customizations"
-              isuite="Seamless"
-              isLast
-            />
+            <div className="min-w-[600px]">
+              <ComparisonRow 
+                label="Implementation"
+                legacy="18-36 months"
+                isuite="4-12 weeks"
+              />
+              <ComparisonRow 
+                label="Customization"
+                legacy="Requires developers"
+                isuite="Visual configuration"
+              />
+              <ComparisonRow 
+                label="Changes"
+                legacy="Months + budget"
+                isuite="Days"
+              />
+              <ComparisonRow 
+                label="Total Cost"
+                legacy="$1M - $50M+"
+                isuite="Fraction of legacy"
+              />
+              <ComparisonRow 
+                label="Flexibility"
+                legacy="You adapt to it"
+                isuite="It adapts to you"
+              />
+              <ComparisonRow 
+                label="Upgrades"
+                legacy="Break customizations"
+                isuite="Seamless"
+                isLast
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -356,7 +358,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* MODULES SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
             <div>
@@ -410,7 +412,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* INDUSTRIES SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -459,7 +461,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* TESTIMONIAL / PROOF SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-12">
             <svg className="w-12 h-12 mx-auto text-white/20 mb-8" fill="currentColor" viewBox="0 0 24 24">
@@ -480,7 +482,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* CTA SECTION */}
       {/* ============================================ */}
-      <section className="py-32 px-6 bg-white text-black">
+      <section className="py-20 md:py-32 px-6 bg-white text-black">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
             Ready to See <br/>

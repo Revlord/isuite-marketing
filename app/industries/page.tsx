@@ -280,7 +280,7 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-light tracking-tight leading-[1.1] mb-8"
+          className="text-4xl md:text-7xl font-light tracking-tight leading-[1.1] mb-8"
         >
           Built for Industries <br/>
           <span className="text-white/40">That Demand Precision.</span>
@@ -309,11 +309,11 @@ function WhySection() {
   ];
 
   return (
-    <section className="py-24 px-6 border-b border-white/10 bg-[#050505]">
+    <section className="py-20 md:py-24 px-6 border-b border-white/10 bg-[#050505]">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 mb-16">
           <div>
-            <h2 className="text-3xl md:text-4xl font-light mb-6">
+            <h2 className="text-2xl md:text-4xl font-light mb-6">
               Why Industry Leaders <span className="text-white/40">Choose iSuite</span>
             </h2>
             <p className="text-white/60 leading-relaxed">
@@ -344,19 +344,19 @@ function ImpactStats() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="text-4xl md:text-5xl font-light text-white mb-2">6+</div>
+            <div className="text-3xl md:text-5xl font-light text-white mb-2">6+</div>
             <div className="text-sm text-white/40 uppercase tracking-wider">Industries Served</div>
           </div>
           <div>
-            <div className="text-4xl md:text-5xl font-light text-white mb-2">Weeks</div>
+            <div className="text-3xl md:text-5xl font-light text-white mb-2">Weeks</div>
             <div className="text-sm text-white/40 uppercase tracking-wider">To Deploy</div>
           </div>
           <div>
-            <div className="text-4xl md:text-5xl font-light text-white mb-2">100%</div>
+            <div className="text-3xl md:text-5xl font-light text-white mb-2">100%</div>
             <div className="text-sm text-white/40 uppercase tracking-wider">Customizable</div>
           </div>
           <div>
-            <div className="text-4xl md:text-5xl font-light text-white mb-2">Global</div>
+            <div className="text-3xl md:text-5xl font-light text-white mb-2">Global</div>
             <div className="text-sm text-white/40 uppercase tracking-wider">Compliance Ready</div>
           </div>
         </div>
@@ -409,7 +409,7 @@ function IndustrySection({ industry, index }: { industry: typeof industries[0], 
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-10 p-12 lg:p-20">
+        <div className="relative z-10 p-6 md:p-12 lg:p-20">
           <motion.div
             initial={{ opacity: 0, x: isEven ? -20 : 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: isEven ? -20 : 20 }}

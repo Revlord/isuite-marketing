@@ -299,7 +299,7 @@ export default function ModulesPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-light tracking-tight mb-6"
+            className="text-4xl md:text-7xl font-light tracking-tight mb-6"
           >
             Every Function. <span className="text-white/40">Unified.</span>
           </motion.h1>
@@ -383,9 +383,9 @@ export default function ModulesPage() {
       {/* ============================================ */}
       {/* CTA SECTION */}
       {/* ============================================ */}
-      <section className="py-32 px-6 bg-white text-black border-t border-white/10">
+      <section className="py-20 md:py-32 px-6 bg-white text-black border-t border-white/10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-8">
+          <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-8">
             See How It All <span className="text-black/40">Works Together.</span>
           </h2>
           <p className="text-xl text-black/60 max-w-2xl mx-auto mb-12">

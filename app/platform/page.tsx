@@ -216,7 +216,7 @@ export default function PlatformPage() {
             </div>
           </motion.div>
 
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-medium tracking-tighter leading-[0.95] mb-10 text-white mix-blend-screen">
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-medium tracking-tighter leading-[0.95] mb-10 text-white mix-blend-screen">
             <motion.span 
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -292,12 +292,12 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* THE PHILOSOPHY SECTION */}
       {/* ============================================ */}
-      <section className="py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div>
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Philosophy</h2>
-              <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
+              <h3 className="text-3xl md:text-5xl font-light leading-tight mb-8">
                 Most ERPs Force You <br/>
                 <span className="text-white/40">Into Their Mold.</span>
               </h3>
@@ -343,7 +343,7 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* CAPABILITY PILLARS */}
       {/* ============================================ */}
-      <section className="py-32 px-6 border-t border-white/10 bg-[#030303]">
+      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#030303]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">Platform Capabilities</h2>
@@ -384,7 +384,7 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* TECHNICAL FOUNDATION */}
       {/* ============================================ */}
-      <section className="py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="lg:sticky lg:top-32">
@@ -442,7 +442,7 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* THE DIFFERENCE */}
       {/* ============================================ */}
-      <section className="py-32 px-6 border-t border-white/10 bg-[#030303]">
+      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#030303]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Difference</h2>
@@ -477,7 +477,7 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* CTA SECTION */}
       {/* ============================================ */}
-      <section className="py-32 px-6 bg-white text-black">
+      <section className="py-20 md:py-32 px-6 bg-white text-black">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
             See the Platform <br/>

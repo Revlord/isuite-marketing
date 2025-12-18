@@ -75,7 +75,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-6xl font-light tracking-tight mb-6"
+            className="text-4xl md:text-6xl font-light tracking-tight mb-6"
           >
             See iSuite <span className="text-white/40">In Action.</span>
           </motion.h1>
