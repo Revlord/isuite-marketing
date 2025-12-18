@@ -1,155 +1,213 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import Image from "next/image";
+import { motion } from "motion/react";
+import { 
+  ArrowRight, 
+  CircleDot,
+  Factory,
+  Truck,
+  Package,
+  FileText,
+  CreditCard,
+  BarChart3
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Users, Headset, Megaphone, Truck } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-const operations = [
-  {
-    id: "hr",
-    title: "HR & Payroll Management",
-    description: "Hire-to-retire automation: employee records, attendance, payroll cycles, compliance, and performance reviews.",
-    icon: Users,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+const operationalFlow = [
+  { 
+    icon: Factory, 
+    title: "Production", 
+    desc: "Plan, schedule, execute",
+    color: "blue"
   },
-  {
-    id: "customer",
-    title: "Customer Service",
-    description: "Ticket management, SLA tracking, resolution analytics, and customer history in one unified view.",
-    icon: Headset,
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
+  { 
+    icon: Package, 
+    title: "Inventory", 
+    desc: "Track every unit",
+    color: "purple"
   },
-  {
-    id: "marketing",
-    title: "Marketing Software",
-    description: "Campaign planning, lead scoring, contact segmentation, omnichannel execution, and ROI analysis.",
-    icon: Megaphone,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+  { 
+    icon: Truck, 
+    title: "Distribution", 
+    desc: "Deliver on time",
+    color: "emerald"
   },
-  {
-    id: "vehicle",
-    title: "Vehicle Management System",
-    description: "Track company fleet, monitor costs, schedule maintenance, and manage vehicle compliance.",
-    icon: Truck,
-    image: "https://images.unsplash.com/photo-1566576912902-48f5d9307bb1?q=80&w=2070&auto=format&fit=crop"
-  }
+  { 
+    icon: FileText, 
+    title: "Invoicing", 
+    desc: "Bill accurately",
+    color: "amber"
+  },
+  { 
+    icon: CreditCard, 
+    title: "Collections", 
+    desc: "Get paid faster",
+    color: "rose"
+  },
+  { 
+    icon: BarChart3, 
+    title: "Analytics", 
+    desc: "Decide with data",
+    color: "cyan"
+  },
 ];
 
 export default function OperationsSection() {
-  const [activeId, setActiveId] = useState(operations[0].id);
-
   return (
-    <section className="py-32 px-6 bg-[#0f0f0f] border-t border-white/10">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Left Column: Content & Navigation */}
+    <section className="py-32 px-6 border-t border-white/10 bg-[#0a0a0a] relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/50 mb-4">Operations & People</h2>
-            <h3 className="text-3xl md:text-4xl font-light mb-8">Business Operations & Intelligence</h3>
-            
-            <div className="space-y-2">
-              {operations.map((op) => (
-                <div 
-                  key={op.id}
-                  onClick={() => setActiveId(op.id)}
-                  className={cn(
-                    "group cursor-pointer border-l-2 pl-6 py-4 transition-all duration-300",
-                    activeId === op.id 
-                      ? "border-white bg-white/5" 
-                      : "border-white/10 hover:border-white/30 hover:bg-white/[0.02]"
-                  )}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className={cn(
-                      "text-lg font-medium transition-colors",
-                      activeId === op.id ? "text-white" : "text-white/60 group-hover:text-white/80"
-                    )}>
-                      {op.title}
-                    </h4>
-                    {activeId === op.id && (
-                        <motion.div layoutId="active-icon" transition={{ duration: 0.3 }}>
-                            <op.icon className="w-5 h-5 text-white" />
-                        </motion.div>
-                    )}
-                  </div>
-                  
-                  <AnimatePresence>
-                    {activeId === op.id && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <p className="text-sm text-white/50 leading-relaxed pb-2">
-                            {op.description}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4"
+            >
+              Unified Operations
+            </motion.h2>
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl font-light tracking-tight mb-6"
+            >
+              One System. <span className="text-white/40">Complete Flow.</span>
+            </motion.h3>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-lg text-white/50 leading-relaxed"
+            >
+              Every business function connected. Data flows seamlessly from production to payment, 
+              with real-time visibility at every step. No silos. No reconciliation nightmares. 
+              No "the system doesn't talk to that."
+            </motion.p>
           </div>
 
-          {/* Right Column: Image Display */}
-          <div className="relative aspect-video bg-black border border-white/10 p-2">
-             {/* Frame Decorations */}
-             <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-white/20"></div>
-             <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-white/20"></div>
-             <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-white/20"></div>
-             <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-white/20"></div>
-
-             <div className="relative w-full h-full overflow-hidden bg-[#1a1a1a]">
-                <AnimatePresence mode="wait">
-                    {operations.map((op) => (
-                        op.id === activeId && (
-                            <motion.div
-                                key={op.id}
-                                initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
-                                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                                exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
-                                transition={{ duration: 0.5, ease: "circOut" }}
-                                className="absolute inset-0"
-                            >
-                                <Image 
-                                    src={op.image} 
-                                    alt={op.title}
-                                    fill
-                                    className="object-cover opacity-60"
-                                />
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                                
-                                {/* Fake UI Overlay */}
-                                <div className="absolute bottom-0 left-0 right-0 p-8">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                                        <span className="text-[10px] font-mono text-green-500 uppercase tracking-wider">System Active</span>
-                                    </div>
-                                    <h3 className="text-2xl font-light text-white mb-2">{op.title}</h3>
-                                    <div className="flex gap-4 mt-4">
-                                        <div className="h-1 w-12 bg-white/20 rounded-full overflow-hidden">
-                                            <motion.div 
-                                                initial={{ x: "-100%" }}
-                                                animate={{ x: "0%" }}
-                                                transition={{ duration: 1, delay: 0.5 }}
-                                                className="h-full w-full bg-white" 
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )
-                    ))}
-                </AnimatePresence>
-             </div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 gap-6">
+            <StatBox value="Real-Time" label="Data Sync" />
+            <StatBox value="100%" label="Integrated" />
+            <StatBox value="Single" label="Source of Truth" />
+            <StatBox value="Zero" label="Data Silos" />
           </div>
         </div>
+
+        {/* Flow Visualization */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          {/* Connection Line */}
+          <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent hidden lg:block"></div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {operationalFlow.map((step, index) => (
+              <FlowStep 
+                key={index} 
+                step={step} 
+                index={index} 
+                isLast={index === operationalFlow.length - 1}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <p className="text-white/40 mb-6">
+            See how all modules work together as one unified system.
+          </p>
+          <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
+            <Link href="/modules">
+              Explore All Modules <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </section>
+  );
+}
+
+function StatBox({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="p-6 border border-white/10 bg-white/[0.02]">
+      <div className="text-2xl md:text-3xl font-light text-white mb-1">{value}</div>
+      <div className="text-xs text-white/40 uppercase tracking-wider">{label}</div>
+    </div>
+  );
+}
+
+function FlowStep({ 
+  step, 
+  index, 
+  isLast 
+}: { 
+  step: typeof operationalFlow[0]; 
+  index: number;
+  isLast: boolean;
+}) {
+  const colorClasses: Record<string, string> = {
+    blue: "bg-blue-500/10 border-blue-500/20 text-blue-400 group-hover:bg-blue-500/20",
+    purple: "bg-purple-500/10 border-purple-500/20 text-purple-400 group-hover:bg-purple-500/20",
+    emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500/20",
+    amber: "bg-amber-500/10 border-amber-500/20 text-amber-400 group-hover:bg-amber-500/20",
+    rose: "bg-rose-500/10 border-rose-500/20 text-rose-400 group-hover:bg-rose-500/20",
+    cyan: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500/20",
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      className="group relative"
+    >
+      <div className="p-6 bg-[#050505] border border-white/10 hover:border-white/20 transition-all duration-300 text-center">
+        {/* Step Number */}
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#0a0a0a] border border-white/10 flex items-center justify-center">
+          <span className="text-[10px] font-mono text-white/40">{String(index + 1).padStart(2, '0')}</span>
+        </div>
+
+        {/* Icon */}
+        <div className={cn(
+          "w-14 h-14 mx-auto mb-4 flex items-center justify-center border transition-all duration-300",
+          colorClasses[step.color]
+        )}>
+          <step.icon className="w-6 h-6" />
+        </div>
+
+        {/* Content */}
+        <h4 className="text-sm font-medium text-white mb-1">{step.title}</h4>
+        <p className="text-xs text-white/40">{step.desc}</p>
+      </div>
+
+      {/* Connector Arrow (hidden on last item and mobile) */}
+      {!isLast && (
+        <div className="hidden lg:flex absolute top-1/2 -right-2 transform -translate-y-1/2 z-10">
+          <CircleDot className="w-4 h-4 text-white/20" />
+        </div>
+      )}
+    </motion.div>
   );
 }
