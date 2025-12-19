@@ -61,19 +61,19 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
         <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             
-            {/* Navigation Column - Modules */}
+            {/* Navigation Column - Solutions */}
             <div className="md:col-span-3 space-y-8">
               <div className="space-y-4">
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Modules</h3>
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">[ Solutions ]</h3>
                 <ul className="space-y-3">
-                  <NavItem href="/modules#financial" label="Financial Management" onClose={onClose} />
-                  <NavItem href="/modules#sales" label="Sales & Distribution" onClose={onClose} />
-                  <NavItem href="/modules#procurement" label="Procurement" onClose={onClose} />
-                  <NavItem href="/modules#inventory" label="Inventory Management" onClose={onClose} />
-                  <NavItem href="/modules#manufacturing" label="Manufacturing (MRP)" onClose={onClose} />
-                  <NavItem href="/modules#quality" label="Quality Control" onClose={onClose} />
-                  <NavItem href="/modules#service" label="Service Management" onClose={onClose} />
-                  <NavItem href="/modules#hr" label="HR & Payroll" onClose={onClose} />
+                  <NavItem href="/solutions#financial" label="Financial Management" onClose={onClose} />
+                  <NavItem href="/solutions#sales" label="Sales & Distribution" onClose={onClose} />
+                  <NavItem href="/solutions#procurement" label="Procurement" onClose={onClose} />
+                  <NavItem href="/solutions#inventory" label="Inventory Management" onClose={onClose} />
+                  <NavItem href="/solutions#manufacturing" label="Manufacturing (MRP)" onClose={onClose} />
+                  <NavItem href="/solutions#quality" label="Quality Control" onClose={onClose} />
+                  <NavItem href="/solutions#service" label="Service Management" onClose={onClose} />
+                  <NavItem href="/solutions#hr" label="HR & Payroll" onClose={onClose} />
                 </ul>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
             {/* Navigation Column - Industries & Platform */}
             <div className="md:col-span-3 space-y-8">
               <div className="space-y-4">
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Industries</h3>
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">[ Industries ]</h3>
                 <ul className="space-y-3">
                   <NavItem href="/industries#pharma" label="Pharmaceutical" onClose={onClose} />
                   <NavItem href="/industries#manufacturing" label="Manufacturing" onClose={onClose} />
@@ -93,7 +93,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
               </div>
 
               <div className="space-y-4 pt-6 border-t border-black/10">
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Platform</h3>
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">[ Platform ]</h3>
                 <ul className="space-y-3">
                   <NavItem href="/platform" label="Platform Overview" onClose={onClose} />
                   <NavItem href="/platform#capabilities" label="Capabilities" onClose={onClose} />
@@ -102,7 +102,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
               </div>
 
               <div className="space-y-4 pt-6 border-t border-black/10">
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Company</h3>
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">[ Company ]</h3>
                 <ul className="space-y-3">
                   <NavItem href="/contact" label="Contact Us" onClose={onClose} />
                 </ul>
@@ -130,7 +130,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
 
               {/* Value Proposition */}
               <div className="flex-1">
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Why iSuite</h3>
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">{'{ Why iSuite }'}</h3>
                 <div className="space-y-6">
                   <h2 className="text-3xl md:text-4xl font-light leading-tight">
                     Software That <br/>

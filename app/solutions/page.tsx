@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-const modules = [
+const solutions = [
   {
     id: "financial",
     title: "Financial Management",
@@ -217,7 +217,7 @@ const modules = [
     ]
   },
   {
-    id: "projects",
+    id: "pm",
     title: "Project Management",
     icon: Layers,
     tagline: "Deliver On Time. Every Time.",
@@ -243,17 +243,17 @@ const modules = [
   }
 ];
 
-export default function ModulesPage() {
-  const [activeModule, setActiveModule] = useState("financial");
+export default function SolutionsPage() {
+  const [activeSolution, setActiveSolution] = useState("financial");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = modules.map(m => document.getElementById(m.id));
+      const sections = solutions.map(s => document.getElementById(s.id));
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
         if (section && section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
-          setActiveModule(section.id);
+          setActiveSolution(section.id);
         }
       }
     };
@@ -262,7 +262,7 @@ export default function ModulesPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToModule = (id: string) => {
+  const scrollToSolution = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       window.scrollTo({
@@ -291,7 +291,7 @@ export default function ModulesPage() {
             className="mb-6"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 border border-black/10 text-xs font-medium uppercase tracking-[0.2em] text-black/60 bg-black/5">
-              Complete Module Suite
+              Solution Capabilities
             </span>
           </motion.div>
 
@@ -301,7 +301,7 @@ export default function ModulesPage() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl md:text-7xl font-light tracking-tight mb-6"
           >
-            Every Function. <span className="text-black/40">Unified.</span>
+            What We <span className="text-black/40">Build.</span>
           </motion.h1>
           
           <motion.p 
@@ -310,9 +310,8 @@ export default function ModulesPage() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-xl text-black/50 max-w-3xl font-light leading-relaxed"
           >
-            A complete suite of integrated modules designed to work together seamlessly. 
-            No silos. No data duplication. No reconciliation headaches. 
-            Just one unified operating system for your entire enterprise.
+            These are examples of solutions we've built for clients — not packages you buy off the shelf. 
+            Your solution will be tailored to your exact requirements, drawing from these capabilities and beyond.
           </motion.p>
         </div>
       </section>
@@ -323,10 +322,10 @@ export default function ModulesPage() {
       <section className="py-8 px-6 border-b border-black/10 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <StatCard value="9+" label="Core Modules" />
-            <StatCard value="100%" label="Integrated" />
+            <StatCard value="Unlimited" label="Possibilities" />
+            <StatCard value="100%" label="Customized" />
             <StatCard value="Real-Time" label="Data Sync" />
-            <StatCard value="Unlimited" label="Customization" />
+            <StatCard value="Your Way" label="Not Ours" />
           </div>
         </div>
       </section>
@@ -338,43 +337,43 @@ export default function ModulesPage() {
         {/* Sticky Sidebar */}
         <aside className="hidden lg:block w-72 shrink-0 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto py-8 pr-8 border-r border-black/10">
           <div className="mb-6">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-black/30">Navigate Modules</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black/30">Solution Areas</span>
           </div>
           <nav className="space-y-1">
-            {modules.map((mod) => (
+            {solutions.map((sol) => (
               <button
-                key={mod.id}
-                onClick={() => scrollToModule(mod.id)}
+                key={sol.id}
+                onClick={() => scrollToSolution(sol.id)}
                 className={cn(
                   "w-full text-left px-4 py-3 text-sm font-medium transition-all duration-300 border-l-2 flex items-center gap-3",
-                  activeModule === mod.id
+                  activeSolution === sol.id
                     ? "border-black text-black bg-black/5"
                     : "border-transparent text-black/40 hover:text-black/70 hover:bg-black/[0.02]"
                 )}
               >
-                <mod.icon className={cn(
+                <sol.icon className={cn(
                   "w-4 h-4 transition-colors",
-                  activeModule === mod.id ? "text-black" : "text-black/30"
+                  activeSolution === sol.id ? "text-black" : "text-black/30"
                 )} />
-                {mod.title}
+                {sol.title}
               </button>
             ))}
           </nav>
 
           {/* CTA in sidebar */}
           <div className="mt-8 pt-8 border-t border-black/10">
-            <p className="text-sm text-black/40 mb-4">Need a custom module?</p>
+            <p className="text-sm text-black/40 mb-4">Need something different?</p>
             <Button asChild variant="outline" className="w-full border-black/20 text-black hover:bg-black/5 rounded-none h-10 text-xs uppercase tracking-wider">
-              <Link href="/contact">Talk to Us</Link>
+              <Link href="/contact">Tell Us What You Need</Link>
             </Button>
           </div>
         </aside>
 
-        {/* Module Content */}
+        {/* Solution Content */}
         <div className="flex-1 py-8 lg:px-12">
           <div className="space-y-32 pb-32">
-            {modules.map((mod, index) => (
-              <ModuleSection key={mod.id} module={mod} index={index} />
+            {solutions.map((sol, index) => (
+              <SolutionSection key={sol.id} solution={sol} index={index} />
             ))}
           </div>
         </div>
@@ -386,15 +385,15 @@ export default function ModulesPage() {
       <section className="py-20 md:py-32 px-6 bg-black text-white border-t border-black/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-8">
-            See How It All <span className="text-white/40">Works Together.</span>
+            These Are Starting Points. <span className="text-white/40">Not Limits.</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
-            The real power is in the integration. Request a demo and see how iSuite's modules 
-            work as one unified system.
+            Every solution we build is unique. Tell us what your business needs — 
+            we'll show you exactly how we'll make it happen.
           </p>
           <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
             <Link href="/contact">
-              Request Demo
+              Describe Your Requirements
             </Link>
           </Button>
         </div>
@@ -418,56 +417,56 @@ function StatCard({ value, label }: { value: string; label: string }) {
 }
 
 // ============================================
-// COMPONENT: Module Section
+// COMPONENT: Solution Section
 // ============================================
-function ModuleSection({ module, index }: { module: typeof modules[0]; index: number }) {
+function SolutionSection({ solution, index }: { solution: typeof solutions[0]; index: number }) {
   return (
     <motion.section 
-      id={module.id}
+      id={solution.id}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
       className="scroll-mt-32"
     >
-      {/* Module Header */}
+      {/* Solution Header */}
       <div className="flex items-center gap-4 mb-6">
         <div className="p-3 bg-black/5 border border-black/10">
-          <module.icon className="w-6 h-6 text-black/80" />
+          <solution.icon className="w-6 h-6 text-black/80" />
         </div>
         <div>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-black/30 block mb-1">Module {String(index + 1).padStart(2, '0')}</span>
-          <h2 className="text-3xl font-light">{module.title}</h2>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-black/30 block mb-1">Solution {String(index + 1).padStart(2, '0')}</span>
+          <h2 className="text-3xl font-light">{solution.title}</h2>
         </div>
       </div>
 
       {/* Tagline */}
       <div className="mb-6">
-        <span className="text-black/60 font-mono text-xs tracking-widest uppercase">{module.tagline}</span>
+        <span className="text-black/60 font-mono text-xs tracking-widest uppercase">{solution.tagline}</span>
       </div>
 
       {/* Hero Line */}
       <h3 className="text-2xl md:text-3xl font-light text-black/80 mb-4">
-        {module.heroLine}
+        {solution.heroLine}
       </h3>
 
       {/* Description */}
       <p className="text-lg text-black/50 leading-relaxed max-w-3xl mb-8">
-        {module.description}
+        {solution.description}
       </p>
 
       {/* Image */}
       <div className="relative w-full h-64 mb-10 border border-black/10 overflow-hidden group">
         <Image 
-          src={module.image}
-          alt={module.title}
+          src={solution.image}
+          alt={solution.title}
           fill
           className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
         <div className="absolute bottom-4 left-4">
           <span className="text-xs uppercase tracking-wider text-black/60 bg-white/50 px-3 py-1 backdrop-blur-sm">
-            {module.title}
+            {solution.title}
           </span>
         </div>
       </div>
@@ -481,7 +480,7 @@ function ModuleSection({ module, index }: { module: typeof modules[0]; index: nu
             <h4 className="text-sm font-bold uppercase tracking-wider text-black/80">Key Outcomes</h4>
           </div>
           <ul className="space-y-4">
-            {module.outcomes.map((outcome, i) => (
+            {solution.outcomes.map((outcome, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-black/60">
                 <CheckCircle2 className="w-4 h-4 text-black/40 mt-0.5 shrink-0" />
                 <span>{outcome}</span>
@@ -494,10 +493,10 @@ function ModuleSection({ module, index }: { module: typeof modules[0]; index: nu
         <div className="bg-gray-50 border border-black/5 p-8">
           <div className="flex items-center gap-2 mb-6">
             <Zap className="w-4 h-4 text-black/40" />
-            <h4 className="text-sm font-bold uppercase tracking-wider text-black/80">Capabilities</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-black/80">What We Can Include</h4>
           </div>
           <ul className="space-y-3">
-            {module.capabilities.map((cap, i) => (
+            {solution.capabilities.map((cap, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-black/60">
                 <div className="w-1.5 h-1.5 bg-black/40 rounded-full mt-1.5 shrink-0"></div>
                 <span>{cap}</span>

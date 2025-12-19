@@ -138,7 +138,7 @@ export default function OperationsSection() {
             See how all modules work together as one unified system.
           </p>
           <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
-            <Link href="/modules">
+            <Link href="/solutions">
               Explore All Modules <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>

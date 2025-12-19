@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { 
   ArrowRight, 
   Clock, 
@@ -17,7 +18,11 @@ import {
   Pill,
   Package,
   ChevronRight,
-  Check
+  Check,
+  Lightbulb,
+  Puzzle,
+  Wrench,
+  Target
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
@@ -30,7 +35,6 @@ export default function Home() {
     gsap.registerPlugin(ScrollTrigger);
     
     const ctx = gsap.context(() => {
-      // Parallax effect for hero background
       gsap.to(".hero-bg", {
         yPercent: 50,
         ease: "none",
@@ -42,7 +46,6 @@ export default function Home() {
         }
       });
 
-      // Fade in sections on scroll
       gsap.utils.toArray(".fade-section").forEach((section: any) => {
         gsap.fromTo(section, 
           { opacity: 0, y: 60 },
@@ -142,7 +145,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto font-light leading-relaxed mb-12"
           >
-            iSuite is the enterprise platform that molds to your operations — not the other way around. Deploy in weeks. Customize without limits. Evolve continuously.
+            iSuite is the enterprise platform that molds to your operations — not the other way around. Deploy in weeks. Customize without limits. Scale without Fear.
           </motion.p>
 
           {/* CTAs */}
@@ -205,31 +208,128 @@ export default function Home() {
       </section>
 
       {/* ============================================ */}
+      {/* SOLUTION FIRST SECTION - THE BIG STATEMENT */}
+      {/* ============================================ */}
+      <section className="fade-section py-24 md:py-32 px-6 border-t border-black bg-black text-white">
+        <div className="max-w-6xl mx-auto">
+          {/* The Big Statement */}
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-8"
+            >
+              <span className="inline-block px-4 py-2 border border-white/20 text-xs font-bold uppercase tracking-[0.3em] text-white/60">
+                [ The iSuite Philosophy ]
+              </span>
+            </motion.div>
+            
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-light leading-[1.1] tracking-tighter mb-8">
+              <span className="text-white/40 tracking-tighter">We Don't Just Sell Modules.</span> <br/>
+              We Sell Solutions.
+            </h2>
+            
+            <p className="text-xl md:text-2xl text-white/50 max-w-4xl mx-auto leading-relaxed">
+              Tell us what your business needs. We'll build it. No feature requests denied because 
+              "that's not in the package." No compromises because "the system doesn't support that."
+              <span className="text-white font-medium"> Just your solution, exactly as you need it.</span>
+            </p>
+          </div>
+
+          {/* The Three Pillars of Solution-First */}
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <SolutionPillar 
+              icon={<Lightbulb className="w-8 h-8" />}
+              number="01"
+              title="You Describe"
+              description="Tell us your workflows, your pain points, your vision. We listen first — deeply."
+            />
+            <SolutionPillar 
+              icon={<Wrench className="w-8 h-8" />}
+              number="02"
+              title="We Build"
+              description="Our platform molds to your requirements. No limitations. No 'that's not possible.'"
+            />
+            <SolutionPillar 
+              icon={<Target className="w-8 h-8" />}
+              number="03"
+              title="You Win"
+              description="A system that works exactly how you work. Not the other way around."
+            />
+          </div>
+
+          {/* The Bold Promise */}
+          <div className="border border-white/20 p-8 md:p-12 text-center bg-white/[0.02]">
+            <div className="max-w-3xl mx-auto">
+              <Puzzle className="w-12 h-12 mx-auto text-white/40 mb-6" />
+              <h3 className="text-2xl md:text-3xl font-light mb-6">
+                "If you can describe it, we can build it."
+              </h3>
+              <p className="text-white/50 leading-relaxed mb-8">
+                Other ERPs force you into their mold. They sell you "modules" and hope they fit.
+                iSuite is different. Our proprietary platform was designed from day one to 
+                create <em>any</em> solution — not just the ones we anticipated. Your unique workflows, 
+                your specific approvals, your exact reports. No exceptions.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/60">
+                <span className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-400" />
+                  Unlimited customization
+                </span>
+                <span className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-400" />
+                  Any workflow
+                </span>
+                <span className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-400" />
+                  Any approval chain
+                </span>
+                <span className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-400" />
+                  Any report
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
       {/* THE PROBLEM SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-black text-white">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Problem</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">[ The Problem ]</h2>
               <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
                 Traditional ERP is <br/>
-                <span className="text-white/40">Broken.</span>
+                <span className="text-black/40">Broken.</span>
               </h3>
-              <div className="space-y-6 text-lg text-white/60 leading-relaxed">
+              <div className="space-y-6 text-lg text-black/60 leading-relaxed">
                 <p>
-                  You spend millions on SAP or Oracle. Then you spend years adapting your operations to match their assumptions. 
+                  You spend millions on big ERPs like SAP or Oracle. Then you spend years adapting your operations to match their assumptions. 
                 </p>
                 <p>
-                  When requirements change, you face impossible choices: expensive customization projects, clunky workarounds, or starting over.
+                  When requirements change, you face impossible choices: expensive customization projects, clunky workarounds, or starting over. Worse, endless back and forth between teams with no proper expertise or communication skills.
                 </p>
-                <p className="text-white font-medium">
-                  There's a better way.
+                <p className="text-black font-medium">
+                  <span className="inline-flex items-center gap-2 align-middle">
+                    <span>There's a better way. The iSuite </span>
+                    <Image
+                      src="/logos/iSuiteLogoMathBlack.svg"
+                      alt="iSuite Monogram"
+                      width={24}
+                      height={20}
+                      className="h-5 w-auto"
+                    />
+                  </span>
+                  <span className="px-1"> way.</span>
                 </p>
               </div>
             </div>
 
-            {/* Pain Points */}
             <div className="space-y-6">
               <PainPointCard 
                 number="01"
@@ -243,13 +343,13 @@ export default function Home() {
               />
               <PainPointCard 
                 number="03"
-                title="Forced Compromises"
-                description="'That's how the software works' becomes the answer to every requirement."
+                title="'That's Just How It Works'"
+                description="The answer to every requirement that doesn't fit their predefined boxes."
               />
               <PainPointCard 
                 number="04"
-                title="Technical Debt"
-                description="Every customization creates code that breaks on upgrades."
+                title="Feature Limitations"
+                description="'Upgrade to the Enterprise tier' or 'That's on our roadmap for next year.'"
               />
             </div>
           </div>
@@ -259,38 +359,38 @@ export default function Home() {
       {/* ============================================ */}
       {/* THE SOLUTION SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-white">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
         <div className="max-w-6xl mx-auto text-center mb-20">
-          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The iSuite Difference</h2>
-          <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
-            Software That <span className="text-black/40">Adapts to You.</span>
-          </h3>
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">[ The iSuite Difference ]</h2>
+            <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8 text-black/50">
+            A Platform That <span className="text-black">Becomes Your Solution.</span>
+            </h3>
           <p className="text-xl text-black/50 max-w-3xl mx-auto">
-            iSuite was architected differently. Our proprietary platform molds precisely to how your organization actually operates — delivering enterprise depth with unprecedented flexibility.
+            iSuite isn't just a collection of modules you buy. It's a platform that molds to your 
+            exact requirements — delivering enterprise depth with zero compromise.
           </p>
         </div>
 
-        {/* Value Props */}
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <ValueCard 
             icon={<Clock className="w-8 h-8" />}
             title="Weeks, Not Years"
-            description="Deploy a fully customized enterprise system in weeks. No 18-month implementation nightmares."
+            description="Your custom solution deployed in weeks. No 18-month implementation nightmares."
           />
           <ValueCard 
             icon={<Infinity className="w-8 h-8" />}
-            title="Unlimited Customization"
-            description="Every screen, workflow, and report — configured exactly to your requirements. No artificial limits."
+            title="Zero Limitations"
+            description="If you can describe the requirement, we can build it. No artificial constraints."
           />
           <ValueCard 
             icon={<Zap className="w-8 h-8" />}
             title="Continuous Evolution"
-            description="Requirements change? New workflows deploy in days, not development cycles."
+            description="New requirements? Deployed in days. Your solution grows with your business."
           />
           <ValueCard 
             icon={<Shield className="w-8 h-8" />}
-            title="Zero Technical Debt"
-            description="Structured customization means no code sprawl. Upgrades don't break your system."
+            title="Future-Proof"
+            description="No technical debt. No upgrade nightmares. Your solution stays current."
           />
         </div>
       </section>
@@ -301,9 +401,9 @@ export default function Home() {
       <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-black text-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Comparison</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">[ The Comparison ]</h2>
             <h3 className="text-4xl md:text-5xl font-light">
-              Legacy ERP <span className="text-white/40">vs.</span> iSuite
+              Traditional ERP <span className="text-white/40">vs.</span> iSuite
             </h3>
           </div>
 
@@ -311,7 +411,7 @@ export default function Home() {
             <div className="grid grid-cols-3 border-b border-white/20 min-w-[600px]">
               <div className="p-6 bg-white/5"></div>
               <div className="p-6 text-center border-l border-white/20">
-                <span className="text-sm uppercase tracking-wider text-white/40">Legacy ERP</span>
+                <span className="text-sm uppercase tracking-wider text-white/40">Traditional ERP</span>
               </div>
               <div className="p-6 text-center border-l border-white/20 bg-white/10">
                 <span className="text-sm uppercase tracking-wider text-white font-medium">iSuite</span>
@@ -320,34 +420,34 @@ export default function Home() {
 
             <div className="min-w-[600px]">
               <ComparisonRow 
+                label="Approach"
+                legacy="Buy modules, hope they fit"
+                isuite="Describe needs, we build"
+              />
+              <ComparisonRow 
+                label="Customization"
+                legacy="Limited by package tier"
+                isuite="Unlimited — if you need it, we build it"
+              />
+              <ComparisonRow 
+                label="New Requirements"
+                legacy="'Submit a feature request'"
+                isuite="Deployed in days"
+              />
+              <ComparisonRow 
                 label="Implementation"
                 legacy="18-36 months"
                 isuite="4-12 weeks"
               />
               <ComparisonRow 
-                label="Customization"
-                legacy="Requires developers"
-                isuite="Visual configuration"
-              />
-              <ComparisonRow 
-                label="Changes"
-                legacy="Months + budget"
-                isuite="Days"
+                label="Your Workflows"
+                legacy="Adapt to the software"
+                isuite="Software adapts to you"
               />
               <ComparisonRow 
                 label="Total Cost"
-                legacy="$1M - $50M+"
-                isuite="Fraction of legacy"
-              />
-              <ComparisonRow 
-                label="Flexibility"
-                legacy="You adapt to it"
-                isuite="It adapts to you"
-              />
-              <ComparisonRow 
-                label="Upgrades"
-                legacy="Break customizations"
-                isuite="Seamless"
+                legacy="$1M - $50M+ (then more for changes)"
+                isuite="Predictable, fraction of legacy"
                 isLast
               />
             </div>
@@ -356,55 +456,59 @@ export default function Home() {
       </section>
 
       {/* ============================================ */}
-      {/* MODULES SECTION */}
+      {/* WHAT WE'VE BUILT - EXAMPLES, NOT PRODUCTS */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-gray-50">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-4">Complete Suite</h2>
-              <h3 className="text-4xl md:text-5xl font-light">
-                Every Function. <span className="text-black/40">Unified.</span>
+            <div className="max-w-2xl">
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-4">[ What We've Built ]</h2>
+              <h3 className="text-4xl md:text-5xl font-light mb-6">
+                Examples of <span className="text-black/40">What's Possible.</span>
               </h3>
+              <p className="text-lg text-black/50">
+                These aren't modules you purchase — they're examples of solutions we've created for clients. 
+                Your solution will be different, because your business is different.
+              </p>
             </div>
             <Button asChild variant="outline" className="border-black text-black hover:bg-black hover:text-white rounded-none h-12 px-8 self-start lg:self-auto transition-colors">
-              <Link href="/modules">
-                View All Modules <ChevronRight className="ml-2 w-4 h-4" />
+              <Link href="/industries">
+                See Industry Solutions <ChevronRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ModuleCard 
-              title="Financial Management"
-              description="Budgeting, cost centers, multi-currency, and real-time reporting. Every rupee tracked from quote to cash."
-              href="/modules#erp"
+            <SolutionExampleCard 
+              title="Complete Financial Control"
+              description="Real-time visibility across entities, automated compliance, audit-ready documentation — built exactly as the CFO needed it."
             />
-            <ModuleCard 
-              title="Sales & Distribution"
-              description="Complete quote-to-cash. Pricing, orders, delivery, billing, and credit management — unified."
-              href="/modules#sales"
+            <SolutionExampleCard 
+              title="End-to-End Sales Operations"
+              description="Quote-to-cash with custom pricing logic, approval chains matching their authority structure, and reports their CEO actually uses."
             />
-            <ModuleCard 
-              title="Manufacturing (MRP)"
-              description="Production scheduling, BOM management, quality checkpoints, and shop floor tracking."
-              href="/modules#mrp"
+            <SolutionExampleCard 
+              title="Precision Manufacturing"
+              description="Production scheduling, quality checkpoints, and shop floor tracking — designed around their specific production lines."
             />
-            <ModuleCard 
-              title="Inventory Management"
-              description="Real-time visibility across locations. Batch tracking, stock movements, and reorder automation."
-              href="/modules#inventory"
+            <SolutionExampleCard 
+              title="Intelligent Inventory"
+              description="Multi-location visibility, batch tracking, and reorder automation — with the exact fields and workflows their team requested."
             />
-            <ModuleCard 
-              title="Procurement"
-              description="RFQ to payment. Vendor management, approvals, GRN, and 3-way matching built in."
-              href="/modules#procurement"
+            <SolutionExampleCard 
+              title="Strategic Procurement"
+              description="Vendor management, approvals, and 3-way matching — with custom integrations to their existing supplier systems."
             />
-            <ModuleCard 
-              title="HR & Payroll"
-              description="Employee lifecycle, attendance, payroll processing, and compliance — all integrated."
-              href="/modules#hr"
+            <SolutionExampleCard 
+              title="Integrated HR Operations"
+              description="Hire-to-retire management with payroll, attendance, and compliance — tailored to their regional requirements."
             />
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-black/40 text-lg">
+              These are starting points, not limitations. <span className="text-black font-medium">Tell us what you need.</span>
+            </p>
           </div>
         </div>
       </section>
@@ -412,20 +516,20 @@ export default function Home() {
       {/* ============================================ */}
       {/* INDUSTRIES SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-black text-white">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Industries</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-4">[ Industries ]</h2>
               <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
-                Built for Industries <br/>
-                <span className="text-white/40">That Demand Precision.</span>
+                Deep Expertise. <br/>
+                <span className="text-black/40">Custom Solutions.</span>
               </h3>
-              <p className="text-lg text-white/50 leading-relaxed mb-8">
+              <p className="text-lg text-black/50 leading-relaxed mb-8">
                 Pharmaceutical manufacturing. Industrial production. Process and discrete manufacturing. 
-                Organizations where accuracy isn't optional and compliance isn't negotiable.
+                We understand these industries deeply — but we build solutions specifically for <em>your</em> operation.
               </p>
-              <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-12 px-8">
+              <Button asChild className="bg-black text-white hover:bg-black/90 rounded-none h-12 px-8">
                 <Link href="/industries">
                   Explore Industries <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
@@ -459,9 +563,9 @@ export default function Home() {
       </section>
 
       {/* ============================================ */}
-      {/* TESTIMONIAL / PROOF SECTION */}
+      {/* TESTIMONIAL */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black/10 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-12">
             <svg className="w-12 h-12 mx-auto text-black/20 mb-8" fill="currentColor" viewBox="0 0 24 24">
@@ -469,8 +573,8 @@ export default function Home() {
             </svg>
           </div>
           <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-black/80 mb-8">
-            "We evaluated SAP and Oracle. Both quoted 18+ months and seven-figure implementations. 
-            iSuite delivered everything we needed in 10 weeks. The flexibility is unlike anything we've seen."
+            "We came to iSuite with a list of 47 specific requirements that SAP said would need 'extensive customization.' 
+            iSuite built every single one. In 10 weeks. It's not software — it's a solution that actually fits."
           </blockquote>
           <div className="text-black/40">
             <div className="font-medium text-black/60">Operations Director</div>
@@ -485,21 +589,22 @@ export default function Home() {
       <section className="py-20 md:py-32 px-6 bg-black text-white border-t border-black">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
-            Ready to See <br/>
-            <span className="text-white/40">What's Possible?</span>
+            What Does Your <br/>
+            <span className="text-white/40">Business Need?</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
-            Every organization is different. Let us show you how iSuite would work for yours.
+            Stop adapting to software limitations. Tell us what you need — 
+            we'll show you exactly how we'll build it.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
               <Link href="/contact">
-                Request Personalized Demo
+                Describe Your Requirements
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-white/20 text-black hover:bg-white/10 hover:text-white rounded-none h-14 px-10 text-sm uppercase tracking-wider">
-              <Link href="/modules">
-                Explore Modules
+            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-none h-14 px-10 text-sm uppercase tracking-wider">
+              <Link href="/platform">
+                See What's Possible
               </Link>
             </Button>
           </div>
@@ -512,17 +617,31 @@ export default function Home() {
 }
 
 // ============================================
+// COMPONENT: Solution Pillar
+// ============================================
+function SolutionPillar({ icon, number, title, description }: { icon: React.ReactNode; number: string; title: string; description: string }) {
+  return (
+    <div className="text-center p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors">
+      <div className="text-white/20 mb-4">{icon}</div>
+      <div className="text-5xl font-light text-white/10 mb-4">{number}</div>
+      <h4 className="text-xl font-medium text-white mb-3">{title}</h4>
+      <p className="text-white/50 leading-relaxed">{description}</p>
+    </div>
+  );
+}
+
+// ============================================
 // COMPONENT: Pain Point Card
 // ============================================
 function PainPointCard({ number, title, description }: { number: string; title: string; description: string }) {
   return (
-    <div className="group flex gap-6 p-6 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
-      <div className="text-4xl font-light text-white/20 group-hover:text-white/40 transition-colors">
+    <div className="group flex gap-6 p-6 border border-black/10 bg-black/[0.02] hover:bg-black/[0.05] transition-colors">
+      <div className="text-4xl font-light text-black/20 group-hover:text-black/40 transition-colors">
         {number}
       </div>
       <div>
-        <h4 className="text-lg font-medium text-white mb-2">{title}</h4>
-        <p className="text-sm text-white/50 leading-relaxed">{description}</p>
+        <h4 className="text-lg font-medium text-black mb-2">{title}</h4>
+        <p className="text-sm text-black/50 leading-relaxed">{description}</p>
       </div>
     </div>
   );
@@ -533,12 +652,12 @@ function PainPointCard({ number, title, description }: { number: string; title: 
 // ============================================
 function ValueCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="group p-10 bg-white border border-black hover:bg-black hover:text-white transition-all duration-300">
+    <div className="group p-10 bg-white border border-black/10 hover:border-black hover:bg-black hover:text-white transition-all duration-300">
       <div className="text-black/30 group-hover:text-white/60 transition-colors mb-6">
         {icon}
       </div>
-      <h4 className="text-xl font-medium text-black group-hover:text-white mb-4">{title}</h4>
-      <p className="text-sm text-black/50 group-hover:text-white/50 leading-relaxed">{description}</p>
+      <h4 className="text-xl font-medium text-black group-hover:text-white mb-4 transition-colors">{title}</h4>
+      <p className="text-sm text-black/50 group-hover:text-white/50 leading-relaxed transition-colors">{description}</p>
     </div>
   );
 }
@@ -550,9 +669,9 @@ function ComparisonRow({ label, legacy, isuite, isLast = false }: { label: strin
   return (
     <div className={cn("grid grid-cols-3", !isLast && "border-b border-white/10")}>
       <div className="p-6 text-white/60 font-medium">{label}</div>
-      <div className="p-6 text-center border-l border-white/10 text-white/40">{legacy}</div>
-      <div className="p-6 text-center border-l border-white/10 bg-white/5 text-white font-medium flex items-center justify-center gap-2">
-        <Check className="w-4 h-4 text-emerald-400" />
+      <div className="p-6 text-center border-l border-white/10 text-white/40 text-sm">{legacy}</div>
+      <div className="p-6 text-center border-l border-white/10 bg-white/5 text-white font-medium flex items-center justify-center gap-2 text-sm">
+        <Check className="w-4 h-4 text-emerald-400 shrink-0" />
         {isuite}
       </div>
     </div>
@@ -560,17 +679,14 @@ function ComparisonRow({ label, legacy, isuite, isLast = false }: { label: strin
 }
 
 // ============================================
-// COMPONENT: Module Card
+// COMPONENT: Solution Example Card
 // ============================================
-function ModuleCard({ title, description, href }: { title: string; description: string; href: string }) {
+function SolutionExampleCard({ title, description }: { title: string; description: string }) {
   return (
-    <Link href={href} className="group block p-8 bg-white border border-black hover:bg-black hover:text-white transition-all duration-300">
-      <div className="flex items-start justify-between mb-4">
-        <h4 className="text-lg font-medium text-black group-hover:text-white transition-colors">{title}</h4>
-        <ArrowRight className="w-5 h-5 text-black/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
-      </div>
-      <p className="text-sm text-black/50 group-hover:text-white/50 leading-relaxed">{description}</p>
-    </Link>
+    <div className="group p-8 bg-white border border-black/10 hover:border-black transition-all duration-300">
+      <h4 className="text-lg font-medium text-black mb-3">{title}</h4>
+      <p className="text-sm text-black/50 leading-relaxed">{description}</p>
+    </div>
   );
 }
 
@@ -581,14 +697,14 @@ function IndustryCard({ icon, title, href }: { icon: React.ReactNode; title: str
   return (
     <Link 
       href={href}
-      className="group aspect-square bg-white/5 border border-white/10 p-8 flex flex-col justify-between hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+      className="group aspect-square bg-white border border-black/10 p-8 flex flex-col justify-between hover:bg-black hover:text-white hover:border-black transition-all duration-300"
     >
-      <div className="text-white/30 group-hover:text-white/60 transition-colors">
+      <div className="text-black/30 group-hover:text-white/60 transition-colors">
         {icon}
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-xl font-light text-white">{title}</span>
-        <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+        <span className="text-xl font-light">{title}</span>
+        <ArrowRight className="w-5 h-5 text-black/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
       </div>
     </Link>
   );

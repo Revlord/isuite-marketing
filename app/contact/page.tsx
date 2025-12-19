@@ -322,7 +322,7 @@ export default function ContactPage() {
               <Link href="/platform">Explore Platform</Link>
             </Button>
             <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
-              <Link href="/modules">View Modules</Link>
+              <Link href="/solutions">View Modules</Link>
             </Button>
             <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
               <Link href="/industries">Industry Solutions</Link>

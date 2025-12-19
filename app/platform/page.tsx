@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useEffect, useMemo, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion, useScroll, useTransform, useSpring } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { 
@@ -19,7 +19,12 @@ import {
   Settings2,
   Workflow,
   BarChart3,
-  FileText
+  FileText,
+  Cpu,
+  Rocket,
+  Target,
+  Trophy,
+  Gauge
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -39,23 +44,19 @@ function GeometricGlobe() {
     let width = canvas.width = canvas.offsetWidth;
     let height = canvas.height = canvas.offsetHeight;
     
-    // Globe parameters
     const GLOBE_RADIUS = 300;
     const DOT_RADIUS = 1.5;
     const DOT_COUNT = 400;
     const CONNECTION_DISTANCE = 90;
     const ROTATION_SPEED = 0.001;
 
-    // Generate points on a sphere
     const points: { x: number, y: number, z: number, baseX: number, baseY: number, baseZ: number }[] = [];
-    const phi = Math.PI * (3 - Math.sqrt(5)); // Golden angle
+    const phi = Math.PI * (3 - Math.sqrt(5));
 
     for (let i = 0; i < DOT_COUNT; i++) {
-      const y = 1 - (i / (DOT_COUNT - 1)) * 2; // y goes from 1 to -1
-      const radius = Math.sqrt(1 - y * y); // radius at y
-      
-      const theta = phi * i; // golden angle increment
-      
+      const y = 1 - (i / (DOT_COUNT - 1)) * 2;
+      const radius = Math.sqrt(1 - y * y);
+      const theta = phi * i;
       const x = Math.cos(theta) * radius;
       const z = Math.sin(theta) * radius;
       
@@ -77,54 +78,38 @@ function GeometricGlobe() {
       
       ctx.clearRect(0, 0, width, height);
       
-      // Center of canvas
       const cx = width / 2;
       const cy = height / 2;
 
-      // Rotate globe
       rotationY += ROTATION_SPEED;
       rotationX += ROTATION_SPEED * 0.5;
 
-      // Update and draw points
       const projectedPoints: { x: number, y: number, z: number }[] = [];
 
       points.forEach(point => {
-        // Rotate around Y axis
         let x1 = point.baseX * Math.cos(rotationY) - point.baseZ * Math.sin(rotationY);
         let z1 = point.baseZ * Math.cos(rotationY) + point.baseX * Math.sin(rotationY);
-        
-        // Rotate around X axis
         let y1 = point.baseY * Math.cos(rotationX) - z1 * Math.sin(rotationX);
         let z2 = z1 * Math.cos(rotationX) + point.baseY * Math.sin(rotationX);
 
-        // Project 3D to 2D (simple orthographic + perspective hint)
         const scale = 800 / (800 - z2);
         const x2D = x1 * scale + cx;
         const y2D = y1 * scale + cy;
 
-        // Only store points that are somewhat "in front" or close to it for connections
         projectedPoints.push({ x: x2D, y: y2D, z: z2 });
 
-        // Draw point
-        const alpha = Math.max(0.1, (z2 + GLOBE_RADIUS) / (2 * GLOBE_RADIUS)); // Fade back points
+        const alpha = Math.max(0.1, (z2 + GLOBE_RADIUS) / (2 * GLOBE_RADIUS));
         ctx.beginPath();
         ctx.arc(x2D, y2D, DOT_RADIUS * scale, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0, 0, 0, ${alpha * 0.8})`;
         ctx.fill();
       });
 
-      // Draw connections
       ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
       ctx.lineWidth = 0.5;
       
       for (let i = 0; i < projectedPoints.length; i++) {
         const p1 = projectedPoints[i];
-        // Optimization: only check some neighbors or use spatial partitioning if needed. 
-        // For 400 points, brute force is okay-ish but let's limit checks to keep it fast.
-        // We only connect points that are physically close on the sphere surface in 3D space would be better,
-        // but 2D distance check is visually interesting too as it creates "scanning" effects.
-        
-        // Let's only connect if z is positive (front of sphere) to reduce clutter
         if (p1.z < -50) continue;
 
         for (let j = i + 1; j < projectedPoints.length; j++) {
@@ -188,16 +173,12 @@ export default function PlatformPage() {
       {/* ============================================ */}
       <section ref={heroRef} className="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
         
-        {/* Geometric Background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-100 via-white to-white"></div>
           <GeometricGlobe />
-          
-          {/* Vignette */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#ffffff_100%)]"></div>
         </div>
 
-        {/* Content */}
         <motion.div 
           style={{ opacity, scale }}
           className="relative z-10 max-w-6xl mx-auto text-center pt-20"
@@ -209,9 +190,9 @@ export default function PlatformPage() {
             className="mb-12 flex justify-center"
           >
             <div className="flex items-center gap-3 px-5 py-2.5 border border-black/10 rounded-full bg-black/[0.03] backdrop-blur-md">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-black animate-pulse"></div>
               <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-black/70">
-                Next Generation Architecture
+                Proprietary Architecture
               </span>
             </div>
           </motion.div>
@@ -223,7 +204,7 @@ export default function PlatformPage() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              Capability
+              The Engine
             </motion.span>
             <motion.span 
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -231,7 +212,7 @@ export default function PlatformPage() {
               transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="block text-black/40"
             >
-              Without Limits.
+              Behind the Power.
             </motion.span>
           </h1>
 
@@ -241,8 +222,9 @@ export default function PlatformPage() {
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
             className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto font-light leading-relaxed mb-16"
           >
-            A proprietary architecture designed for one purpose: enterprise software that truly fits. 
-            No rigid templates. No artificial constraints. Just your operations, digitized exactly.
+            While others sell you software, we engineered something different — 
+            a proprietary platform that doesn't just compete with legacy giants. 
+            <span className="text-black font-medium"> It outperforms them.</span>
           </motion.p>
 
           <motion.div
@@ -265,14 +247,13 @@ export default function PlatformPage() {
               variant="ghost"
               className="text-black hover:text-black hover:bg-black/5 rounded-full h-14 px-10 text-sm uppercase tracking-wider font-medium border border-black/10 hover:border-black/20 transition-all"
             >
-              <Link href="/contact">
-                Explore Platform
+              <Link href="/solutions">
+                Explore Solutions
               </Link>
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -290,50 +271,76 @@ export default function PlatformPage() {
       </section>
 
       {/* ============================================ */}
-      {/* THE PHILOSOPHY SECTION */}
+      {/* THE UNFAIR ADVANTAGE - BOLD STATEMENT */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
+      <section className="py-24 md:py-32 px-6 border-t border-black bg-black text-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The Philosophy</h2>
-              <h3 className="text-3xl md:text-5xl font-light leading-tight mb-8">
-                Most ERPs Force You <br/>
-                <span className="text-black/40">Into Their Mold.</span>
-              </h3>
-              <div className="space-y-6 text-lg text-black/60 leading-relaxed">
-                <p>
-                  Traditional enterprise software starts with assumptions about how businesses should operate — then forces you into that mold.
-                </p>
-                <p>
-                  iSuite was architected differently. From the ground up, we built a platform designed to adapt to <em>any</em> operational requirement, <em>any</em> workflow, <em>any</em> way of working.
-                </p>
-                <p className="text-black/80 font-medium">
-                  The result: enterprise capability without enterprise rigidity.
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/20 text-xs font-bold uppercase tracking-[0.3em] text-white/60">
+                <Trophy className="w-4 h-4" />
+                The Unfair Advantage
+              </span>
+            </motion.div>
+            
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-light leading-[1.1] mb-8">
+              They Spent Decades. <br/>
+              <span className="text-white/40">We Spent Them Smarter.</span>
+            </h2>
+            
+            <p className="text-xl text-white/50 max-w-3xl mx-auto leading-relaxed">
+              SAP took 50 years to build bloated complexity. Oracle bought their way to market dominance. 
+              We studied what they got wrong — then engineered what they can't replicate.
+            </p>
+          </div>
+
+          {/* Competitive Edge Stats */}
+          <div className="grid md:grid-cols-4 gap-px bg-white/10 border border-white/10 mb-16">
+            <CompetitiveStatCard 
+              metric="10x"
+              label="Faster Implementation"
+              comparison="vs. SAP/Oracle average"
+            />
+            <CompetitiveStatCard 
+              metric="<200ms"
+              label="Query Response"
+              comparison="Even on complex reports"
+            />
+            <CompetitiveStatCard 
+              metric="∞"
+              label="Customization Depth"
+              comparison="No artificial limits"
+            />
+            <CompetitiveStatCard 
+              metric="0"
+              label="Compromises Required"
+              comparison="Your process, exactly"
+            />
+          </div>
+
+          {/* The Bold Promise */}
+          <div className="border border-white/20 p-8 md:p-12 bg-white/[0.02]">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <Cpu className="w-12 h-12 text-white/40 mb-6" />
+                <h3 className="text-2xl md:text-3xl font-light mb-4">
+                  Proprietary Engines. <span className="text-white/40">Unmatched Results.</span>
+                </h3>
+                <p className="text-white/50 leading-relaxed">
+                  Under the hood, iSuite runs on a suite of proprietary engines we've spent years perfecting. 
+                  They're the reason we can promise what others can't — and deliver what others won't.
                 </p>
               </div>
-            </div>
-
-            {/* Visual Element */}
-            <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-black/5 to-transparent border border-black/10 p-12 relative overflow-hidden">
-                {/* Abstract visualization */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative w-48 h-48">
-                    <div className="absolute inset-0 border border-black/20 rotate-45 animate-[spin_20s_linear_infinite]"></div>
-                    <div className="absolute inset-4 border border-black/15 rotate-12 animate-[spin_15s_linear_infinite_reverse]"></div>
-                    <div className="absolute inset-8 border border-black/10 -rotate-12 animate-[spin_25s_linear_infinite]"></div>
-                    <div className="absolute inset-12 bg-black/5 backdrop-blur-sm flex items-center justify-center">
-                      <Layers className="w-12 h-12 text-black/40" />
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Corner labels */}
-                <div className="absolute top-4 left-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Flexibility</div>
-                <div className="absolute top-4 right-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Depth</div>
-                <div className="absolute bottom-4 left-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Speed</div>
-                <div className="absolute bottom-4 right-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Control</div>
+              <div className="space-y-4">
+                <EngineHighlight text="Build any screen, any workflow, any logic — in hours" />
+                <EngineHighlight text="Handle enterprise complexity without enterprise bloat" />
+                <EngineHighlight text="Scale from startup to multinational without re-architecture" />
+                <EngineHighlight text="Deploy changes while competitors file change requests" />
               </div>
             </div>
           </div>
@@ -341,41 +348,117 @@ export default function PlatformPage() {
       </section>
 
       {/* ============================================ */}
-      {/* CAPABILITY PILLARS */}
+      {/* THE POWER BENEATH - CAPABILITIES */}
       {/* ============================================ */}
       <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Platform Capabilities</h2>
-            <h3 className="text-4xl md:text-5xl font-light">
-              What You <span className="text-black/40">Get.</span>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The Power Beneath</h2>
+            <h3 className="text-4xl md:text-6xl font-light mb-6">
+              Engines That <span className="text-black/40">Outperform.</span>
+            </h3>
+            <p className="text-xl text-black/50 max-w-3xl mx-auto">
+              Four proprietary engines working in concert. Each one designed to do what legacy systems can't — 
+              adapt instantly, scale infinitely, perform relentlessly.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <PowerEngineCard 
+              icon={<Settings2 className="w-10 h-10" />}
+              number="01"
+              title="Infinite Interface Engine"
+              tagline="Any screen. Any form. Any field. Built in hours."
+              description="While competitors limit you to predefined templates, our interface engine generates any data capture point your process demands. 30+ field types, unlimited validation rules, pixel-perfect layouts — all without writing code."
+              capabilities={["Unlimited field types", "Complex validation logic", "Dynamic form behavior", "Zero development wait"]}
+              competitiveEdge="SAP charges for 'custom development.' We call it Tuesday."
+            />
+            <PowerEngineCard 
+              icon={<Workflow className="w-10 h-10" />}
+              number="02"
+              title="Adaptive Workflow Engine"
+              tagline="Your approval chains. Your rules. Your way."
+              description="Multi-level approvals, conditional routing, parallel processes, automatic escalations — our workflow engine handles complexity that makes consultants nervous. And it configures in minutes, not months."
+              capabilities={["Unlimited approval levels", "Conditional branching", "Auto-escalation rules", "Real-time notifications"]}
+              competitiveEdge="Oracle implementations take 18 months. Ours take conversations."
+            />
+            <PowerEngineCard 
+              icon={<BarChart3 className="w-10 h-10" />}
+              number="03"
+              title="Real-Time Analytics Engine"
+              tagline="Any data. Any calculation. Instant answers."
+              description="Pull data from anywhere in your operation, apply any calculation, visualize any way you need. Sub-200ms response times on complex queries. Dashboards that actually show what matters."
+              capabilities={["Cross-module analytics", "Custom calculations", "Real-time refresh", "Export any format"]}
+              competitiveEdge="Their 'real-time' means overnight batch. Ours means now."
+            />
+            <PowerEngineCard 
+              icon={<FileText className="w-10 h-10" />}
+              number="04"
+              title="Document Generation Engine"
+              tagline="Pixel-perfect output. Every time."
+              description="Invoices, purchase orders, certificates, reports — every document formatted exactly as your business demands. Brand-compliant, regulation-ready, generated automatically at scale."
+              capabilities={["Custom templates", "Dynamic data binding", "Batch generation", "Multi-format export"]}
+              competitiveEdge="They give you templates. We give you control."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* WHY WE WIN - DIRECT COMPARISON */}
+      {/* ============================================ */}
+      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Why We Win</h2>
+            <h3 className="text-4xl md:text-5xl font-light mb-6">
+              The Comparison <span className="text-black/40">They'd Rather You Didn't See.</span>
             </h3>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-px bg-black/10 border border-black/10">
-            <CapabilityCard 
-              icon={<Settings2 className="w-8 h-8" />}
-              title="Unlimited Screen Customization"
-              description="Every form, every field, every data capture point — designed exactly as your process requires. New screens deploy in hours, not months."
-              highlights={["Any field type", "Any validation rule", "Any layout"]}
+          <div className="border border-black/10 overflow-hidden bg-white">
+            <div className="grid grid-cols-3 border-b border-black/10">
+              <div className="p-6 bg-black/[0.02]"></div>
+              <div className="p-6 text-center border-l border-black/10">
+                <span className="text-sm uppercase tracking-wider text-black/40">Legacy Giants</span>
+                <p className="text-xs text-black/30 mt-1">SAP, Oracle, etc.</p>
+              </div>
+              <div className="p-6 text-center border-l border-black/10 bg-black text-white">
+                <span className="text-sm uppercase tracking-wider font-medium">iSuite</span>
+                <p className="text-xs text-white/50 mt-1">Unfair advantage</p>
+              </div>
+            </div>
+
+            <ComparisonTableRow 
+              label="New Screen Creation"
+              legacy="Weeks + developers"
+              isuite="Hours. No code."
             />
-            <CapabilityCard 
-              icon={<Workflow className="w-8 h-8" />}
-              title="Intelligent Workflow Automation"
-              description="Approval chains that match your actual authority structure. Complex business rules automated precisely as your organization operates."
-              highlights={["Multi-level approvals", "Conditional routing", "Automatic actions"]}
+            <ComparisonTableRow 
+              label="Workflow Changes"
+              legacy="Change request → 6 months"
+              isuite="Configure → Deploy → Done"
             />
-            <CapabilityCard 
-              icon={<BarChart3 className="w-8 h-8" />}
-              title="Real-Time Analytics & Reporting"
-              description="The exact reports you need, showing exactly what matters. Build any analytical view across any data, updated in real-time."
-              highlights={["Any data source", "Any calculation", "Any visualization"]}
+            <ComparisonTableRow 
+              label="Custom Reports"
+              legacy="IT backlog queue"
+              isuite="Build yourself. Minutes."
             />
-            <CapabilityCard 
-              icon={<FileText className="w-8 h-8" />}
-              title="Complete Document Control"
-              description="Every invoice, PO, and report formatted exactly as your business demands. Full brand control, regulatory compliance, automated generation."
-              highlights={["Pixel-perfect output", "Dynamic fields", "Batch generation"]}
+            <ComparisonTableRow 
+              label="Implementation Time"
+              legacy="18-36 months"
+              isuite="4-12 weeks"
+            />
+            <ComparisonTableRow 
+              label="Total Cost of Ownership"
+              legacy="$1M-$50M+ (and growing)"
+              isuite="Fraction. Predictable."
+            />
+            <ComparisonTableRow 
+              label="Your Requirements"
+              legacy="'That's not how it works'"
+              isuite="'When do you need it?'"
+              isLast
             />
           </div>
         </div>
@@ -384,92 +467,58 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* TECHNICAL FOUNDATION */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
+      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="lg:sticky lg:top-32">
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Technical Foundation</h2>
               <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
                 Enterprise-Grade. <br/>
-                <span className="text-black/40">Modern Architecture.</span>
+                <span className="text-black/40">Battle-Tested.</span>
               </h3>
               <p className="text-lg text-black/50 leading-relaxed mb-8">
-                Built on a distributed architecture designed to handle millions of transactions with sub-second response times. Security and compliance aren't afterthoughts — they're foundational.
+                Built on distributed architecture designed for millions of transactions with sub-second response. 
+                Security and compliance aren't features — they're non-negotiables baked into every layer.
               </p>
-              <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
+              <Button asChild variant="outline" className="border-black text-black hover:bg-black hover:text-white rounded-none h-12 px-8 transition-colors">
                 <Link href="/contact">
                   Request Technical Deep-Dive <ChevronRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               <TechCard 
-                icon={<Zap className="w-6 h-6" />}
-                color="blue"
-                title="High-Performance Engine"
-                description="Sub-200ms query latency even on complex reports. Built to scale from startup to enterprise without architectural changes."
+                icon={<Gauge className="w-6 h-6" />}
+                title="Sub-200ms Performance"
+                description="Complex queries return faster than users can blink. Built to handle enterprise load without breaking a sweat."
               />
               <TechCard 
                 icon={<Shield className="w-6 h-6" />}
-                color="purple"
                 title="Enterprise Security"
-                description="Role-based access control, field-level permissions, complete audit trails, and encryption at rest and in transit."
+                description="Role-based access, field-level permissions, encryption everywhere, complete audit trails. Bank-grade security."
               />
               <TechCard 
                 icon={<Globe className="w-6 h-6" />}
-                color="emerald"
-                title="Multi-Entity Ready"
-                description="Multi-currency, multi-location, multi-company. Handle complex organizational structures without workarounds."
+                title="Multi-Everything Ready"
+                description="Multi-currency, multi-location, multi-company, multi-language. Complex structures handled natively."
               />
               <TechCard 
                 icon={<RefreshCcw className="w-6 h-6" />}
-                color="amber"
-                title="Real-Time Sync"
-                description="Changes propagate instantly across the system. What happens on the shop floor appears in finance dashboards immediately."
+                title="Real-Time Propagation"
+                description="Changes ripple instantly. Shop floor to CFO dashboard in milliseconds. No batch jobs, no delays."
               />
               <TechCard 
                 icon={<Lock className="w-6 h-6" />}
-                color="rose"
-                title="Compliance Ready"
-                description="GST, regulatory requirements, audit trails — built in from day one. Not bolted on as an afterthought."
+                title="Compliance-First Design"
+                description="GST, regulatory requirements, audit trails — engineered in from day one. Not patched on as afterthought."
+              />
+              <TechCard 
+                icon={<Rocket className="w-6 h-6" />}
+                title="Infinite Scalability"
+                description="Start with 10 users, scale to 10,000. Same architecture. No re-implementation. No migration pain."
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================ */}
-      {/* THE DIFFERENCE */}
-      {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The Difference</h2>
-            <h3 className="text-4xl md:text-5xl font-light mb-8">
-              Why This <span className="text-black/40">Matters.</span>
-            </h3>
-            <p className="text-xl text-black/50 max-w-3xl mx-auto">
-              When your platform is built for flexibility from the ground up, everything changes.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <DifferenceCard 
-              number="01"
-              title="New Requirements? Days, Not Months."
-              description="When a new process emerges or regulations change, you're not waiting on a development queue. Configure and deploy."
-            />
-            <DifferenceCard 
-              number="02"
-              title="Your Processes, Not Ours."
-              description="Stop hearing 'that's how the software works.' iSuite works how YOU work. Every workflow, every approval, every report."
-            />
-            <DifferenceCard 
-              number="03"
-              title="Scale Without Fear."
-              description="Add entities, add locations, add complexity. The architecture handles it. No re-implementation, no data migration nightmares."
-            />
           </div>
         </div>
       </section>
@@ -480,17 +529,25 @@ export default function PlatformPage() {
       <section className="py-20 md:py-32 px-6 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
-            See the Platform <br/>
-            <span className="text-white/40">In Action.</span>
+            Ready for an <br/>
+            <span className="text-white/40">Unfair Advantage?</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
-            Words only go so far. Request a personalized demo and see how iSuite would handle your specific requirements.
+            Stop fighting your software. Start outpacing your competition. 
+            See what iSuite can do for your specific operation.
           </p>
-          <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
-            <Link href="/contact">
-              Request Platform Demo
-            </Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
+              <Link href="/contact">
+                Request Platform Demo
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-none h-14 px-10 text-sm uppercase tracking-wider">
+              <Link href="/solutions">
+                Explore Solutions
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -500,36 +557,109 @@ export default function PlatformPage() {
 }
 
 // ============================================
-// COMPONENT: CapabilityCard
+// COMPONENT: Competitive Stat Card
 // ============================================
-function CapabilityCard({ 
+function CompetitiveStatCard({ metric, label, comparison }: { metric: string; label: string; comparison: string }) {
+  return (
+    <div className="p-8 bg-white/[0.02] hover:bg-white/[0.05] transition-colors text-center">
+      <div className="text-4xl md:text-5xl font-light text-white mb-2">{metric}</div>
+      <div className="text-sm font-medium text-white/80 mb-1">{label}</div>
+      <div className="text-xs text-white/40">{comparison}</div>
+    </div>
+  );
+}
+
+// ============================================
+// COMPONENT: Engine Highlight
+// ============================================
+function EngineHighlight({ text }: { text: string }) {
+  return (
+    <div className="flex items-center gap-3 p-4 border border-white/10 bg-white/[0.02]">
+      <Check className="w-5 h-5 text-white/60 shrink-0" />
+      <span className="text-white/70">{text}</span>
+    </div>
+  );
+}
+
+// ============================================
+// COMPONENT: Power Engine Card
+// ============================================
+function PowerEngineCard({ 
   icon, 
+  number,
   title, 
+  tagline,
   description, 
-  highlights 
+  capabilities,
+  competitiveEdge
 }: { 
-  icon: React.ReactNode; 
+  icon: React.ReactNode;
+  number: string;
   title: string; 
+  tagline: string;
   description: string;
-  highlights: string[];
+  capabilities: string[];
+  competitiveEdge: string;
 }) {
   return (
-    <div className="group p-10 bg-gray-50 hover:bg-gray-100 transition-all duration-500 border-r border-b border-black/5 last:border-r-0">
-      <div className="text-black/40 group-hover:text-black transition-colors mb-6">
-        {icon}
+    <div className="group p-8 md:p-10 border border-black/10 bg-white hover:border-black/30 transition-all duration-500">
+      {/* Header */}
+      <div className="flex items-start justify-between mb-6">
+        <div className="text-black/30 group-hover:text-black transition-colors">
+          {icon}
+        </div>
+        <span className="text-5xl font-light text-black/10">{number}</span>
       </div>
-      <h4 className="text-2xl font-light text-black mb-4">{title}</h4>
+      
+      {/* Title & Tagline */}
+      <h4 className="text-2xl font-medium text-black mb-2">{title}</h4>
+      <p className="text-sm font-mono text-black/40 uppercase tracking-wider mb-4">{tagline}</p>
+      
+      {/* Description */}
       <p className="text-black/60 leading-relaxed mb-6">{description}</p>
-      <div className="flex flex-wrap gap-2">
-        {highlights.map((highlight, i) => (
+      
+      {/* Capabilities */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {capabilities.map((cap, i) => (
           <span 
             key={i}
-            className="inline-flex items-center gap-1 px-3 py-1 bg-white border border-black/10 text-xs text-black/60"
+            className="inline-flex items-center gap-1 px-3 py-1.5 bg-black/[0.03] border border-black/10 text-xs text-black/70"
           >
-            <Check className="w-3 h-3 text-black/40" />
-            {highlight}
+            <Check className="w-3 h-3 text-black/50" />
+            {cap}
           </span>
         ))}
+      </div>
+      
+      {/* Competitive Edge */}
+      <div className="pt-6 border-t border-black/10">
+        <p className="text-sm text-black/80 italic">"{competitiveEdge}"</p>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// COMPONENT: Comparison Table Row
+// ============================================
+function ComparisonTableRow({ 
+  label, 
+  legacy, 
+  isuite, 
+  isLast = false 
+}: { 
+  label: string; 
+  legacy: string; 
+  isuite: string; 
+  isLast?: boolean;
+}) {
+  return (
+    <div className={cn("grid grid-cols-3", !isLast && "border-b border-black/10")}>
+      <div className="p-6 text-black/70 font-medium text-sm">{label}</div>
+      <div className="p-6 text-center border-l border-black/10 text-black/40 text-sm">{legacy}</div>
+      <div className="p-6 text-center border-l border-black/10 bg-black/[0.02] text-black font-medium text-sm flex items-center justify-center gap-2">
+        <Check className="w-4 h-4 text-black/60 shrink-0" />
+        {isuite}
       </div>
     </div>
   );
@@ -540,46 +670,22 @@ function CapabilityCard({
 // ============================================
 function TechCard({ 
   icon, 
-  color, 
   title, 
   description 
 }: { 
   icon: React.ReactNode; 
-  color: "blue" | "purple" | "emerald" | "amber" | "rose";
   title: string; 
   description: string;
 }) {
-  // Monochrome override - ignoring color prop for strict style
   return (
-    <div className="flex gap-6 p-6 border border-black/10 bg-white hover:border-black/20 transition-colors">
-      <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-black/10 bg-gray-50 text-black/60">
+    <div className="flex gap-6 p-6 border border-black/10 bg-gray-50 hover:bg-gray-100 hover:border-black/20 transition-all">
+      <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-black/10 bg-white text-black/60">
         {icon}
       </div>
       <div>
         <h4 className="text-lg font-medium text-black mb-2">{title}</h4>
         <p className="text-sm text-black/50 leading-relaxed">{description}</p>
       </div>
-    </div>
-  );
-}
-
-// ============================================
-// COMPONENT: Difference Card
-// ============================================
-function DifferenceCard({ 
-  number, 
-  title, 
-  description 
-}: { 
-  number: string; 
-  title: string; 
-  description: string;
-}) {
-  return (
-    <div className="p-8 border border-black/10 bg-gray-50 hover:bg-gray-100 transition-colors">
-      <div className="text-5xl font-light text-black/10 mb-6">{number}</div>
-      <h4 className="text-xl font-medium text-black mb-4">{title}</h4>
-      <p className="text-black/50 leading-relaxed">{description}</p>
     </div>
   );
 }

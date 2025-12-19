@@ -518,7 +518,7 @@ function CTASection() {
             </Link>
           </Button>
           <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 hover:text-white rounded-none h-14 px-10 text-sm uppercase tracking-wider">
-            <Link href="/modules">
+            <Link href="/solutions">
               Explore Modules
             </Link>
           </Button>

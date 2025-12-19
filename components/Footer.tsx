@@ -29,19 +29,19 @@ export default function Footer() {
         <div>
           <h3 className="text-black font-medium mb-4 uppercase tracking-wider text-xs">Core ERP</h3>
           <ul className="space-y-3">
-            <li><Link href="/modules#erp" className="hover:text-black transition-colors">Financial Management</Link></li>
-            <li><Link href="/modules#sales" className="hover:text-black transition-colors">Sales & Distribution</Link></li>
-            <li><Link href="/modules#procurement" className="hover:text-black transition-colors">Procurement</Link></li>
-            <li><Link href="/modules#inventory" className="hover:text-black transition-colors">Inventory Management</Link></li>
-            <li><Link href="/modules#mrp" className="hover:text-black transition-colors">Manufacturing (MRP)</Link></li>
-            <li><Link href="/modules#erp" className="hover:text-black transition-colors">Accounting</Link></li>
+            <li><Link href="/solutions#erp" className="hover:text-black transition-colors">Financial Management</Link></li>
+            <li><Link href="/solutions#sales" className="hover:text-black transition-colors">Sales & Distribution</Link></li>
+            <li><Link href="/solutions#procurement" className="hover:text-black transition-colors">Procurement</Link></li>
+            <li><Link href="/solutions#inventory" className="hover:text-black transition-colors">Inventory Management</Link></li>
+            <li><Link href="/solutions#mrp" className="hover:text-black transition-colors">Manufacturing (MRP)</Link></li>
+            <li><Link href="/solutions#erp" className="hover:text-black transition-colors">Accounting</Link></li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-black font-medium mb-4 uppercase tracking-wider text-xs">Operations</h3>
           <ul className="space-y-3">
-            <li><Link href="/modules#pm" className="hover:text-black transition-colors">Project Management</Link></li>
+            <li><Link href="/solutions#pm" className="hover:text-black transition-colors">Project Management</Link></li>
             <li><Link href="/industries#finance" className="hover:text-black transition-colors">Fixed Assets</Link></li>
             <li><Link href="/industries#commercial" className="hover:text-black transition-colors">Customer Service</Link></li>
             <li><Link href="/industries#operations" className="hover:text-black transition-colors">HR & Payroll</Link></li>
