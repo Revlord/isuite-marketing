@@ -66,7 +66,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main ref={mainRef} className="bg-[#050505] text-white selection:bg-white/20 overflow-x-hidden">
+    <main ref={mainRef} className="bg-white text-black selection:bg-black/10 overflow-x-hidden">
       <Navbar />
 
       {/* ============================================ */}
@@ -75,14 +75,14 @@ export default function Home() {
       <section className="hero-section relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
         {/* Background */}
         <div className="hero-bg absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#050505] to-[#050505]"></div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-100 via-white to-white"></div>
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-multiply"></div>
           {/* Animated grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:64px_64px]"></div>
         </div>
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white z-[1]"></div>
 
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto text-center pt-32 pb-20">
@@ -93,8 +93,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-xs font-medium uppercase tracking-[0.2em] text-white/60 bg-white/5 backdrop-blur-sm">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 border border-black text-xs font-medium uppercase tracking-[0.2em] text-black bg-white backdrop-blur-sm">
+              <span className="w-2 h-2 bg-black rounded-none animate-pulse"></span>
               Enterprise Operating System
             </span>
           </motion.div>
@@ -107,18 +107,18 @@ export default function Home() {
             className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.05] mb-8"
           >
             Introducing <br/>
-            <span className="text-white/40">
+            <span className="text-black/40">
               <span className="relative inline-block">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0, 1, 0] }}
                   transition={{ duration: 0.4, times: [0, 0.2, 0.5, 0.8, 1], delay: 0.2 }}
-                  className="absolute inset-0 underline decoration-1 decoration-white/40 underline-offset-8"
+                  className="absolute inset-0 underline decoration-1 decoration-black underline-offset-8"
                   aria-hidden="true"
                 >
                   Absolute
                 </motion.span>
-                <span className="underline decoration-1 decoration-white/40 underline-offset-8">
+                <span className="underline decoration-1 decoration-black/40 underline-offset-8">
                   {"Absolute".split("").map((char, i) => (
                     <motion.span
                       key={i}
@@ -140,7 +140,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto font-light leading-relaxed mb-12"
+            className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto font-light leading-relaxed mb-12"
           >
             iSuite is the enterprise platform that molds to your operations — not the other way around. Deploy in weeks. Customize without limits. Evolve continuously.
           </motion.p>
@@ -154,7 +154,7 @@ export default function Home() {
           >
             <Button 
               asChild
-              className="bg-white text-black hover:bg-gray-200 rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-semibold group"
+              className="bg-black text-white hover:bg-black/90 rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-semibold group border border-black"
             >
               <Link href="/contact">
                 Request Demo
@@ -164,7 +164,7 @@ export default function Home() {
             <Button 
               asChild
               variant="outline" 
-              className="bg-transparent border-white/20 text-white hover:bg-white/10 hover:text-white rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-medium"
+              className="bg-transparent border-black text-black hover:bg-black hover:text-white rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-medium transition-colors"
             >
               <Link href="/platform">
                 Explore Platform
@@ -177,15 +177,15 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="mt-20 pt-12 border-t border-white/10"
+            className="mt-20 pt-12 border-t border-black/10"
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-white/30 mb-6">Trusted by Industry Leaders</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-black/30 mb-6">Trusted by Industry Leaders</p>
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 opacity-40">
               {/* Placeholder for client logos */}
-              <div className="text-2xl font-light tracking-tight">Pharma<span className="text-white/50">Corp</span></div>
-              <div className="text-2xl font-light tracking-tight">Industrial<span className="text-white/50">Tech</span></div>
-              <div className="text-2xl font-light tracking-tight">Mfg<span className="text-white/50">Global</span></div>
-              <div className="text-2xl font-light tracking-tight">Process<span className="text-white/50">Pro</span></div>
+              <div className="text-2xl font-light tracking-tight">Pharma<span className="text-black/50">Corp</span></div>
+              <div className="text-2xl font-light tracking-tight">Industrial<span className="text-black/50">Tech</span></div>
+              <div className="text-2xl font-light tracking-tight">Mfg<span className="text-black/50">Global</span></div>
+              <div className="text-2xl font-light tracking-tight">Process<span className="text-black/50">Pro</span></div>
             </div>
           </motion.div>
         </div>
@@ -197,9 +197,9 @@ export default function Home() {
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="flex flex-col items-center gap-2 text-white/30">
+          <div className="flex flex-col items-center gap-2 text-black/30">
             <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-            <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent"></div>
+            <div className="w-px h-12 bg-gradient-to-b from-black/30 to-transparent"></div>
           </div>
         </motion.div>
       </section>
@@ -207,7 +207,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* THE PROBLEM SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-black text-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -223,7 +223,7 @@ export default function Home() {
                 <p>
                   When requirements change, you face impossible choices: expensive customization projects, clunky workarounds, or starting over.
                 </p>
-                <p className="text-white/80 font-medium">
+                <p className="text-white font-medium">
                   There's a better way.
                 </p>
               </div>
@@ -259,19 +259,19 @@ export default function Home() {
       {/* ============================================ */}
       {/* THE SOLUTION SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-white">
         <div className="max-w-6xl mx-auto text-center mb-20">
-          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The iSuite Difference</h2>
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The iSuite Difference</h2>
           <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
-            Software That <span className="text-white/40">Adapts to You.</span>
+            Software That <span className="text-black/40">Adapts to You.</span>
           </h3>
-          <p className="text-xl text-white/50 max-w-3xl mx-auto">
+          <p className="text-xl text-black/50 max-w-3xl mx-auto">
             iSuite was architected differently. Our proprietary platform molds precisely to how your organization actually operates — delivering enterprise depth with unprecedented flexibility.
           </p>
         </div>
 
         {/* Value Props */}
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <ValueCard 
             icon={<Clock className="w-8 h-8" />}
             title="Weeks, Not Years"
@@ -298,7 +298,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* COMPARISON SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-black text-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Comparison</h2>
@@ -307,13 +307,13 @@ export default function Home() {
             </h3>
           </div>
 
-          <div className="border border-white/10 overflow-hidden overflow-x-auto">
-            <div className="grid grid-cols-3 border-b border-white/10 min-w-[600px]">
+          <div className="border border-white/20 overflow-hidden overflow-x-auto">
+            <div className="grid grid-cols-3 border-b border-white/20 min-w-[600px]">
               <div className="p-6 bg-white/5"></div>
-              <div className="p-6 text-center border-l border-white/10">
+              <div className="p-6 text-center border-l border-white/20">
                 <span className="text-sm uppercase tracking-wider text-white/40">Legacy ERP</span>
               </div>
-              <div className="p-6 text-center border-l border-white/10 bg-white/5">
+              <div className="p-6 text-center border-l border-white/20 bg-white/10">
                 <span className="text-sm uppercase tracking-wider text-white font-medium">iSuite</span>
               </div>
             </div>
@@ -358,23 +358,23 @@ export default function Home() {
       {/* ============================================ */}
       {/* MODULES SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Complete Suite</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-4">Complete Suite</h2>
               <h3 className="text-4xl md:text-5xl font-light">
-                Every Function. <span className="text-white/40">Unified.</span>
+                Every Function. <span className="text-black/40">Unified.</span>
               </h3>
             </div>
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8 self-start lg:self-auto">
+            <Button asChild variant="outline" className="border-black text-black hover:bg-black hover:text-white rounded-none h-12 px-8 self-start lg:self-auto transition-colors">
               <Link href="/modules">
                 View All Modules <ChevronRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ModuleCard 
               title="Financial Management"
               description="Budgeting, cost centers, multi-currency, and real-time reporting. Every rupee tracked from quote to cash."
@@ -412,7 +412,7 @@ export default function Home() {
       {/* ============================================ */}
       {/* INDUSTRIES SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -461,19 +461,19 @@ export default function Home() {
       {/* ============================================ */}
       {/* TESTIMONIAL / PROOF SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-white/10 bg-[#0a0a0a]">
+      <section className="fade-section py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-12">
-            <svg className="w-12 h-12 mx-auto text-white/20 mb-8" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-12 h-12 mx-auto text-black/20 mb-8" fill="currentColor" viewBox="0 0 24 24">
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
             </svg>
           </div>
-          <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-white/80 mb-8">
+          <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-black/80 mb-8">
             "We evaluated SAP and Oracle. Both quoted 18+ months and seven-figure implementations. 
             iSuite delivered everything we needed in 10 weeks. The flexibility is unlike anything we've seen."
           </blockquote>
-          <div className="text-white/40">
-            <div className="font-medium text-white/60">Operations Director</div>
+          <div className="text-black/40">
+            <div className="font-medium text-black/60">Operations Director</div>
             <div className="text-sm">Leading Pharmaceutical Manufacturer</div>
           </div>
         </div>
@@ -482,22 +482,22 @@ export default function Home() {
       {/* ============================================ */}
       {/* CTA SECTION */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 bg-white text-black">
+      <section className="py-20 md:py-32 px-6 bg-black text-white border-t border-black">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
             Ready to See <br/>
-            <span className="text-black/40">What's Possible?</span>
+            <span className="text-white/40">What's Possible?</span>
           </h2>
-          <p className="text-xl text-black/60 max-w-2xl mx-auto mb-12">
+          <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
             Every organization is different. Let us show you how iSuite would work for yours.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild className="bg-black text-white hover:bg-black/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
+            <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
               <Link href="/contact">
                 Request Personalized Demo
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-14 px-10 text-sm uppercase tracking-wider">
+            <Button asChild variant="outline" className="border-white/20 text-black hover:bg-white/10 hover:text-white rounded-none h-14 px-10 text-sm uppercase tracking-wider">
               <Link href="/modules">
                 Explore Modules
               </Link>
@@ -516,12 +516,12 @@ export default function Home() {
 // ============================================
 function PainPointCard({ number, title, description }: { number: string; title: string; description: string }) {
   return (
-    <div className="group flex gap-6 p-6 border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+    <div className="group flex gap-6 p-6 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
       <div className="text-4xl font-light text-white/20 group-hover:text-white/40 transition-colors">
         {number}
       </div>
       <div>
-        <h4 className="text-lg font-medium text-white/90 mb-2">{title}</h4>
+        <h4 className="text-lg font-medium text-white mb-2">{title}</h4>
         <p className="text-sm text-white/50 leading-relaxed">{description}</p>
       </div>
     </div>
@@ -533,12 +533,12 @@ function PainPointCard({ number, title, description }: { number: string; title: 
 // ============================================
 function ValueCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="group p-10 bg-[#0a0a0a] hover:bg-[#0f0f0f] transition-all duration-300">
-      <div className="text-white/30 group-hover:text-white/60 transition-colors mb-6">
+    <div className="group p-10 bg-white border border-black hover:bg-black hover:text-white transition-all duration-300">
+      <div className="text-black/30 group-hover:text-white/60 transition-colors mb-6">
         {icon}
       </div>
-      <h4 className="text-xl font-medium text-white mb-4">{title}</h4>
-      <p className="text-sm text-white/50 leading-relaxed">{description}</p>
+      <h4 className="text-xl font-medium text-black group-hover:text-white mb-4">{title}</h4>
+      <p className="text-sm text-black/50 group-hover:text-white/50 leading-relaxed">{description}</p>
     </div>
   );
 }
@@ -552,7 +552,7 @@ function ComparisonRow({ label, legacy, isuite, isLast = false }: { label: strin
       <div className="p-6 text-white/60 font-medium">{label}</div>
       <div className="p-6 text-center border-l border-white/10 text-white/40">{legacy}</div>
       <div className="p-6 text-center border-l border-white/10 bg-white/5 text-white font-medium flex items-center justify-center gap-2">
-        <Check className="w-4 h-4 text-emerald-500" />
+        <Check className="w-4 h-4 text-emerald-400" />
         {isuite}
       </div>
     </div>
@@ -564,12 +564,12 @@ function ComparisonRow({ label, legacy, isuite, isLast = false }: { label: strin
 // ============================================
 function ModuleCard({ title, description, href }: { title: string; description: string; href: string }) {
   return (
-    <Link href={href} className="group block p-8 bg-[#0a0a0a] hover:bg-[#0f0f0f] transition-all duration-300">
+    <Link href={href} className="group block p-8 bg-white border border-black hover:bg-black hover:text-white transition-all duration-300">
       <div className="flex items-start justify-between mb-4">
-        <h4 className="text-lg font-medium text-white/90 group-hover:text-white transition-colors">{title}</h4>
-        <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+        <h4 className="text-lg font-medium text-black group-hover:text-white transition-colors">{title}</h4>
+        <ArrowRight className="w-5 h-5 text-black/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
       </div>
-      <p className="text-sm text-white/50 leading-relaxed">{description}</p>
+      <p className="text-sm text-black/50 group-hover:text-white/50 leading-relaxed">{description}</p>
     </Link>
   );
 }
@@ -581,13 +581,13 @@ function IndustryCard({ icon, title, href }: { icon: React.ReactNode; title: str
   return (
     <Link 
       href={href}
-      className="group aspect-square bg-white/[0.02] border border-white/10 p-8 flex flex-col justify-between hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300"
+      className="group aspect-square bg-white/5 border border-white/10 p-8 flex flex-col justify-between hover:bg-white/10 hover:border-white/20 transition-all duration-300"
     >
       <div className="text-white/30 group-hover:text-white/60 transition-colors">
         {icon}
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-xl font-light">{title}</span>
+        <span className="text-xl font-light text-white">{title}</span>
         <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
       </div>
     </Link>

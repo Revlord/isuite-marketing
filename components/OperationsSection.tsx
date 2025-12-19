@@ -56,10 +56,10 @@ const operationalFlow = [
 
 export default function OperationsSection() {
   return (
-    <section className="py-32 px-6 border-t border-white/10 bg-[#0a0a0a] relative overflow-hidden">
+    <section className="py-32 px-6 border-t border-black/10 bg-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/5 via-transparent to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -70,7 +70,7 @@ export default function OperationsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4"
+              className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-4"
             >
               Unified Operations
             </motion.h2>
@@ -81,14 +81,14 @@ export default function OperationsSection() {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-light tracking-tight mb-6"
             >
-              One System. <span className="text-white/40">Complete Flow.</span>
+              One System. <span className="text-black/40">Complete Flow.</span>
             </motion.h3>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-white/50 leading-relaxed"
+              className="text-lg text-black/50 leading-relaxed"
             >
               Every business function connected. Data flows seamlessly from production to payment, 
               with real-time visibility at every step. No silos. No reconciliation nightmares. 

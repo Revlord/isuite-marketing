@@ -109,12 +109,12 @@ function GeometricGlobe() {
         const alpha = Math.max(0.1, (z2 + GLOBE_RADIUS) / (2 * GLOBE_RADIUS)); // Fade back points
         ctx.beginPath();
         ctx.arc(x2D, y2D, DOT_RADIUS * scale, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
+        ctx.fillStyle = `rgba(0, 0, 0, ${alpha * 0.8})`;
         ctx.fill();
       });
 
       // Draw connections
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
       ctx.lineWidth = 0.5;
       
       for (let i = 0; i < projectedPoints.length; i++) {
@@ -180,7 +180,7 @@ export default function PlatformPage() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
   return (
-    <main className="min-h-screen bg-[#030303] text-white selection:bg-white/20 overflow-x-hidden">
+    <main className="min-h-screen bg-white text-black selection:bg-black/10 overflow-x-hidden">
       <Navbar />
       
       {/* ============================================ */}
@@ -190,11 +190,11 @@ export default function PlatformPage() {
         
         {/* Geometric Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#030303] to-[#030303]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-100 via-white to-white"></div>
           <GeometricGlobe />
           
           {/* Vignette */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#030303_100%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#ffffff_100%)]"></div>
         </div>
 
         {/* Content */}
@@ -208,15 +208,15 @@ export default function PlatformPage() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="mb-12 flex justify-center"
           >
-            <div className="flex items-center gap-3 px-5 py-2.5 border border-white/10 rounded-full bg-white/[0.03] backdrop-blur-md">
+            <div className="flex items-center gap-3 px-5 py-2.5 border border-black/10 rounded-full bg-black/[0.03] backdrop-blur-md">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/70">
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-black/70">
                 Next Generation Architecture
               </span>
             </div>
           </motion.div>
 
-          <h1 className="text-5xl md:text-8xl lg:text-9xl font-medium tracking-tighter leading-[0.95] mb-10 text-white mix-blend-screen">
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-medium tracking-tighter leading-[0.95] mb-10 text-black mix-blend-multiply">
             <motion.span 
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -229,7 +229,7 @@ export default function PlatformPage() {
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-white/40"
+              className="block text-black/40"
             >
               Without Limits.
             </motion.span>
@@ -239,7 +239,7 @@ export default function PlatformPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed mb-16"
+            className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto font-light leading-relaxed mb-16"
           >
             A proprietary architecture designed for one purpose: enterprise software that truly fits. 
             No rigid templates. No artificial constraints. Just your operations, digitized exactly.
@@ -253,7 +253,7 @@ export default function PlatformPage() {
           >
             <Button 
               asChild
-              className="bg-white text-black hover:bg-white/90 rounded-full h-14 px-10 text-sm uppercase tracking-wider font-semibold transition-all hover:scale-105"
+              className="bg-black text-white hover:bg-black/90 rounded-full h-14 px-10 text-sm uppercase tracking-wider font-semibold transition-all hover:scale-105"
             >
               <Link href="/contact">
                 See It In Action
@@ -263,7 +263,7 @@ export default function PlatformPage() {
             <Button 
               asChild
               variant="ghost"
-              className="text-white hover:text-white hover:bg-white/5 rounded-full h-14 px-10 text-sm uppercase tracking-wider font-medium border border-white/10 hover:border-white/20 transition-all"
+              className="text-black hover:text-black hover:bg-black/5 rounded-full h-14 px-10 text-sm uppercase tracking-wider font-medium border border-black/10 hover:border-black/20 transition-all"
             >
               <Link href="/contact">
                 Explore Platform
@@ -279,11 +279,11 @@ export default function PlatformPage() {
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent overflow-hidden">
+          <div className="w-px h-16 bg-gradient-to-b from-transparent via-black/20 to-transparent overflow-hidden">
             <motion.div 
               animate={{ y: ["-100%", "100%"] }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="w-full h-1/2 bg-gradient-to-b from-transparent to-white/50"
+              className="w-full h-1/2 bg-gradient-to-b from-transparent to-black/50"
             />
           </div>
         </motion.div>
@@ -292,23 +292,23 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* THE PHILOSOPHY SECTION */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Philosophy</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The Philosophy</h2>
               <h3 className="text-3xl md:text-5xl font-light leading-tight mb-8">
                 Most ERPs Force You <br/>
-                <span className="text-white/40">Into Their Mold.</span>
+                <span className="text-black/40">Into Their Mold.</span>
               </h3>
-              <div className="space-y-6 text-lg text-white/60 leading-relaxed">
+              <div className="space-y-6 text-lg text-black/60 leading-relaxed">
                 <p>
                   Traditional enterprise software starts with assumptions about how businesses should operate — then forces you into that mold.
                 </p>
                 <p>
                   iSuite was architected differently. From the ground up, we built a platform designed to adapt to <em>any</em> operational requirement, <em>any</em> workflow, <em>any</em> way of working.
                 </p>
-                <p className="text-white/80 font-medium">
+                <p className="text-black/80 font-medium">
                   The result: enterprise capability without enterprise rigidity.
                 </p>
               </div>
@@ -316,24 +316,24 @@ export default function PlatformPage() {
 
             {/* Visual Element */}
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-white/5 to-transparent border border-white/10 p-12 relative overflow-hidden">
+              <div className="aspect-square bg-gradient-to-br from-black/5 to-transparent border border-black/10 p-12 relative overflow-hidden">
                 {/* Abstract visualization */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative w-48 h-48">
-                    <div className="absolute inset-0 border border-white/20 rotate-45 animate-[spin_20s_linear_infinite]"></div>
-                    <div className="absolute inset-4 border border-white/15 rotate-12 animate-[spin_15s_linear_infinite_reverse]"></div>
-                    <div className="absolute inset-8 border border-white/10 -rotate-12 animate-[spin_25s_linear_infinite]"></div>
-                    <div className="absolute inset-12 bg-white/5 backdrop-blur-sm flex items-center justify-center">
-                      <Layers className="w-12 h-12 text-white/40" />
+                    <div className="absolute inset-0 border border-black/20 rotate-45 animate-[spin_20s_linear_infinite]"></div>
+                    <div className="absolute inset-4 border border-black/15 rotate-12 animate-[spin_15s_linear_infinite_reverse]"></div>
+                    <div className="absolute inset-8 border border-black/10 -rotate-12 animate-[spin_25s_linear_infinite]"></div>
+                    <div className="absolute inset-12 bg-black/5 backdrop-blur-sm flex items-center justify-center">
+                      <Layers className="w-12 h-12 text-black/40" />
                     </div>
                   </div>
                 </div>
                 
                 {/* Corner labels */}
-                <div className="absolute top-4 left-4 text-[10px] font-mono text-white/30 uppercase tracking-wider">Flexibility</div>
-                <div className="absolute top-4 right-4 text-[10px] font-mono text-white/30 uppercase tracking-wider">Depth</div>
-                <div className="absolute bottom-4 left-4 text-[10px] font-mono text-white/30 uppercase tracking-wider">Speed</div>
-                <div className="absolute bottom-4 right-4 text-[10px] font-mono text-white/30 uppercase tracking-wider">Control</div>
+                <div className="absolute top-4 left-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Flexibility</div>
+                <div className="absolute top-4 right-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Depth</div>
+                <div className="absolute bottom-4 left-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Speed</div>
+                <div className="absolute bottom-4 right-4 text-[10px] font-mono text-black/30 uppercase tracking-wider">Control</div>
               </div>
             </div>
           </div>
@@ -343,16 +343,16 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* CAPABILITY PILLARS */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#030303]">
+      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">Platform Capabilities</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Platform Capabilities</h2>
             <h3 className="text-4xl md:text-5xl font-light">
-              What You <span className="text-white/40">Get.</span>
+              What You <span className="text-black/40">Get.</span>
             </h3>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
+          <div className="grid md:grid-cols-2 gap-px bg-black/10 border border-black/10">
             <CapabilityCard 
               icon={<Settings2 className="w-8 h-8" />}
               title="Unlimited Screen Customization"
@@ -384,19 +384,19 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* TECHNICAL FOUNDATION */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#050505]">
+      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="lg:sticky lg:top-32">
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">Technical Foundation</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Technical Foundation</h2>
               <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
                 Enterprise-Grade. <br/>
-                <span className="text-white/40">Modern Architecture.</span>
+                <span className="text-black/40">Modern Architecture.</span>
               </h3>
-              <p className="text-lg text-white/50 leading-relaxed mb-8">
+              <p className="text-lg text-black/50 leading-relaxed mb-8">
                 Built on a distributed architecture designed to handle millions of transactions with sub-second response times. Security and compliance aren't afterthoughts — they're foundational.
               </p>
-              <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
+              <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
                 <Link href="/contact">
                   Request Technical Deep-Dive <ChevronRight className="ml-2 w-4 h-4" />
                 </Link>
@@ -442,14 +442,14 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* THE DIFFERENCE */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 border-t border-white/10 bg-[#030303]">
+      <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-6">The Difference</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The Difference</h2>
             <h3 className="text-4xl md:text-5xl font-light mb-8">
-              Why This <span className="text-white/40">Matters.</span>
+              Why This <span className="text-black/40">Matters.</span>
             </h3>
-            <p className="text-xl text-white/50 max-w-3xl mx-auto">
+            <p className="text-xl text-black/50 max-w-3xl mx-auto">
               When your platform is built for flexibility from the ground up, everything changes.
             </p>
           </div>
@@ -477,16 +477,16 @@ export default function PlatformPage() {
       {/* ============================================ */}
       {/* CTA SECTION */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 bg-white text-black">
+      <section className="py-20 md:py-32 px-6 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
             See the Platform <br/>
-            <span className="text-black/40">In Action.</span>
+            <span className="text-white/40">In Action.</span>
           </h2>
-          <p className="text-xl text-black/60 max-w-2xl mx-auto mb-12">
+          <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
             Words only go so far. Request a personalized demo and see how iSuite would handle your specific requirements.
           </p>
-          <Button asChild className="bg-black text-white hover:bg-black/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
+          <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
             <Link href="/contact">
               Request Platform Demo
             </Link>
@@ -500,7 +500,7 @@ export default function PlatformPage() {
 }
 
 // ============================================
-// COMPONENT: Capability Card
+// COMPONENT: CapabilityCard
 // ============================================
 function CapabilityCard({ 
   icon, 
@@ -514,19 +514,19 @@ function CapabilityCard({
   highlights: string[];
 }) {
   return (
-    <div className="group p-10 bg-[#050505] hover:bg-[#0a0a0a] transition-all duration-500">
-      <div className="text-white/30 group-hover:text-white/60 transition-colors mb-6">
+    <div className="group p-10 bg-gray-50 hover:bg-gray-100 transition-all duration-500 border-r border-b border-black/5 last:border-r-0">
+      <div className="text-black/40 group-hover:text-black transition-colors mb-6">
         {icon}
       </div>
-      <h4 className="text-2xl font-light text-white mb-4">{title}</h4>
-      <p className="text-white/50 leading-relaxed mb-6">{description}</p>
+      <h4 className="text-2xl font-light text-black mb-4">{title}</h4>
+      <p className="text-black/60 leading-relaxed mb-6">{description}</p>
       <div className="flex flex-wrap gap-2">
         {highlights.map((highlight, i) => (
           <span 
             key={i}
-            className="inline-flex items-center gap-1 px-3 py-1 bg-white/5 border border-white/10 text-xs text-white/60"
+            className="inline-flex items-center gap-1 px-3 py-1 bg-white border border-black/10 text-xs text-black/60"
           >
-            <Check className="w-3 h-3 text-emerald-500/70" />
+            <Check className="w-3 h-3 text-black/40" />
             {highlight}
           </span>
         ))}
@@ -549,22 +549,15 @@ function TechCard({
   title: string; 
   description: string;
 }) {
-  const colorClasses = {
-    blue: "bg-blue-500/10 border-blue-500/20 text-blue-400",
-    purple: "bg-purple-500/10 border-purple-500/20 text-purple-400",
-    emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-    amber: "bg-amber-500/10 border-amber-500/20 text-amber-400",
-    rose: "bg-rose-500/10 border-rose-500/20 text-rose-400",
-  };
-
+  // Monochrome override - ignoring color prop for strict style
   return (
-    <div className="flex gap-6 p-6 border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-      <div className={cn("w-12 h-12 flex-shrink-0 flex items-center justify-center border", colorClasses[color])}>
+    <div className="flex gap-6 p-6 border border-black/10 bg-white hover:border-black/20 transition-colors">
+      <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-black/10 bg-gray-50 text-black/60">
         {icon}
       </div>
       <div>
-        <h4 className="text-lg font-medium text-white mb-2">{title}</h4>
-        <p className="text-sm text-white/50 leading-relaxed">{description}</p>
+        <h4 className="text-lg font-medium text-black mb-2">{title}</h4>
+        <p className="text-sm text-black/50 leading-relaxed">{description}</p>
       </div>
     </div>
   );
@@ -583,10 +576,10 @@ function DifferenceCard({
   description: string;
 }) {
   return (
-    <div className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-      <div className="text-5xl font-light text-white/10 mb-6">{number}</div>
-      <h4 className="text-xl font-medium text-white mb-4">{title}</h4>
-      <p className="text-white/50 leading-relaxed">{description}</p>
+    <div className="p-8 border border-black/10 bg-gray-50 hover:bg-gray-100 transition-colors">
+      <div className="text-5xl font-light text-black/10 mb-6">{number}</div>
+      <h4 className="text-xl font-medium text-black mb-4">{title}</h4>
+      <p className="text-black/50 leading-relaxed">{description}</p>
     </div>
   );
 }
