@@ -16,7 +16,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <Link href="/" className="text-xl font-medium tracking-tight text-black flex items-center gap-2">
               <Image 
-                src="/logos/outlineBlack.svg" 
+                src="/logos/iSuiteLogoMathBlack.svg" 
                 alt="iSuite Logo" 
                 width={32} 
                 height={32} 
@@ -29,18 +29,15 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <Button 
               variant="secondary" 
+              asChild
               className="hidden md:flex bg-black text-white hover:bg-gray-800 rounded-none h-9 px-6 text-xs uppercase tracking-wider font-semibold"
           >
-            Get Started
+            <Link href="/contact">Get Started</Link>
           </Button>
-          
-          <button className="p-2 text-black/80 hover:text-black transition-colors">
-            <Search className="w-5 h-5" />
-          </button>
           
           <button 
             onClick={() => setIsMenuOpen(true)}
-            className="p-2 text-black/80 hover:text-black transition-colors border-l border-black/20 pl-4 ml-2"
+            className="p-2 text-black/80 hover:text-black transition-colors border-l border-black/20 pl-4 ml-2 hover:border-black"
           >
             <Menu className="w-5 h-5" />
           </button>

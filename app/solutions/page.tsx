@@ -362,7 +362,7 @@ export default function SolutionsPage() {
 
           {/* CTA in sidebar */}
           <div className="mt-8 pt-8 border-t border-black/10">
-            <p className="text-sm text-black/40 mb-4">Need something different?</p>
+            <p className="text-sm text-black/40 mb-4">We know you might need a custom solution. Its the very premise of this company. Lets chat and discuss what we can build for you.</p>
             <Button asChild variant="outline" className="w-full border-black/20 text-black hover:bg-black/5 rounded-none h-10 text-xs uppercase tracking-wider">
               <Link href="/contact">Tell Us What You Need</Link>
             </Button>
@@ -463,7 +463,7 @@ function SolutionSection({ solution, index }: { solution: typeof solutions[0]; i
           fill
           className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-white/5 to-transparent pointer-events-none"></div>
         <div className="absolute bottom-4 left-4">
           <span className="text-xs uppercase tracking-wider text-black/60 bg-white/50 px-3 py-1 backdrop-blur-sm">
             {solution.title}

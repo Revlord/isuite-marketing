@@ -24,7 +24,9 @@ import {
   Rocket,
   Target,
   Trophy,
-  Gauge
+  Gauge,
+  Hexagon,
+  Box
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -154,6 +156,48 @@ function GeometricGlobe() {
   );
 }
 
+// ============================================
+// COMPONENT: Geometric Core Visual (The Art)
+// ============================================
+function GeometricCoreVisual({ variant = "light" }: { variant?: "light" | "dark" }) {
+  const isDark = variant === "dark";
+  const borderColor = isDark ? "border-white/20" : "border-black/20";
+  const borderColorMid = isDark ? "border-white/15" : "border-black/15";
+  const borderColorLight = isDark ? "border-white/10" : "border-black/10";
+  const bgColor = isDark ? "bg-white/5" : "bg-black/5";
+  const textColor = isDark ? "text-white/30" : "text-black/30";
+  const iconColor = isDark ? "text-white/40" : "text-black/40";
+
+  return (
+    <div className={cn(
+      "aspect-square border p-8 md:p-12 relative overflow-hidden",
+      isDark ? "bg-gradient-to-br from-white/5 to-transparent border-white/10" : "bg-gradient-to-br from-black/5 to-transparent border-black/10"
+    )}>
+      {/* Abstract visualization */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-48 h-48 md:w-56 md:h-56">
+          {/* Outer rotating square */}
+          <div className={cn("absolute inset-0 border rotate-45 animate-[spin_20s_linear_infinite]", borderColor)}></div>
+          {/* Middle rotating square */}
+          <div className={cn("absolute inset-4 border rotate-12 animate-[spin_15s_linear_infinite_reverse]", borderColorMid)}></div>
+          {/* Inner rotating square */}
+          <div className={cn("absolute inset-8 border -rotate-12 animate-[spin_25s_linear_infinite]", borderColorLight)}></div>
+          {/* Center icon */}
+          <div className={cn("absolute inset-12 backdrop-blur-sm flex items-center justify-center", bgColor)}>
+            <Cpu className={cn("w-10 h-10 md:w-12 md:h-12", iconColor)} />
+          </div>
+        </div>
+      </div>
+      
+      {/* Corner labels */}
+      <div className={cn("absolute top-4 left-4 text-[10px] font-mono uppercase tracking-wider", textColor)}>Flexibility</div>
+      <div className={cn("absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider", textColor)}>Depth</div>
+      <div className={cn("absolute bottom-4 left-4 text-[10px] font-mono uppercase tracking-wider", textColor)}>Speed</div>
+      <div className={cn("absolute bottom-4 right-4 text-[10px] font-mono uppercase tracking-wider", textColor)}>Control</div>
+    </div>
+  );
+}
+
 export default function PlatformPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -235,17 +279,17 @@ export default function PlatformPage() {
           >
             <Button 
               asChild
-              className="bg-black text-white hover:bg-black/90 rounded-full h-14 px-10 text-sm uppercase tracking-wider font-semibold transition-all hover:scale-105"
+              className="bg-black text-white hover:bg-black/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold transition-all hover:scale-105"
             >
-              <Link href="/contact">
-                See It In Action
+              <Link href="/industries">
+                Explore Industries
               </Link>
             </Button>
             
             <Button 
               asChild
               variant="ghost"
-              className="text-black hover:text-black hover:bg-black/5 rounded-full h-14 px-10 text-sm uppercase tracking-wider font-medium border border-black/10 hover:border-black/20 transition-all"
+              className="text-black hover:text-black hover:bg-black/5 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-medium border border-black/10 hover:border-black/20 transition-all"
             >
               <Link href="/solutions">
                 Explore Solutions
@@ -271,10 +315,11 @@ export default function PlatformPage() {
       </section>
 
       {/* ============================================ */}
-      {/* THE UNFAIR ADVANTAGE - BOLD STATEMENT */}
+      {/* THE UNFAIR ADVANTAGE - WITH GEOMETRIC VISUAL */}
       {/* ============================================ */}
       <section className="py-24 md:py-32 px-6 border-t border-black bg-black text-white">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -292,10 +337,10 @@ export default function PlatformPage() {
               They Spent Decades. <br/>
               <span className="text-white/40">We Spent Them Smarter.</span>
             </h2>
-            
+
             <p className="text-xl text-white/50 max-w-3xl mx-auto leading-relaxed">
-              SAP took 50 years to build bloated complexity. Oracle bought their way to market dominance. 
-              We studied what they got wrong — then engineered what they can't replicate.
+              Legacy ERPs spent decades piling on complexity. Big ERPs grew by acquisition and market gravity.
+              We studied where they went wrong — then engineered what they can’t replicate.
             </p>
           </div>
 
@@ -323,11 +368,22 @@ export default function PlatformPage() {
             />
           </div>
 
-          {/* The Bold Promise */}
-          <div className="border border-white/20 p-8 md:p-12 bg-white/[0.02]">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* The Core Visual + Promise Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            {/* Geometric Visual */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <GeometricCoreVisual variant="dark" />
+            </motion.div>
+
+            {/* Promise Content */}
+            <div className="space-y-8">
               <div>
-                <Cpu className="w-12 h-12 text-white/40 mb-6" />
+                <Cpu className="w-10 h-10 text-white/40 mb-6" />
                 <h3 className="text-2xl md:text-3xl font-light mb-4">
                   Proprietary Engines. <span className="text-white/40">Unmatched Results.</span>
                 </h3>
@@ -336,7 +392,7 @@ export default function PlatformPage() {
                   They're the reason we can promise what others can't — and deliver what others won't.
                 </p>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <EngineHighlight text="Build any screen, any workflow, any logic — in hours" />
                 <EngineHighlight text="Handle enterprise complexity without enterprise bloat" />
                 <EngineHighlight text="Scale from startup to multinational without re-architecture" />
@@ -353,9 +409,9 @@ export default function PlatformPage() {
       <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">The Power Beneath</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">[ The Power Beneath ]</h2>
             <h3 className="text-4xl md:text-6xl font-light mb-6">
-              Engines That <span className="text-black/40">Outperform.</span>
+              Engines That Outperform.
             </h3>
             <p className="text-xl text-black/50 max-w-3xl mx-auto">
               Four proprietary engines working in concert. Each one designed to do what legacy systems can't — 
@@ -371,7 +427,7 @@ export default function PlatformPage() {
               tagline="Any screen. Any form. Any field. Built in hours."
               description="While competitors limit you to predefined templates, our interface engine generates any data capture point your process demands. 30+ field types, unlimited validation rules, pixel-perfect layouts — all without writing code."
               capabilities={["Unlimited field types", "Complex validation logic", "Dynamic form behavior", "Zero development wait"]}
-              competitiveEdge="SAP charges for 'custom development.' We call it Tuesday."
+              competitiveEdge="{ Big ERPs } charges for 'custom development.' We call it Tuesday."
             />
             <PowerEngineCard 
               icon={<Workflow className="w-10 h-10" />}
@@ -380,7 +436,7 @@ export default function PlatformPage() {
               tagline="Your approval chains. Your rules. Your way."
               description="Multi-level approvals, conditional routing, parallel processes, automatic escalations — our workflow engine handles complexity that makes consultants nervous. And it configures in minutes, not months."
               capabilities={["Unlimited approval levels", "Conditional branching", "Auto-escalation rules", "Real-time notifications"]}
-              competitiveEdge="Oracle implementations take 18 months. Ours take conversations."
+              competitiveEdge="{Legacy ERPs} implementations take 18 months. Ours take conversations."
             />
             <PowerEngineCard 
               icon={<BarChart3 className="w-10 h-10" />}
@@ -410,7 +466,7 @@ export default function PlatformPage() {
       <section className="py-20 md:py-32 px-6 border-t border-black/10 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Why We Win</h2>
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">[ Why We'd Win ]</h2>
             <h3 className="text-4xl md:text-5xl font-light mb-6">
               The Comparison <span className="text-black/40">They'd Rather You Didn't See.</span>
             </h3>
@@ -421,7 +477,7 @@ export default function PlatformPage() {
               <div className="p-6 bg-black/[0.02]"></div>
               <div className="p-6 text-center border-l border-black/10">
                 <span className="text-sm uppercase tracking-wider text-black/40">Legacy Giants</span>
-                <p className="text-xs text-black/30 mt-1">SAP, Oracle, etc.</p>
+                <p className="text-xs text-black/30 mt-1">SAP, Oracle, Zoho, etc.</p>
               </div>
               <div className="p-6 text-center border-l border-black/10 bg-black text-white">
                 <span className="text-sm uppercase tracking-wider font-medium">iSuite</span>
@@ -471,7 +527,7 @@ export default function PlatformPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="lg:sticky lg:top-32">
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">Technical Foundation</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">[ Technical Foundation ]</h2>
               <h3 className="text-4xl md:text-5xl font-light leading-tight mb-8">
                 Enterprise-Grade. <br/>
                 <span className="text-black/40">Battle-Tested.</span>
@@ -489,11 +545,6 @@ export default function PlatformPage() {
 
             <div className="space-y-4">
               <TechCard 
-                icon={<Gauge className="w-6 h-6" />}
-                title="Sub-200ms Performance"
-                description="Complex queries return faster than users can blink. Built to handle enterprise load without breaking a sweat."
-              />
-              <TechCard 
                 icon={<Shield className="w-6 h-6" />}
                 title="Enterprise Security"
                 description="Role-based access, field-level permissions, encryption everywhere, complete audit trails. Bank-grade security."
@@ -502,11 +553,6 @@ export default function PlatformPage() {
                 icon={<Globe className="w-6 h-6" />}
                 title="Multi-Everything Ready"
                 description="Multi-currency, multi-location, multi-company, multi-language. Complex structures handled natively."
-              />
-              <TechCard 
-                icon={<RefreshCcw className="w-6 h-6" />}
-                title="Real-Time Propagation"
-                description="Changes ripple instantly. Shop floor to CFO dashboard in milliseconds. No batch jobs, no delays."
               />
               <TechCard 
                 icon={<Lock className="w-6 h-6" />}
@@ -542,7 +588,7 @@ export default function PlatformPage() {
                 Request Platform Demo
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-none h-14 px-10 text-sm uppercase tracking-wider">
+            <Button asChild variant="outline" className="border-white/20 text-black hover:bg-white/10 hover:text-white rounded-none h-14 px-10 text-sm uppercase tracking-wider">
               <Link href="/solutions">
                 Explore Solutions
               </Link>
@@ -603,7 +649,6 @@ function PowerEngineCard({
 }) {
   return (
     <div className="group p-8 md:p-10 border border-black/10 bg-white hover:border-black/30 transition-all duration-500">
-      {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div className="text-black/30 group-hover:text-black transition-colors">
           {icon}
@@ -611,14 +656,11 @@ function PowerEngineCard({
         <span className="text-5xl font-light text-black/10">{number}</span>
       </div>
       
-      {/* Title & Tagline */}
       <h4 className="text-2xl font-medium text-black mb-2">{title}</h4>
       <p className="text-sm font-mono text-black/40 uppercase tracking-wider mb-4">{tagline}</p>
       
-      {/* Description */}
       <p className="text-black/60 leading-relaxed mb-6">{description}</p>
       
-      {/* Capabilities */}
       <div className="flex flex-wrap gap-2 mb-6">
         {capabilities.map((cap, i) => (
           <span 
@@ -631,7 +673,6 @@ function PowerEngineCard({
         ))}
       </div>
       
-      {/* Competitive Edge */}
       <div className="pt-6 border-t border-black/10">
         <p className="text-sm text-black/80 italic">"{competitiveEdge}"</p>
       </div>

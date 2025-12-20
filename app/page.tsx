@@ -602,7 +602,7 @@ export default function Home() {
                 Describe Your Requirements
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-none h-14 px-10 text-sm uppercase tracking-wider">
+            <Button asChild variant="outline" className="border-white/20 text-black hover:bg-white/10 hover:text-white rounded-none h-14 px-10 text-sm uppercase tracking-wider">
               <Link href="/platform">
                 See What's Possible
               </Link>
