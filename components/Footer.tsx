@@ -1,63 +1,97 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const solutionLinks = [
+  { label: "Financial Management", href: "/solutions#financial" },
+  { label: "Sales & Distribution", href: "/solutions#sales" },
+  { label: "Procurement", href: "/solutions#procurement" },
+  { label: "Inventory Management", href: "/solutions#inventory" },
+  { label: "Manufacturing (MRP)", href: "/solutions#manufacturing" },
+  { label: "Project Management", href: "/solutions#pm" },
+];
+
+const industryLinks = [
+  { label: "Pharmaceutical & Life Sciences", href: "/industries#pharma" },
+  { label: "Industrial Manufacturing", href: "/industries#manufacturing" },
+  { label: "Retail & FMCG", href: "/industries#retail" },
+  { label: "Construction & Infrastructure", href: "/industries#construction" },
+  { label: "Financial Services", href: "/industries#finance" },
+  { label: "Distribution & Logistics", href: "/industries#distribution" },
+];
+
+const resourceLinks = [
+  { label: "Platform Overview", href: "/platform" },
+  { label: "Solutions Library", href: "/solutions" },
+  { label: "Industries We Serve", href: "/industries" },
+  { label: "Book a Consultation", href: "/contact" },
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-[#111] text-white/60 py-20 px-6 border-t border-white/10 text-sm">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12">
-        <div className="col-span-2 lg:col-span-2">
+    <footer className="bg-white text-black/60 py-20 px-6 border-t border-black/10 text-sm">
+      <div className="max-w-7xl mx-auto grid gap-12 grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] items-start">
+        <div>
           <Link href="/" className="flex items-center gap-2 mb-6">
-            <Image 
-              src="/logos/outlineWhite.svg" 
-              alt="iSuite Logo" 
-              width={40} 
-              height={40} 
+            <Image
+              src="/logos/iSuiteLogoMathWhite.svg"
+              alt="iSuite Logo"
+              width={40}
+              height={40}
               className="w-10 h-auto"
             />
-            <span className="text-2xl font-medium text-white tracking-tight">iSuite</span>
+            <span className="text-2xl font-medium text-black tracking-tight">iSuite</span>
           </Link>
-          <p className="max-w-sm mb-8">
-            Empowering enterprises with intelligent ERP solutions. 
-            From financial management to operational automation, 
-            we build the backbone of modern business.
+          <p className="max-w-md mb-6">
+            We build custom ERP experiences across finance, operations, and field teams.
+            Every workflow on this site is something we have delivered for real customers.
           </p>
-          <div className="text-xs text-white/40">
-            &copy; {new Date().getFullYear()} iSuite Pvt. Ltd. All rights reserved.
+          <div className="space-y-3 text-xs text-black/40">
+            <p>&copy; {new Date().getFullYear()} iSuite Software Solutions Pvt. Ltd. All rights reserved.</p>
+            <Link href="/contact" className="text-black hover:text-black/70 transition-colors">
+              Need something specific? Book a consultation →
+            </Link>
           </div>
         </div>
 
+        <div className="space-y-12 lg:space-y-0 lg:flex lg:items-start lg:justify-between lg:gap-12 lg:col-span-3">
         <div>
-          <h3 className="text-white font-medium mb-4 uppercase tracking-wider text-xs">Core ERP</h3>
+          <h3 className="text-black font-medium mb-4 uppercase tracking-wider text-xs">Solutions</h3>
           <ul className="space-y-3">
-            <li><Link href="/modules#erp" className="hover:text-white transition-colors">Financial Management</Link></li>
-            <li><Link href="/modules#sales" className="hover:text-white transition-colors">Sales & Distribution</Link></li>
-            <li><Link href="/modules#procurement" className="hover:text-white transition-colors">Procurement</Link></li>
-            <li><Link href="/modules#inventory" className="hover:text-white transition-colors">Inventory Management</Link></li>
-            <li><Link href="/modules#mrp" className="hover:text-white transition-colors">Manufacturing (MRP)</Link></li>
-            <li><Link href="/modules#erp" className="hover:text-white transition-colors">Accounting</Link></li>
+            {solutionLinks.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-black transition-colors">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="text-white font-medium mb-4 uppercase tracking-wider text-xs">Operations</h3>
+          <h3 className="text-black font-medium mb-4 uppercase tracking-wider text-xs">Industries</h3>
           <ul className="space-y-3">
-            <li><Link href="/modules#pm" className="hover:text-white transition-colors">Project Management</Link></li>
-            <li><Link href="/industries#finance" className="hover:text-white transition-colors">Fixed Assets</Link></li>
-            <li><Link href="/industries#commercial" className="hover:text-white transition-colors">Customer Service</Link></li>
-            <li><Link href="/industries#operations" className="hover:text-white transition-colors">HR & Payroll</Link></li>
-            <li><Link href="/industries#commercial" className="hover:text-white transition-colors">Vehicle Management</Link></li>
+            {industryLinks.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-black transition-colors">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="text-white font-medium mb-4 uppercase tracking-wider text-xs">Platform</h3>
+          <h3 className="text-black font-medium mb-4 uppercase tracking-wider text-xs">Explore</h3>
           <ul className="space-y-3">
-            <li><Link href="/platform" className="hover:text-white transition-colors">Transaction Builder</Link></li>
-            <li><Link href="/platform" className="hover:text-white transition-colors">Report Builder</Link></li>
-            <li><Link href="/platform" className="hover:text-white transition-colors">Workflow Engine</Link></li>
-            <li><Link href="/platform" className="hover:text-white transition-colors">Dashboard Builder</Link></li>
-            <li><Link href="/platform" className="hover:text-white transition-colors">LMS & DMS</Link></li>
+            {resourceLinks.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-black transition-colors">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
+        </div>
         </div>
       </div>
     </footer>

@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-const modules = [
+const solutions = [
   {
     id: "financial",
     title: "Financial Management",
@@ -217,7 +217,7 @@ const modules = [
     ]
   },
   {
-    id: "projects",
+    id: "pm",
     title: "Project Management",
     icon: Layers,
     tagline: "Deliver On Time. Every Time.",
@@ -243,17 +243,17 @@ const modules = [
   }
 ];
 
-export default function ModulesPage() {
-  const [activeModule, setActiveModule] = useState("financial");
+export default function SolutionsPage() {
+  const [activeSolution, setActiveSolution] = useState("financial");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = modules.map(m => document.getElementById(m.id));
+      const sections = solutions.map(s => document.getElementById(s.id));
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
         if (section && section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
-          setActiveModule(section.id);
+          setActiveSolution(section.id);
         }
       }
     };
@@ -262,7 +262,7 @@ export default function ModulesPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToModule = (id: string) => {
+  const scrollToSolution = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       window.scrollTo({
@@ -273,15 +273,15 @@ export default function ModulesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white selection:bg-white/20">
+    <main className="min-h-screen bg-white text-black selection:bg-black/10">
       <Navbar />
 
       {/* ============================================ */}
       {/* HERO */}
       {/* ============================================ */}
-      <section className="relative pt-32 pb-20 px-6 border-b border-white/10 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:48px_48px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/20 via-transparent to-transparent"></div>
+      <section className="relative pt-32 pb-20 px-6 border-b border-black/10 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000006_1px,transparent_1px),linear-gradient(to_bottom,#00000006_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 via-transparent to-transparent"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
@@ -290,8 +290,8 @@ export default function ModulesPage() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-xs font-medium uppercase tracking-[0.2em] text-white/60 bg-white/5">
-              Complete Module Suite
+            <span className="inline-flex items-center gap-2 px-4 py-2 border border-black/10 text-xs font-medium uppercase tracking-[0.2em] text-black/60 bg-black/5">
+              Solution Capabilities
             </span>
           </motion.div>
 
@@ -301,18 +301,17 @@ export default function ModulesPage() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl md:text-7xl font-light tracking-tight mb-6"
           >
-            Every Function. <span className="text-white/40">Unified.</span>
+            What We <span className="text-black/40">Build.</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl text-white/50 max-w-3xl font-light leading-relaxed"
+            className="text-xl text-black/50 max-w-3xl font-light leading-relaxed"
           >
-            A complete suite of integrated modules designed to work together seamlessly. 
-            No silos. No data duplication. No reconciliation headaches. 
-            Just one unified operating system for your entire enterprise.
+            These are examples of solutions we've built for clients — not packages you buy off the shelf. 
+            Your solution will be tailored to your exact requirements, drawing from these capabilities and beyond.
           </motion.p>
         </div>
       </section>
@@ -320,13 +319,13 @@ export default function ModulesPage() {
       {/* ============================================ */}
       {/* STATS BAR */}
       {/* ============================================ */}
-      <section className="py-8 px-6 border-b border-white/10 bg-[#030303]">
+      <section className="py-8 px-6 border-b border-black/10 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <StatCard value="9+" label="Core Modules" />
-            <StatCard value="100%" label="Integrated" />
+            <StatCard value="Unlimited" label="Possibilities" />
+            <StatCard value="100%" label="Customized" />
             <StatCard value="Real-Time" label="Data Sync" />
-            <StatCard value="Unlimited" label="Customization" />
+            <StatCard value="Your Way" label="Not Ours" />
           </div>
         </div>
       </section>
@@ -336,45 +335,45 @@ export default function ModulesPage() {
       {/* ============================================ */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row">
         {/* Sticky Sidebar */}
-        <aside className="hidden lg:block w-72 shrink-0 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto py-8 pr-8 border-r border-white/10">
+        <aside className="hidden lg:block w-72 shrink-0 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto py-8 pr-8 border-r border-black/10">
           <div className="mb-6">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-white/30">Navigate Modules</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black/30">Solution Areas</span>
           </div>
           <nav className="space-y-1">
-            {modules.map((mod) => (
+            {solutions.map((sol) => (
               <button
-                key={mod.id}
-                onClick={() => scrollToModule(mod.id)}
+                key={sol.id}
+                onClick={() => scrollToSolution(sol.id)}
                 className={cn(
                   "w-full text-left px-4 py-3 text-sm font-medium transition-all duration-300 border-l-2 flex items-center gap-3",
-                  activeModule === mod.id
-                    ? "border-white text-white bg-white/5"
-                    : "border-transparent text-white/40 hover:text-white/70 hover:bg-white/[0.02]"
+                  activeSolution === sol.id
+                    ? "border-black text-black bg-black/5"
+                    : "border-transparent text-black/40 hover:text-black/70 hover:bg-black/[0.02]"
                 )}
               >
-                <mod.icon className={cn(
+                <sol.icon className={cn(
                   "w-4 h-4 transition-colors",
-                  activeModule === mod.id ? "text-white" : "text-white/30"
+                  activeSolution === sol.id ? "text-black" : "text-black/30"
                 )} />
-                {mod.title}
+                {sol.title}
               </button>
             ))}
           </nav>
 
           {/* CTA in sidebar */}
-          <div className="mt-8 pt-8 border-t border-white/10">
-            <p className="text-sm text-white/40 mb-4">Need a custom module?</p>
-            <Button asChild variant="outline" className="w-full border-white/20 text-white hover:bg-white/5 rounded-none h-10 text-xs uppercase tracking-wider">
-              <Link href="/contact">Talk to Us</Link>
+          <div className="mt-8 pt-8 border-t border-black/10">
+            <p className="text-sm text-black/40 mb-4">We know you might need a custom solution. Its the very premise of this company. Lets chat and discuss what we can build for you.</p>
+            <Button asChild variant="outline" className="w-full border-black/20 text-black hover:bg-black/5 rounded-none h-10 text-xs uppercase tracking-wider">
+              <Link href="/contact">Tell Us What You Need</Link>
             </Button>
           </div>
         </aside>
 
-        {/* Module Content */}
+        {/* Solution Content */}
         <div className="flex-1 py-8 lg:px-12">
           <div className="space-y-32 pb-32">
-            {modules.map((mod, index) => (
-              <ModuleSection key={mod.id} module={mod} index={index} />
+            {solutions.map((sol, index) => (
+              <SolutionSection key={sol.id} solution={sol} index={index} />
             ))}
           </div>
         </div>
@@ -383,18 +382,18 @@ export default function ModulesPage() {
       {/* ============================================ */}
       {/* CTA SECTION */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 px-6 bg-white text-black border-t border-white/10">
+      <section className="py-20 md:py-32 px-6 bg-black text-white border-t border-black/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-8">
-            See How It All <span className="text-black/40">Works Together.</span>
+            These Are Starting Points. <span className="text-white/40">Not Limits.</span>
           </h2>
-          <p className="text-xl text-black/60 max-w-2xl mx-auto mb-12">
-            The real power is in the integration. Request a demo and see how iSuite's modules 
-            work as one unified system.
+          <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
+            Every solution we build is unique. Tell us what your business needs — 
+            we'll show you exactly how we'll make it happen.
           </p>
-          <Button asChild className="bg-black text-white hover:bg-black/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
+          <Button asChild className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
             <Link href="/contact">
-              Request Demo
+              Describe Your Requirements
             </Link>
           </Button>
         </div>
@@ -411,63 +410,63 @@ export default function ModulesPage() {
 function StatCard({ value, label }: { value: string; label: string }) {
   return (
     <div className="text-center">
-      <div className="text-2xl md:text-3xl font-light text-white mb-1">{value}</div>
-      <div className="text-xs text-white/40 uppercase tracking-wider">{label}</div>
+      <div className="text-2xl md:text-3xl font-light text-black mb-1">{value}</div>
+      <div className="text-xs text-black/40 uppercase tracking-wider">{label}</div>
     </div>
   );
 }
 
 // ============================================
-// COMPONENT: Module Section
+// COMPONENT: Solution Section
 // ============================================
-function ModuleSection({ module, index }: { module: typeof modules[0]; index: number }) {
+function SolutionSection({ solution, index }: { solution: typeof solutions[0]; index: number }) {
   return (
     <motion.section 
-      id={module.id}
+      id={solution.id}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
       className="scroll-mt-32"
     >
-      {/* Module Header */}
+      {/* Solution Header */}
       <div className="flex items-center gap-4 mb-6">
-        <div className="p-3 bg-white/5 border border-white/10">
-          <module.icon className="w-6 h-6 text-white/80" />
+        <div className="p-3 bg-black/5 border border-black/10">
+          <solution.icon className="w-6 h-6 text-black/80" />
         </div>
         <div>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/30 block mb-1">Module {String(index + 1).padStart(2, '0')}</span>
-          <h2 className="text-3xl font-light">{module.title}</h2>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-black/30 block mb-1">Solution {String(index + 1).padStart(2, '0')}</span>
+          <h2 className="text-3xl font-light">{solution.title}</h2>
         </div>
       </div>
 
       {/* Tagline */}
       <div className="mb-6">
-        <span className="text-blue-400 font-mono text-xs tracking-widest uppercase">{module.tagline}</span>
+        <span className="text-black/60 font-mono text-xs tracking-widest uppercase">{solution.tagline}</span>
       </div>
 
       {/* Hero Line */}
-      <h3 className="text-2xl md:text-3xl font-light text-white/80 mb-4">
-        {module.heroLine}
+      <h3 className="text-2xl md:text-3xl font-light text-black/80 mb-4">
+        {solution.heroLine}
       </h3>
 
       {/* Description */}
-      <p className="text-lg text-white/50 leading-relaxed max-w-3xl mb-8">
-        {module.description}
+      <p className="text-lg text-black/50 leading-relaxed max-w-3xl mb-8">
+        {solution.description}
       </p>
 
       {/* Image */}
-      <div className="relative w-full h-64 mb-10 border border-white/10 overflow-hidden group">
+      <div className="relative w-full h-64 mb-10 border border-black/10 overflow-hidden group">
         <Image 
-          src={module.image}
-          alt={module.title}
+          src={solution.image}
+          alt={solution.title}
           fill
-          className="object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
+          className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-white/5 to-transparent pointer-events-none"></div>
         <div className="absolute bottom-4 left-4">
-          <span className="text-xs uppercase tracking-wider text-white/60 bg-black/50 px-3 py-1 backdrop-blur-sm">
-            {module.title}
+          <span className="text-xs uppercase tracking-wider text-black/60 bg-white/50 px-3 py-1 backdrop-blur-sm">
+            {solution.title}
           </span>
         </div>
       </div>
@@ -475,15 +474,15 @@ function ModuleSection({ module, index }: { module: typeof modules[0]; index: nu
       {/* Outcomes & Capabilities */}
       <div className="grid md:grid-cols-2 gap-6">
         {/* Outcomes */}
-        <div className="bg-[#0a0a0a] border border-white/5 p-8">
+        <div className="bg-gray-50 border border-black/5 p-8">
           <div className="flex items-center gap-2 mb-6">
-            <Target className="w-4 h-4 text-emerald-500/70" />
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white/80">Key Outcomes</h4>
+            <Target className="w-4 h-4 text-black/40" />
+            <h4 className="text-sm font-bold uppercase tracking-wider text-black/80">Key Outcomes</h4>
           </div>
           <ul className="space-y-4">
-            {module.outcomes.map((outcome, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-white/60">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500/70 mt-0.5 shrink-0" />
+            {solution.outcomes.map((outcome, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-black/60">
+                <CheckCircle2 className="w-4 h-4 text-black/40 mt-0.5 shrink-0" />
                 <span>{outcome}</span>
               </li>
             ))}
@@ -491,15 +490,15 @@ function ModuleSection({ module, index }: { module: typeof modules[0]; index: nu
         </div>
 
         {/* Capabilities */}
-        <div className="bg-[#0a0a0a] border border-white/5 p-8">
+        <div className="bg-gray-50 border border-black/5 p-8">
           <div className="flex items-center gap-2 mb-6">
-            <Zap className="w-4 h-4 text-blue-500/70" />
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white/80">Capabilities</h4>
+            <Zap className="w-4 h-4 text-black/40" />
+            <h4 className="text-sm font-bold uppercase tracking-wider text-black/80">What We Can Include</h4>
           </div>
           <ul className="space-y-3">
-            {module.capabilities.map((cap, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-white/60">
-                <div className="w-1.5 h-1.5 bg-blue-500/50 rounded-full mt-1.5 shrink-0"></div>
+            {solution.capabilities.map((cap, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-black/60">
+                <div className="w-1.5 h-1.5 bg-black/40 rounded-full mt-1.5 shrink-0"></div>
                 <span>{cap}</span>
               </li>
             ))}

@@ -55,10 +55,10 @@ export default function PlatformSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-32 px-6 border-t border-white/10 bg-[#050505] relative overflow-hidden">
+    <section className="py-32 px-6 border-t border-black/10 bg-gray-50 relative overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:32px_32px]"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -69,7 +69,7 @@ export default function PlatformSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4"
+              className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-4"
             >
               Platform Capabilities
             </motion.h2>
@@ -80,7 +80,7 @@ export default function PlatformSection() {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-light tracking-tight"
             >
-              Unlimited <span className="text-white/40">Flexibility.</span>
+              Unlimited <span className="text-black/40">Flexibility.</span>
             </motion.h3>
           </div>
           
@@ -90,7 +90,7 @@ export default function PlatformSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
+            <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
               <Link href="/platform">
                 Explore Platform <ArrowRight className="ml-2 w-4 h-4" />
               </Link>

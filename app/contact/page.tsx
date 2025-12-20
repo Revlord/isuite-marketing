@@ -49,15 +49,15 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white selection:bg-white/20">
+    <main className="min-h-screen bg-white text-black selection:bg-black/10">
       <Navbar />
 
       {/* ============================================ */}
       {/* HERO */}
       {/* ============================================ */}
-      <section className="relative pt-32 pb-16 px-6 border-b border-white/10 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:48px_48px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/10 via-transparent to-transparent"></div>
+      <section className="relative pt-32 pb-16 px-6 border-b border-black/10 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000006_1px,transparent_1px),linear-gradient(to_bottom,#00000006_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 via-transparent to-transparent"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
@@ -66,7 +66,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-xs font-medium uppercase tracking-[0.2em] text-white/60 bg-white/5">
+            <span className="inline-flex items-center gap-2 px-4 py-2 border border-black/10 text-xs font-medium uppercase tracking-[0.2em] text-black/60 bg-black/5">
               Get Started
             </span>
           </motion.div>
@@ -77,14 +77,14 @@ export default function ContactPage() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl md:text-6xl font-light tracking-tight mb-6"
           >
-            See iSuite <span className="text-white/40">In Action.</span>
+            See iSuite <span className="text-black/40">In Action.</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl text-white/50 max-w-2xl font-light"
+            className="text-xl text-black/50 max-w-2xl font-light"
           >
             Every organization is different. Request a personalized demo and see how 
             iSuite would handle your specific requirements.
@@ -102,7 +102,7 @@ export default function ContactPage() {
           <div className="lg:col-span-3">
             <div className="mb-8">
               <h2 className="text-2xl font-light mb-2">Request Your Demo</h2>
-              <p className="text-white/50">Fill out the form below and we'll be in touch within 24 hours.</p>
+              <p className="text-black/50">Fill out the form below and we'll be in touch within 24 hours.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
@@ -150,33 +150,33 @@ export default function ContactPage() {
               {/* Industry & Size Row */}
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-white/50">
-                    Industry <span className="text-white/30">*</span>
+                  <label className="text-xs font-bold uppercase tracking-wider text-black/50">
+                    Industry <span className="text-black/30">*</span>
                   </label>
                   <select 
                     required
                     value={formData.industry}
                     onChange={(e) => setFormData({...formData, industry: e.target.value})}
-                    className="w-full bg-white/5 border border-white/10 p-4 text-white focus:outline-none focus:border-white/30 transition-colors appearance-none cursor-pointer"
+                    className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors appearance-none cursor-pointer"
                   >
-                    <option value="" className="bg-[#0a0a0a]">Select Industry</option>
+                    <option value="" className="bg-white">Select Industry</option>
                     {industries.map(ind => (
-                      <option key={ind.value} value={ind.value} className="bg-[#0a0a0a]">{ind.label}</option>
+                      <option key={ind.value} value={ind.value} className="bg-white">{ind.label}</option>
                     ))}
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-white/50">
+                  <label className="text-xs font-bold uppercase tracking-wider text-black/50">
                     Company Size
                   </label>
                   <select 
                     value={formData.size}
                     onChange={(e) => setFormData({...formData, size: e.target.value})}
-                    className="w-full bg-white/5 border border-white/10 p-4 text-white focus:outline-none focus:border-white/30 transition-colors appearance-none cursor-pointer"
+                    className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors appearance-none cursor-pointer"
                   >
-                    <option value="" className="bg-[#0a0a0a]">Select Size</option>
+                    <option value="" className="bg-white">Select Size</option>
                     {companySize.map(size => (
-                      <option key={size.value} value={size.value} className="bg-[#0a0a0a]">{size.label}</option>
+                      <option key={size.value} value={size.value} className="bg-white">{size.label}</option>
                     ))}
                   </select>
                 </div>
@@ -192,7 +192,7 @@ export default function ContactPage() {
 
               {/* Message */}
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-white/50">
+                <label className="text-xs font-bold uppercase tracking-wider text-black/50">
                   Tell Us About Your Requirements
                 </label>
                 <textarea 
@@ -200,7 +200,7 @@ export default function ContactPage() {
                   placeholder="What challenges are you looking to solve? What does your ideal solution look like?"
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="w-full bg-white/5 border border-white/10 p-4 text-white focus:outline-none focus:border-white/30 transition-colors resize-none placeholder:text-white/30"
+                  className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors resize-none placeholder:text-black/30"
                 />
               </div>
 
@@ -208,7 +208,7 @@ export default function ContactPage() {
               <div className="pt-4">
                 <Button 
                   type="submit"
-                  className="w-full md:w-auto bg-white text-black hover:bg-white/90 rounded-none h-14 px-12 text-sm uppercase tracking-wider font-semibold group"
+                  className="w-full md:w-auto bg-black text-white hover:bg-black/90 rounded-none h-14 px-12 text-sm uppercase tracking-wider font-semibold group"
                 >
                   Request Demo
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -216,7 +216,7 @@ export default function ContactPage() {
               </div>
 
               {/* Privacy Note */}
-              <p className="text-xs text-white/30">
+              <p className="text-xs text-black/30">
                 By submitting this form, you agree to our privacy policy. We'll never share your information with third parties.
               </p>
             </form>
@@ -226,7 +226,7 @@ export default function ContactPage() {
           <div className="lg:col-span-2 space-y-8">
             
             {/* What to Expect */}
-            <div className="bg-white/[0.02] border border-white/10 p-8">
+            <div className="bg-gray-50 border border-black/10 p-8">
               <h3 className="text-lg font-medium mb-6">What to Expect</h3>
               <div className="space-y-4">
                 <ExpectationItem 
@@ -267,32 +267,32 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Info */}
-            <div className="bg-white/[0.02] border border-white/10 p-8">
+            <div className="bg-gray-50 border border-black/10 p-8">
               <h3 className="text-lg font-medium mb-6">Direct Contact</h3>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <Mail className="w-5 h-5 text-white/40 mt-1" />
+                  <Mail className="w-5 h-5 text-black/40 mt-1" />
                   <div>
-                    <div className="text-white/60 text-sm mb-1">Email</div>
-                    <a href="mailto:hello@isuite.com" className="text-white hover:text-white/80 transition-colors">
+                    <div className="text-black/60 text-sm mb-1">Email</div>
+                    <a href="mailto:hello@isuite.com" className="text-black hover:text-black/80 transition-colors">
                       hello@isuite.com
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <Phone className="w-5 h-5 text-white/40 mt-1" />
+                  <Phone className="w-5 h-5 text-black/40 mt-1" />
                   <div>
-                    <div className="text-white/60 text-sm mb-1">Phone</div>
-                    <a href="tel:+15551234567" className="text-white hover:text-white/80 transition-colors">
+                    <div className="text-black/60 text-sm mb-1">Phone</div>
+                    <a href="tel:+15551234567" className="text-black hover:text-black/80 transition-colors">
                       +1 (555) 123-4567
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-white/40 mt-1" />
+                  <MapPin className="w-5 h-5 text-black/40 mt-1" />
                   <div>
-                    <div className="text-white/60 text-sm mb-1">Headquarters</div>
-                    <address className="text-white not-italic">
+                    <div className="text-black/60 text-sm mb-1">Headquarters</div>
+                    <address className="text-black not-italic">
                       123 Innovation Drive<br/>
                       Tech District, CA 94025
                     </address>
@@ -308,23 +308,23 @@ export default function ContactPage() {
       {/* ============================================ */}
       {/* ALTERNATIVE CTA */}
       {/* ============================================ */}
-      <section className="py-20 px-6 border-t border-white/10 bg-[#030303]">
+      <section className="py-20 px-6 border-t border-black/10 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-light mb-6">
             Not Ready for a Demo?
           </h2>
-          <p className="text-white/50 mb-8 max-w-2xl mx-auto">
+          <p className="text-black/50 mb-8 max-w-2xl mx-auto">
             Explore our platform, modules, and industry solutions at your own pace. 
             When you're ready to talk, we'll be here.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
+            <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
               <Link href="/platform">Explore Platform</Link>
             </Button>
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
-              <Link href="/modules">View Modules</Link>
+            <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
+              <Link href="/solutions">View Modules</Link>
             </Button>
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
+            <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-12 px-8">
               <Link href="/industries">Industry Solutions</Link>
             </Button>
           </div>
@@ -356,8 +356,8 @@ function FormField({
 }) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-bold uppercase tracking-wider text-white/50">
-        {label} {required && <span className="text-white/30">*</span>}
+      <label className="text-xs font-bold uppercase tracking-wider text-black/50">
+        {label} {required && <span className="text-black/30">*</span>}
       </label>
       <input 
         type={type}
@@ -365,7 +365,7 @@ function FormField({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-white/5 border border-white/10 p-4 text-white focus:outline-none focus:border-white/30 transition-colors placeholder:text-white/30"
+        className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors placeholder:text-black/30"
       />
     </div>
   );
@@ -377,10 +377,10 @@ function FormField({
 function ExpectationItem({ step, title, description }: { step: string; title: string; description: string }) {
   return (
     <div className="flex gap-4">
-      <div className="text-2xl font-light text-white/20">{step}</div>
+      <div className="text-2xl font-light text-black/20">{step}</div>
       <div>
-        <div className="font-medium text-white mb-1">{title}</div>
-        <div className="text-sm text-white/50">{description}</div>
+        <div className="font-medium text-black mb-1">{title}</div>
+        <div className="text-sm text-black/50">{description}</div>
       </div>
     </div>
   );
@@ -391,11 +391,11 @@ function ExpectationItem({ step, title, description }: { step: string; title: st
 // ============================================
 function TrustCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="flex gap-4 p-4 border border-white/10 bg-white/[0.02]">
-      <div className="text-white/40">{icon}</div>
+    <div className="flex gap-4 p-4 border border-black/10 bg-white">
+      <div className="text-black/40">{icon}</div>
       <div>
-        <div className="font-medium text-white text-sm mb-1">{title}</div>
-        <div className="text-xs text-white/50">{description}</div>
+        <div className="font-medium text-black text-sm mb-1">{title}</div>
+        <div className="text-xs text-black/50">{description}</div>
       </div>
     </div>
   );
