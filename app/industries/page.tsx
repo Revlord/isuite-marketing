@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "motion/react";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence, useScroll, useTransform } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,8 @@ import {
   Factory, Package, ShoppingCart, Calculator, Building, 
   FlaskConical, Activity, ShieldCheck, ScanBarcode, Store, 
   Ticket, TrendingUp, Warehouse, Hammer, Users, Truck, 
-  FileText, Landmark, ArrowRight, Check
+  FileText, Landmark, ArrowRight, Check, Hexagon, Target,
+  Cpu, Layers
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -228,7 +229,7 @@ const industries = [
 
 export default function IndustriesPage() {
   return (
-    <main className="min-h-screen bg-[#050505] text-white selection:bg-white/20">
+    <main className="min-h-screen bg-white text-black selection:bg-black/10">
       <Navbar />
       
       <Hero />
@@ -247,55 +248,186 @@ export default function IndustriesPage() {
   );
 }
 
+// --- Geometric Industry Icon ---
+
+function IndustryGeometricIcon({ index }: { index: number }) {
+  const shapes = [
+    // Pharma - Hexagonal molecular structure
+    <div key="pharma" className="relative w-full h-full">
+      <div className="absolute inset-4 border border-black/20 rotate-[30deg]" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }} />
+      <div className="absolute inset-8 border border-black/15 rotate-[60deg]" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }} />
+      <div className="absolute inset-12 bg-black/5 flex items-center justify-center" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}>
+        <FlaskConical className="w-6 h-6 text-black/40" />
+      </div>
+    </div>,
+    // Manufacturing - Interlocking gears
+    <div key="manufacturing" className="relative w-full h-full">
+      <div className="absolute inset-2 border border-black/20 rounded-full animate-[spin_30s_linear_infinite]" />
+      <div className="absolute inset-6 border border-dashed border-black/15 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
+      <div className="absolute inset-10 border border-black/10 rounded-full animate-[spin_40s_linear_infinite]" />
+      <div className="absolute inset-14 bg-black/5 rounded-full flex items-center justify-center">
+        <Factory className="w-6 h-6 text-black/40" />
+      </div>
+    </div>,
+    // Retail - Grid network
+    <div key="retail" className="relative w-full h-full">
+      <div className="absolute inset-0 grid grid-cols-3 grid-rows-3">
+        {[...Array(9)].map((_, i) => (
+          <div key={i} className="border border-black/10" />
+        ))}
+      </div>
+      <div className="absolute inset-8 bg-white/80 flex items-center justify-center border border-black/20">
+        <Store className="w-6 h-6 text-black/40" />
+      </div>
+    </div>,
+    // Construction - Layered structure
+    <div key="construction" className="relative w-full h-full">
+      <div className="absolute inset-2 border-2 border-black/10" />
+      <div className="absolute inset-6 border-2 border-black/15 rotate-3" />
+      <div className="absolute inset-10 border-2 border-black/20 -rotate-3" />
+      <div className="absolute inset-14 bg-black/5 flex items-center justify-center">
+        <Building className="w-6 h-6 text-black/40" />
+      </div>
+    </div>,
+    // Finance - Concentric squares
+    <div key="finance" className="relative w-full h-full">
+      <div className="absolute inset-2 border border-black/10 rotate-45" />
+      <div className="absolute inset-6 border border-black/15 rotate-[22.5deg]" />
+      <div className="absolute inset-10 border border-black/20" />
+      <div className="absolute inset-14 bg-black/5 flex items-center justify-center">
+        <Landmark className="w-6 h-6 text-black/40" />
+      </div>
+    </div>,
+    // Distribution - Network nodes
+    <div key="distribution" className="relative w-full h-full">
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-black/20 rounded-full" />
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-black/20 rounded-full" />
+      <div className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-black/20 rounded-full" />
+      <div className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-black/20 rounded-full" />
+      <div className="absolute top-2 left-1/2 w-px h-[calc(50%-8px)] bg-black/10" />
+      <div className="absolute bottom-2 left-1/2 w-px h-[calc(50%-8px)] bg-black/10" />
+      <div className="absolute left-2 top-1/2 w-[calc(50%-8px)] h-px bg-black/10" />
+      <div className="absolute right-2 top-1/2 w-[calc(50%-8px)] h-px bg-black/10" style={{ right: 'auto', left: '50%' }} />
+      <div className="absolute inset-10 bg-black/5 rounded-full flex items-center justify-center">
+        <Truck className="w-6 h-6 text-black/40" />
+      </div>
+    </div>,
+  ];
+
+  return (
+    <div className="w-32 h-32 md:w-40 md:h-40">
+      {shapes[index % shapes.length]}
+    </div>
+  );
+}
+
 // --- Section Components ---
 
 function Hero() {
+  const industryIndex = [
+    { num: "01", name: "Pharma", id: "pharma" },
+    { num: "02", name: "Manufacturing", id: "manufacturing" },
+    { num: "03", name: "Retail", id: "retail" },
+    { num: "04", name: "Construction", id: "construction" },
+    { num: "05", name: "Finance", id: "finance" },
+    { num: "06", name: "Distribution", id: "distribution" },
+  ];
+
   return (
-    <section className="relative min-h-[70vh] flex flex-col justify-center items-center px-6 pt-20 overflow-hidden border-b border-white/10">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-          alt="Background"
-          fill
-          className="object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505]/80 to-[#050505]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+    <section className="relative min-h-screen border-b border-black/10 overflow-hidden">
+      {/* Clean gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50/50" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="min-h-screen flex flex-col lg:flex-row">
+          
+          {/* Left: Main Content */}
+          <div className="flex-1 flex flex-col justify-center py-32 lg:py-0 lg:pr-16 relative">
+            {/* Subtle grid - Left side only */}
+            <div className="absolute inset-y-0 right-0 w-screen bg-[linear-gradient(to_right,#00000009_1px,transparent_1px),linear-gradient(to_bottom,#00000009_1px,transparent_1px)] bg-[size:80px_80px] bg-right-top -z-10 pointer-events-none" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
+            >
+              <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-black/40">
+                [ Industry Solutions ]
+              </span>
+            </motion.div>
+
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.95] mb-8 text-black"
+            >
+              Precision for <br/>
+              <span className="text-black/30">Every Sector.</span>
+            </motion.h1>
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-lg md:text-xl text-black/50 max-w-xl font-light leading-relaxed mb-10"
+            >
+              From pharmaceutical compliance to manufacturing complexity — 
+              solutions built for industries where "good enough" isn't.
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Button asChild size="lg" className="rounded-none h-14 px-8 bg-black text-white hover:bg-black/80">
+                <Link href="#pharma">Explore Below</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-none h-14 px-8 border-black/20 hover:bg-black/5">
+                <Link href="/contact">Book a Consultation</Link>
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Right: Industry Index */}
+          <div className="lg:w-80 flex flex-col justify-center py-16 lg:py-0 lg:border-l border-black/10 lg:pl-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="space-y-1"
+            >
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-black/30 mb-6 block">
+                Index
+              </span>
+              
+              {industryIndex.map((ind, i) => (
+                <motion.a
+                  key={ind.id}
+                  href={`#${ind.id}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 + i * 0.08, duration: 0.5 }}
+                  className="group flex items-center gap-4 py-3 border-b border-black/5 hover:border-black/20 transition-colors cursor-pointer"
+                >
+                  <span className="text-xs font-mono text-black/30 group-hover:text-black/60 transition-colors">
+                    {ind.num}
+                  </span>
+                  <span className="text-lg font-light text-black/60 group-hover:text-black transition-colors">
+                    {ind.name}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-black/0 group-hover:text-black/40 ml-auto transition-all group-hover:translate-x-1" />
+                </motion.a>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-xs font-medium uppercase tracking-[0.2em] text-white/60 bg-white/5">
-            Industry Solutions
-          </span>
-        </motion.div>
-
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-4xl md:text-7xl font-light tracking-tight leading-[1.1] mb-8"
-        >
-          Built for Industries <br/>
-          <span className="text-white/40">That Demand Precision.</span>
-        </motion.h1>
-
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed"
-        >
-          From pharmaceutical compliance to manufacturing complexity, iSuite delivers 
-          the depth these industries require — without the rigidity they've come to expect.
-        </motion.p>
-      </div>
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/20 to-transparent" />
     </section>
   );
 }
@@ -309,27 +441,39 @@ function WhySection() {
   ];
 
   return (
-    <section className="py-20 md:py-24 px-6 border-b border-white/10 bg-[#050505]">
+    <section className="py-20 md:py-24 px-6 border-b border-black/10 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 mb-16">
           <div>
             <h2 className="text-2xl md:text-4xl font-light mb-6">
-              Why Industry Leaders <span className="text-white/40">Choose iSuite</span>
+              Why Industry Leaders <span className="text-black/40">Choose iSuite</span>
             </h2>
-            <p className="text-white/60 leading-relaxed">
+            <p className="text-black/60 leading-relaxed">
               We don't just provide software — we provide a competitive advantage. 
               Our platform adapts to the most demanding industrial environments because 
               it was built to be flexible from the ground up.
             </p>
+          </div>
+          
+          {/* Geometric Visual */}
+          <div className="hidden md:flex items-center justify-center">
+            <div className="relative w-48 h-48">
+              <div className="absolute inset-0 border border-black/10 rotate-45 animate-[spin_30s_linear_infinite]" />
+              <div className="absolute inset-4 border border-black/15 rotate-12" />
+              <div className="absolute inset-8 border border-black/20 -rotate-12" />
+              <div className="absolute inset-12 bg-black/5 flex items-center justify-center">
+                <Target className="w-8 h-8 text-black/40" />
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="grid md:grid-cols-4 gap-8">
           {features.map((f, i) => (
             <div key={i} className="space-y-3">
-              <div className="w-8 h-px bg-white/30 mb-4" />
-              <h3 className="text-lg font-medium text-white">{f.title}</h3>
-              <p className="text-sm text-white/50 leading-relaxed">{f.desc}</p>
+              <div className="w-8 h-px bg-black/30 mb-4" />
+              <h3 className="text-lg font-medium text-black">{f.title}</h3>
+              <p className="text-sm text-black/50 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -340,24 +484,24 @@ function WhySection() {
 
 function ImpactStats() {
   return (
-    <section className="py-16 px-6 border-b border-white/10 bg-[#030303]">
+    <section className="py-16 px-6 border-b border-black/10 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="text-3xl md:text-5xl font-light text-white mb-2">6+</div>
-            <div className="text-sm text-white/40 uppercase tracking-wider">Industries Served</div>
+            <div className="text-3xl md:text-5xl font-light text-black mb-2">6+</div>
+            <div className="text-sm text-black/40 uppercase tracking-wider">Industries Served</div>
           </div>
           <div>
-            <div className="text-3xl md:text-5xl font-light text-white mb-2">Weeks</div>
-            <div className="text-sm text-white/40 uppercase tracking-wider">To Deploy</div>
+            <div className="text-3xl md:text-5xl font-light text-black mb-2">Weeks</div>
+            <div className="text-sm text-black/40 uppercase tracking-wider">To Deploy</div>
           </div>
           <div>
-            <div className="text-3xl md:text-5xl font-light text-white mb-2">100%</div>
-            <div className="text-sm text-white/40 uppercase tracking-wider">Customizable</div>
+            <div className="text-3xl md:text-5xl font-light text-black mb-2">100%</div>
+            <div className="text-sm text-black/40 uppercase tracking-wider">Customizable</div>
           </div>
           <div>
-            <div className="text-3xl md:text-5xl font-light text-white mb-2">Global</div>
-            <div className="text-sm text-white/40 uppercase tracking-wider">Compliance Ready</div>
+            <div className="text-3xl md:text-5xl font-light text-black mb-2">Global</div>
+            <div className="text-sm text-black/40 uppercase tracking-wider">Compliance Ready</div>
           </div>
         </div>
       </div>
@@ -378,12 +522,12 @@ function IndustrySection({ industry, index }: { industry: typeof industries[0], 
       ref={ref} 
       id={industry.id} 
       className={cn(
-        "min-h-screen flex flex-col border-b border-white/10 last:border-0",
+        "min-h-screen flex flex-col border-b border-black/10 last:border-0",
         isEven ? "lg:flex-row" : "lg:flex-row-reverse"
       )}
     >
       {/* Sticky Image Panel */}
-      <div className="lg:w-1/2 relative flex flex-col justify-center lg:sticky lg:top-0 lg:h-screen z-10 overflow-hidden bg-black">
+      <div className="lg:w-1/2 relative flex flex-col justify-center lg:sticky lg:top-0 lg:h-screen z-10 overflow-hidden bg-white">
         {/* Background Image Transition */}
         <AnimatePresence mode="popLayout">
           <motion.div 
@@ -398,37 +542,42 @@ function IndustrySection({ industry, index }: { industry: typeof industries[0], 
               src={activeImage}
               alt={industry.title}
               fill
-              className="object-cover opacity-50"
+              className="object-cover opacity-20"
             />
             <div className={cn(
               "absolute inset-0",
               isEven 
-                ? "bg-gradient-to-r from-black/90 via-black/60 to-black/30" 
-                : "bg-gradient-to-l from-black/90 via-black/60 to-black/30"
+                ? "bg-gradient-to-r from-white/40 via-white/10 to-transparent" 
+                : "bg-gradient-to-l from-white/40 via-white/10 to-transparent"
             )}></div>
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-10 p-6 md:p-12 lg:p-20">
+        <div className="relative z-10 p-6 md:p-12 lg:p-16">
           <motion.div
             initial={{ opacity: 0, x: isEven ? -20 : 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0.3, x: isEven ? -20 : 20 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-xs font-mono text-white/40 mb-4 block uppercase tracking-widest">
+            {/* Industry Geometric Icon */}
+            <div className="mb-6">
+              <IndustryGeometricIcon index={index} />
+            </div>
+            
+            <span className="text-xs font-mono text-black/40 mb-4 block uppercase tracking-widest">
               {String(index + 1).padStart(2, '0')} / {industry.shortTitle}
             </span>
-            <h2 className="text-4xl md:text-5xl font-light mb-6 text-white">{industry.title}</h2>
-            <p className="text-lg text-white/70 leading-relaxed max-w-md mb-8">
+            <h2 className="text-3xl md:text-4xl font-light mb-6 text-black">{industry.title}</h2>
+            <p className="text-lg text-black/70 leading-relaxed max-w-md mb-8">
               {industry.description}
             </p>
 
             {/* Challenges */}
             <div className="space-y-3">
-              <span className="text-xs uppercase tracking-widest text-white/40 mb-3 block">Key Challenges We Solve</span>
+              <span className="text-xs uppercase tracking-widest text-black/40 mb-3 block">Key Challenges We Solve</span>
               {industry.challenges.map((challenge, i) => (
-                <div key={i} className="flex items-center gap-3 text-sm text-white/60">
-                  <Check className="w-4 h-4 text-emerald-500/70 shrink-0" />
+                <div key={i} className="flex items-center gap-3 text-sm text-black/60">
+                  <Check className="w-4 h-4 text-black/40 shrink-0" />
                   <span>{challenge}</span>
                 </div>
               ))}
@@ -438,11 +587,11 @@ function IndustrySection({ industry, index }: { industry: typeof industries[0], 
       </div>
 
       {/* Scrollable Solutions Panel */}
-      <div className="lg:w-1/2 bg-[#0a0a0a]">
-        <div className="p-12 lg:p-20 space-y-20">
+      <div className="lg:w-1/2 bg-gray-50">
+        <div className="p-8 md:p-12 lg:p-16 space-y-16">
           <div>
-            <span className="text-xs uppercase tracking-widest text-white/40 mb-2 block">How iSuite Helps</span>
-            <h3 className="text-2xl font-light text-white/80">Industry-Specific Capabilities</h3>
+            <span className="text-xs uppercase tracking-widest text-black/40 mb-2 block">How iSuite Helps</span>
+            <h3 className="text-2xl font-light text-black/80">Industry-Specific Capabilities</h3>
           </div>
 
           {industry.solutions.map((solution, i) => (
@@ -465,19 +614,19 @@ function IndustrySection({ industry, index }: { industry: typeof industries[0], 
                 <div className={cn(
                   "p-4 border transition-all duration-300",
                   activeSolutionIndex === i 
-                    ? "bg-white text-black border-white" 
-                    : "bg-white/5 border-white/10 text-white/80 group-hover:bg-white/10"
+                    ? "bg-black text-white border-black" 
+                    : "bg-black/5 border-black/10 text-black/80 group-hover:bg-black/10"
                 )}>
                   <solution.icon className="w-6 h-6" />
                 </div>
                 <div className="space-y-3">
                   <h4 className={cn(
                     "text-xl font-medium transition-colors duration-300",
-                    activeSolutionIndex === i ? "text-white" : "text-white/70 group-hover:text-white"
+                    activeSolutionIndex === i ? "text-black" : "text-black/70 group-hover:text-black"
                   )}>
                     {solution.title}
                   </h4>
-                  <p className="text-white/50 leading-relaxed">
+                  <p className="text-black/50 leading-relaxed">
                     {solution.desc}
                   </p>
                 </div>
@@ -485,9 +634,9 @@ function IndustrySection({ industry, index }: { industry: typeof industries[0], 
             </motion.div>
           ))}
 
-          {/* CTA for this industry */}
-          <div className="pt-8 border-t border-white/10">
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-none h-12 px-8">
+          {/* CTA */}
+          <div className="pt-8 border-t border-black/10">
+            <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black hover:text-white rounded-none h-12 px-8 transition-colors">
               <Link href="/contact">
                 Discuss {industry.shortTitle} Solution <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
@@ -501,25 +650,41 @@ function IndustrySection({ industry, index }: { industry: typeof industries[0], 
 
 function CTASection() {
   return (
-    <section className="py-32 px-6 bg-white text-black">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="py-32 px-6 bg-black text-white relative overflow-hidden">
+      {/* Geometric background for CTA */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]">
+          <div className="absolute inset-0 border border-white/5 rounded-full" />
+          <div className="absolute inset-[15%] border border-white/10 rounded-full animate-[spin_60s_linear_infinite]" />
+          <div className="absolute inset-[30%] border border-dashed border-white/5 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+        </div>
+      </div>
+      
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
           Your Industry. <br/>
-          <span className="text-black/40">Your Requirements.</span>
+          <span className="text-white/40">Your Requirements.</span>
         </h2>
-        <p className="text-xl text-black/60 max-w-2xl mx-auto mb-12">
+        <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
           Every industry has unique challenges. Let us show you how iSuite addresses 
           the specific requirements of your sector.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button asChild className="bg-black text-white hover:bg-black/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold">
+          <Button
+            asChild
+            className="bg-white text-black hover:bg-white/90 rounded-none h-14 px-10 text-sm uppercase tracking-wider font-semibold transition-colors"
+          >
             <Link href="/contact">
               Request Industry Demo
             </Link>
           </Button>
-          <Button asChild variant="outline" className="border-black/20 text-black hover:bg-black/5 rounded-none h-14 px-10 text-sm uppercase tracking-wider">
-            <Link href="/modules">
-              Explore Modules
+          <Button
+            asChild
+            variant="outline"
+            className="border-white/20 text-black hover:bg-white/10 hover:text-white rounded-none h-14 px-10 text-sm uppercase tracking-wider transition-colors"
+          >
+            <Link href="/solutions">
+              Explore Solutions
             </Link>
           </Button>
         </div>
