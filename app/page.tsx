@@ -10,7 +10,7 @@ import Image from "next/image";
 import { 
   ArrowRight, 
   Clock, 
-  Infinity, 
+  Infinity as InfinityIcon, 
   Shield, 
   Zap,
   Factory,
@@ -42,8 +42,35 @@ export default function Home() {
           trigger: ".hero-section",
           start: "top top",
           end: "bottom top",
-          scrub: true
+          scrub: 1.5
         }
+      });
+      // ===== HERO: Geometric Command Prism (no grid) =====
+      gsap.to(".hero-halo", {
+        rotate: 360,
+        duration: 70,
+        ease: "none",
+        repeat: -1,
+      });
+
+      gsap.to(".hero-shards", {
+        y: -18,
+        x: 10,
+        rotate: 1.5,
+        duration: 10,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      gsap.utils.toArray<SVGPathElement>(".hero-orbit").forEach((p, i) => {
+        // continuous "flow" along the stroke
+        gsap.to(p, {
+          strokeDashoffset: -1200,
+          duration: 14 + i * 3,
+          ease: "none",
+          repeat: -1,
+        });
       });
 
       gsap.utils.toArray(".fade-section").forEach((section: any) => {
@@ -73,61 +100,208 @@ export default function Home() {
       <Navbar />
 
       {/* ============================================ */}
-      {/* HERO SECTION - THE HOOK */}
+      {/* HERO SECTION - GEOMETRIC COMMAND PRISM */}
       {/* ============================================ */}
-      <section className="hero-section relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
+      <section className="hero-section relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden bg-black text-white">
         {/* Background */}
         <div className="hero-bg absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-100 via-white to-white"></div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-multiply"></div>
-          {/* Animated grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:64px_64px]"></div>
-        </div>
+          {/* Base */}
+          <div className="absolute inset-0 bg-black" />
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white z-[1]"></div>
+          {/* Conic halo (subtle but premium) */}
+          <div
+            aria-hidden="true"
+            className="hero-halo absolute inset-[-35%] opacity-70 blur-3xl mix-blend-screen pointer-events-none"
+            style={{
+              background:
+                "conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(255,255,255,0.12) 35deg, transparent 90deg, rgba(255,255,255,0.08) 150deg, transparent 220deg, rgba(255,255,255,0.10) 300deg, transparent 360deg)",
+            }}
+          />
+
+          {/* Faceted shards (SVG) */}
+          <svg
+            aria-hidden="true"
+            className="hero-shards absolute inset-0 w-full h-full opacity-80 pointer-events-none"
+            viewBox="0 0 1440 900"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="shardA" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.10)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.00)" />
+              </linearGradient>
+              <linearGradient id="shardB" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.08)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.00)" />
+              </linearGradient>
+              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            {/* Big facets */}
+            <g filter="url(#softGlow)" style={{ mixBlendMode: "screen" as any }}>
+              <polygon
+                points="120,120 680,60 520,360"
+                fill="url(#shardA)"
+                stroke="rgba(255,255,255,0.22)"
+                strokeWidth="1"
+              />
+              <polygon
+                points="680,60 980,220 520,360"
+                fill="url(#shardB)"
+                stroke="rgba(255,255,255,0.18)"
+                strokeWidth="1"
+              />
+              <polygon
+                points="520,360 980,220 860,520"
+                fill="url(#shardA)"
+                stroke="rgba(255,255,255,0.20)"
+                strokeWidth="1"
+              />
+              <polygon
+                points="860,520 980,220 1320,420"
+                fill="url(#shardB)"
+                stroke="rgba(255,255,255,0.16)"
+                strokeWidth="1"
+              />
+
+              {/* Lower left cluster */}
+              <polygon
+                points="80,620 420,520 300,860"
+                fill="url(#shardB)"
+                stroke="rgba(255,255,255,0.16)"
+                strokeWidth="1"
+              />
+              <polygon
+                points="420,520 720,700 300,860"
+                fill="url(#shardA)"
+                stroke="rgba(255,255,255,0.18)"
+                strokeWidth="1"
+              />
+            </g>
+
+            {/* Thin “construction lines” */}
+            <g opacity="0.35" style={{ mixBlendMode: "screen" as any }}>
+              <path
+                d="M120 120 L520 360 L80 620"
+                stroke="rgba(255,255,255,0.25)"
+                strokeWidth="1"
+                fill="none"
+              />
+              <path
+                d="M680 60 L520 360 L980 220"
+                stroke="rgba(255,255,255,0.22)"
+                strokeWidth="1"
+                fill="none"
+              />
+              <path
+                d="M420 520 L720 700 L860 520"
+                stroke="rgba(255,255,255,0.20)"
+                strokeWidth="1"
+                fill="none"
+              />
+            </g>
+          </svg>
+
+          {/* Orbit lines (motion without “fog”) */}
+          <svg
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-70"
+            viewBox="0 0 1440 900"
+            preserveAspectRatio="none"
+            style={{ mixBlendMode: "screen" as any }}
+          >
+            <g fill="none" stroke="rgba(255,255,255,0.20)" strokeWidth="1.25">
+              <path
+                className="hero-orbit"
+                d="M-120,520 C260,360 520,320 820,420 C1060,500 1240,480 1560,340"
+                strokeDasharray="12 14"
+                strokeDashoffset="0"
+              />
+              <path
+                className="hero-orbit"
+                d="M-140,640 C240,520 520,500 820,560 C1100,620 1260,590 1580,480"
+                strokeDasharray="8 18"
+                strokeDashoffset="0"
+                opacity="0.8"
+              />
+              <path
+                className="hero-orbit"
+                d="M-160,380 C220,240 520,220 820,320 C1120,430 1280,410 1600,260"
+                strokeDasharray="10 20"
+                strokeDashoffset="0"
+                opacity="0.65"
+              />
+            </g>
+          </svg>
+
+          {/* Grain (material) */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.14] mix-blend-overlay pointer-events-none"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E\")",
+            }}
+          />
+
+          {/* Focus vignette */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(1100px 650px at 50% 30%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.88) 100%)",
+            }}
+          />
+        </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto text-center pt-32 pb-20">
           {/* Eyebrow */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 border border-black text-xs font-medium uppercase tracking-[0.2em] text-black bg-white backdrop-blur-sm">
-              <span className="w-2 h-2 bg-black rounded-none animate-pulse"></span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/20 text-xs font-medium uppercase tracking-[0.2em] text-white/80 bg-white/5 backdrop-blur-sm">
+              <span className="w-2 h-2 bg-white rounded-none animate-pulse" />
               Enterprise Operating System
             </span>
           </motion.div>
 
           {/* Main Headline */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.05 }}
             className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.05] mb-8"
           >
-            Introducing <br/>
-            <span className="text-black/40">
+            Introducing <br />
+            <span className="text-white/40">
               <span className="relative inline-block">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0, 1, 0] }}
                   transition={{ duration: 0.4, times: [0, 0.2, 0.5, 0.8, 1], delay: 0.2 }}
-                  className="absolute inset-0 underline decoration-1 decoration-black underline-offset-8"
+                  className="absolute inset-0 underline decoration-1 decoration-white underline-offset-8"
                   aria-hidden="true"
                 >
                   Absolute
                 </motion.span>
-                <span className="underline decoration-1 decoration-black/40 underline-offset-8">
+                <span className="underline decoration-1 decoration-white/40 underline-offset-8">
                   {"Absolute".split("").map((char, i) => (
                     <motion.span
                       key={i}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ duration: 0, delay: 0.7 + i * 0.08 }}
+                      transition={{ duration: 0, delay: 0.65 + i * 0.08 }}
                     >
                       {char}
                     </motion.span>
@@ -139,70 +313,53 @@ export default function Home() {
           </motion.h1>
 
           {/* Subheadline */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto font-light leading-relaxed mb-12"
+            transition={{ duration: 0.8, delay: 0.18 }}
+            className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed mb-12"
           >
-            iSuite is the enterprise platform that molds to your operations — not the other way around. Deploy in weeks. Customize without limits. Scale without Fear.
+            iSuite is the enterprise platform that molds to your operations — not the other way around.
+            Deploy in weeks. Customize without limits. Scale without Fear.
           </motion.p>
 
           {/* CTAs */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.28 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button 
+            <Button
               asChild
-              className="bg-black text-white hover:bg-black/90 rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-semibold group border border-black"
+              className="bg-white text-black hover:bg-white/90 rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-semibold group border border-white"
             >
               <Link href="/contact">
                 Request Demo
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button 
-              asChild
-              variant="outline" 
-              className="bg-transparent border-black text-black hover:bg-black hover:text-white rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-medium transition-colors"
-            >
-              <Link href="/platform">
-                Explore Platform
-              </Link>
-            </Button>
-          </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mt-20 pt-12 border-t border-black/10"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-black/30 mb-6">Trusted by Industry Leaders</p>
-            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 opacity-40">
-              {/* Placeholder for client logos */}
-              <div className="text-2xl font-light tracking-tight">Pharma<span className="text-black/50">Corp</span></div>
-              <div className="text-2xl font-light tracking-tight">Industrial<span className="text-black/50">Tech</span></div>
-              <div className="text-2xl font-light tracking-tight">Mfg<span className="text-black/50">Global</span></div>
-              <div className="text-2xl font-light tracking-tight">Process<span className="text-black/50">Pro</span></div>
-            </div>
+            <Button
+              asChild
+              variant="outline"
+              className="bg-transparent border-white/30 text-white hover:bg-white hover:text-black rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-medium transition-colors"
+            >
+              <Link href="/platform">Explore Platform</Link>
+            </Button>
           </motion.div>
         </div>
 
         {/* Scroll indicator */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="flex flex-col items-center gap-2 text-black/30">
+          <div className="flex flex-col items-center gap-2 text-white/30">
             <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-            <div className="w-px h-12 bg-gradient-to-b from-black/30 to-transparent"></div>
+            <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent" />
           </div>
         </motion.div>
       </section>
@@ -378,7 +535,7 @@ export default function Home() {
             description="Your custom solution deployed in weeks. No 18-month implementation nightmares."
           />
           <ValueCard 
-            icon={<Infinity className="w-8 h-8" />}
+            icon={<InfinityIcon className="w-8 h-8" />}
             title="Zero Limitations"
             description="If you can describe the requirement, we can build it. No artificial constraints."
           />
@@ -563,22 +720,80 @@ export default function Home() {
       </section>
 
       {/* ============================================ */}
-      {/* TESTIMONIAL */}
+      {/* CLIENTS SECTION */}
       {/* ============================================ */}
-      <section className="fade-section py-20 md:py-32 px-6 border-t border-black/10 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-12">
-            <svg className="w-12 h-12 mx-auto text-black/20 mb-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
+      <section className="fade-section py-20 md:py-32 border-t border-black/10 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-6">[ Enterprises We Power ]</h2>
+          <h3 className="text-3xl md:text-4xl font-light text-black/80">
+            Clients who enjoy the iSuite advantage.
+          </h3>
+        </div>
+
+        <div className="space-y-12">
+          {/* Row 1 - Moving Left */}
+          <div className="relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <motion.div 
+              className="flex gap-20 items-center whitespace-nowrap pl-20"
+              animate={{ x: "-50%" }}
+              transition={{ 
+                repeat: Infinity, 
+                ease: "linear", 
+                duration: 20 
+              }}
+            >
+              {[
+                "amada", "electro", "eros", "graviti", "instaSine", "madhav", "anjalee",
+                "amada", "electro", "eros", "graviti", "instaSine", "madhav", "anjalee",
+                "amada", "electro", "eros", "graviti", "instaSine", "madhav", "anjalee",
+                "amada", "electro", "eros", "graviti", "instaSine", "madhav", "anjalee"
+              ].map((client, i) => (
+                <div 
+                  key={i} 
+                  className={cn(
+                    "relative w-32 h-16 opacity-40 grayscale",
+                    (client === "electro" || client === "anjalee") && "invert"
+                  )}
+                >
+                  <Image
+                    src={`/clients/${client}.png`}
+                    alt={`${client} logo`}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </div>
-          <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-black/80 mb-8">
-            "We came to iSuite with a list of 47 specific requirements that SAP said would need 'extensive customization.' 
-            iSuite built every single one. In 10 weeks. It's not software — it's a solution that actually fits."
-          </blockquote>
-          <div className="text-black/40">
-            <div className="font-medium text-black/60">Operations Director</div>
-            <div className="text-sm">Leading Pharmaceutical Manufacturer</div>
+
+          {/* Row 2 - Moving Right */}
+          <div className="relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <motion.div 
+              className="flex gap-20 items-center whitespace-nowrap pl-20"
+              initial={{ x: "-50%" }}
+              animate={{ x: "0%" }}
+              transition={{ 
+                repeat: Infinity, 
+                ease: "linear", 
+                duration: 25 
+              }}
+            >
+              {[
+                "mody", "nus", "prince", "rkec", "vasantha", "wincoat",
+                "mody", "nus", "prince", "rkec", "vasantha", "wincoat",
+                "mody", "nus", "prince", "rkec", "vasantha", "wincoat",
+                "mody", "nus", "prince", "rkec", "vasantha", "wincoat"
+              ].map((client, i) => (
+                <div key={i} className="relative w-32 h-16 opacity-40 grayscale">
+                  <Image
+                    src={`/clients/${client}.png`}
+                    alt={`${client} logo`}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
