@@ -9,7 +9,8 @@ import {
   Briefcase, Globe, Box, Layers, Cog, FileText, Users, 
   CheckCircle2, ArrowRight, Target, Zap, TrendingUp,
   Calculator, Truck, Headset, ClipboardList, Settings,
-  BarChart3, Package, ShoppingCart, Factory, Landmark
+  BarChart3, Package, ShoppingCart, Factory, Landmark,
+  Shield, GraduationCap, Wrench, UserCircle, Car, Building2, Vault
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -20,7 +21,7 @@ const solutions = [
     id: "financial",
     title: "Financial Management",
     icon: Landmark,
-    tagline: "Every Rupee. Tracked.",
+    tagline: "Every Transaction. Tracked.",
     heroLine: "Complete financial control from quote to cash.",
     description: "Close faster with accurate AR/AP, aging analysis, and real-time cash flow visibility. Multi-currency, multi-entity, fully GST-compliant — without the complexity.",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2072&auto=format&fit=crop",
@@ -123,7 +124,7 @@ const solutions = [
     tagline: "Precision Production.",
     heroLine: "Shop floor to shipping dock. Planned and tracked.",
     description: "Bills of materials, routings, scheduling, and integrated QA — creating realistic production plans that respect machines, materials, and people. Every work order, every component, every quality check.",
-    image: "https://images.unsplash.com/photo-1565514020176-dbf2277f18f3?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?q=80&w=2070&auto=format&fit=crop",
     outcomes: [
       "Feasible production schedules that hold",
       "Lower WIP and rework rates",
@@ -142,13 +143,63 @@ const solutions = [
     ]
   },
   {
+    id: "fixed-assets",
+    title: "Fixed Asset Management",
+    icon: Building2,
+    tagline: "Every Asset. Accounted For.",
+    heroLine: "Acquisition to disposal. Complete lifecycle.",
+    description: "Assets are investments — manage them like it. Depreciation calculations, physical verification, transfers, and disposal tracking. Finance-integrated accuracy that survives any audit.",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Accurate depreciation calculations",
+      "Physical verification simplified",
+      "Asset location always known",
+      "Tax-compliant asset registers"
+    ],
+    capabilities: [
+      "Asset Acquisition & Capitalization",
+      "Depreciation Methods (SLM, WDV)",
+      "Asset Categories & Classification",
+      "Physical Verification & Tagging",
+      "Asset Transfers & Movement",
+      "Maintenance History",
+      "Disposal & Write-off",
+      "Asset Register & Reports"
+    ]
+  },
+  {
+    id: "projects",
+    title: "Project Management",
+    icon: Layers,
+    tagline: "Deliver On Time. Every Time.",
+    heroLine: "Plan, track, and deliver with confidence.",
+    description: "Gantt charts, work breakdown structures, budgets, and change orders that sync directly with finance. Budget vs. actual visibility that keeps projects on track and stakeholders informed.",
+    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "On-time delivery with dependency tracking",
+      "Budget vs. actual visibility by phase",
+      "Change control without email chaos",
+      "Resource utilization optimization"
+    ],
+    capabilities: [
+      "Work Breakdown Structure (WBS)",
+      "Task Dependencies & Critical Path",
+      "Resource Allocation",
+      "Time & Cost Tracking",
+      "Budget Management",
+      "Change Order Processing",
+      "Progress Reporting",
+      "Earned Value Analysis"
+    ]
+  },
+  {
     id: "quality",
     title: "Quality Control",
     icon: ClipboardList,
     tagline: "Quality Built In.",
     heroLine: "Not inspected in. Built in.",
     description: "QC integrated throughout operations — not bolted on. Every checkpoint documented, every issue tracked, every root cause analyzed. Compliance documentation always audit-ready.",
-    image: "https://images.unsplash.com/photo-1579165466741-7f35a4755657?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?q=80&w=2070&auto=format&fit=crop",
     outcomes: [
       "Defects caught at source, not at shipment",
       "Complete quality documentation trail",
@@ -192,6 +243,31 @@ const solutions = [
     ]
   },
   {
+    id: "crm",
+    title: "Customer Relationship Management",
+    icon: UserCircle,
+    tagline: "Every Relationship. Nurtured.",
+    heroLine: "Know your customers. Grow your business.",
+    description: "Pipeline visibility, lead tracking, and customer intelligence that drives revenue. Every interaction logged, every opportunity tracked, every relationship managed with precision.",
+    image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Complete pipeline visibility",
+      "Higher conversion rates with lead scoring",
+      "Customer lifetime value optimization",
+      "Sales team accountability and performance"
+    ],
+    capabilities: [
+      "Lead Capture & Management",
+      "Opportunity Pipeline",
+      "Contact & Account Management",
+      "Activity Tracking & Follow-ups",
+      "Quotation Integration",
+      "Sales Forecasting",
+      "Campaign Management",
+      "Customer Analytics & Segmentation"
+    ]
+  },
+  {
     id: "hr",
     title: "HR & Payroll",
     icon: Users,
@@ -217,28 +293,160 @@ const solutions = [
     ]
   },
   {
-    id: "pm",
-    title: "Project Management",
-    icon: Layers,
-    tagline: "Deliver On Time. Every Time.",
-    heroLine: "Plan, track, and deliver with confidence.",
-    description: "Gantt charts, work breakdown structures, budgets, and change orders that sync directly with finance. Budget vs. actual visibility that keeps projects on track and stakeholders informed.",
-    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2070&auto=format&fit=crop",
+    id: "fixed-deposits",
+    title: "Fixed Deposit Management",
+    icon: Vault,
+    tagline: "Treasury. Optimized.",
+    heroLine: "Every deposit. Every maturity. Tracked.",
+    description: "Corporate treasury visibility for FD portfolios. Maturity tracking, interest calculations, renewal management, and bank-wise analysis. Never miss a renewal, never lose interest income.",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2072&auto=format&fit=crop",
     outcomes: [
-      "On-time delivery with dependency tracking",
-      "Budget vs. actual visibility by phase",
-      "Change control without email chaos",
-      "Resource utilization optimization"
+      "Maturity dates tracked automatically",
+      "Interest income maximized",
+      "Renewal decisions data-driven",
+      "Complete FD portfolio visibility"
     ],
     capabilities: [
-      "Work Breakdown Structure (WBS)",
-      "Task Dependencies & Critical Path",
-      "Resource Allocation",
-      "Time & Cost Tracking",
-      "Budget Management",
-      "Change Order Processing",
-      "Progress Reporting",
-      "Earned Value Analysis"
+      "FD Creation & Documentation",
+      "Bank & Branch Master",
+      "Interest Rate Management",
+      "Maturity Tracking & Alerts",
+      "Auto-Renewal Management",
+      "TDS Tracking & Certificates",
+      "Interest Accrual & Posting",
+      "Portfolio Analysis & Reports"
+    ]
+  },
+  {
+    id: "dms",
+    title: "Document Management",
+    icon: FileText,
+    tagline: "Every Document. Under Control.",
+    heroLine: "Version control that actually works.",
+    description: "No more 'which version is latest?' chaos. Centralized document repository with approval workflows, version history, and access controls. SOPs, policies, contracts — organized, searchable, and audit-ready.",
+    image: "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Single source of truth for all documents",
+      "Instant retrieval during audits",
+      "Automated review and approval cycles",
+      "Complete version history and audit trails"
+    ],
+    capabilities: [
+      "Centralized Document Repository",
+      "Version Control & History",
+      "Approval Workflows",
+      "Access Control & Permissions",
+      "Document Templates",
+      "Full-Text Search",
+      "Expiry & Review Reminders",
+      "Audit Trail & Activity Log"
+    ]
+  },
+  {
+    id: "lms",
+    title: "Learning Management",
+    icon: GraduationCap,
+    tagline: "Competence. Verified.",
+    heroLine: "Train, track, certify — all in one system.",
+    description: "Employee training that's tracked, not trusted. Course assignments, completion tracking, certification management, and competency matrices. Compliance training with proof that stands up to inspection.",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "100% training compliance visibility",
+      "Automated certification renewals",
+      "Competency gaps identified proactively",
+      "Audit-ready training records"
+    ],
+    capabilities: [
+      "Course & Curriculum Management",
+      "Training Assignment & Scheduling",
+      "Progress Tracking & Completion",
+      "Assessment & Quiz Management",
+      "Certification & Expiry Tracking",
+      "Competency Matrix",
+      "Training Effectiveness Reports",
+      "Compliance Training Management"
+    ]
+  },
+  {
+    id: "qms",
+    title: "Quality Management System",
+    icon: Shield,
+    tagline: "Zero Defects. Zero Compromises.",
+    heroLine: "Enterprise-grade quality control that regulators respect.",
+    description: "Not a checkbox exercise — a complete quality ecosystem. From CAPA to calibration, from audit trails to corrective actions, iSuite QMS delivers the depth pharmaceutical, aerospace, and manufacturing leaders demand. FDA 21 CFR Part 11 ready. ISO compliant. Audit-proof.",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "First-pass audit success with complete documentation",
+      "CAPA cycle times reduced by 60%+",
+      "Zero findings on regulatory inspections",
+      "Complete traceability from complaint to resolution",
+      "Real-time quality metrics across all operations"
+    ],
+    capabilities: [
+      "Document Control & Version Management",
+      "CAPA (Corrective & Preventive Action)",
+      "Non-Conformance & Deviation Management",
+      "Audit Management (Internal & External)",
+      "Calibration & Equipment Qualification",
+      "Training Records & Competency Tracking",
+      "Supplier Quality Management",
+      "Risk Assessment & FMEA",
+      "Change Control Management",
+      "Complaint Handling & Investigation",
+      "Statistical Process Control (SPC)",
+      "Management Review & Quality Metrics",
+      "Electronic Signatures (21 CFR Part 11)",
+      "Batch Record Review & Release"
+    ]
+  },
+  {
+    id: "plant-maintenance",
+    title: "Plant & Equipment Maintenance",
+    icon: Wrench,
+    tagline: "Uptime. Maximized.",
+    heroLine: "Preventive maintenance that prevents.",
+    description: "Equipment downtime kills margins. Our maintenance solution keeps machines running with scheduled PMs, condition monitoring, and spare parts integration. Reactive firefighting becomes proactive planning.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Unplanned downtime reduced dramatically",
+      "Maintenance costs optimized",
+      "Equipment lifespan extended",
+      "Spare parts availability when needed"
+    ],
+    capabilities: [
+      "Equipment Master & Hierarchy",
+      "Preventive Maintenance Scheduling",
+      "Work Order Management",
+      "Breakdown & Corrective Maintenance",
+      "Spare Parts Integration",
+      "Maintenance History & Logs",
+      "MTBF & MTTR Analytics",
+      "Calibration Scheduling"
+    ]
+  },
+  {
+    id: "vehicle-maintenance",
+    title: "Vehicle & Fleet Maintenance",
+    icon: Car,
+    tagline: "Fleet Fitness. Guaranteed.",
+    heroLine: "Every vehicle. Every service. On schedule.",
+    description: "Fleet maintenance that keeps wheels turning. Service scheduling, fuel tracking, compliance management, and cost analysis. Whether 10 vehicles or 1,000 — complete visibility and control.",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Fleet availability maximized",
+      "Fuel costs tracked and optimized",
+      "Compliance deadlines never missed",
+      "Total cost of ownership visibility"
+    ],
+    capabilities: [
+      "Vehicle Master & Registration",
+      "Service Scheduling & Reminders",
+      "Fuel Consumption Tracking",
+      "Insurance & Permit Management",
+      "Driver Assignment & Logs",
+      "Breakdown & Repair History",
+      "Cost Analysis by Vehicle",
+      "Compliance & Fitness Certificates"
     ]
   }
 ];
@@ -362,7 +570,7 @@ export default function SolutionsPage() {
 
           {/* CTA in sidebar */}
           <div className="mt-8 pt-8 border-t border-black/10">
-            <p className="text-sm text-black/40 mb-4">We know you might need a custom solution. Its the very premise of this company. Lets chat and discuss what we can build for you.</p>
+            <p className="text-sm text-black/40 mb-4">Need a custom solution? Well, Its the very premise of our company. Lets chat and discuss what we can build for you.</p>
             <Button asChild variant="outline" className="w-full border-black/20 text-black hover:bg-black/5 rounded-none h-10 text-xs uppercase tracking-wider">
               <Link href="/contact">Tell Us What You Need</Link>
             </Button>
@@ -385,7 +593,7 @@ export default function SolutionsPage() {
       <section className="py-20 md:py-32 px-6 bg-black text-white border-t border-black/10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-8">
-            These Are Starting Points. <span className="text-white/40">Not Limits.</span>
+            These Are All Starting Points. <span className="text-white/40">Not Limits.</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto mb-12">
             Every solution we build is unique. Tell us what your business needs — 
@@ -463,7 +671,6 @@ function SolutionSection({ solution, index }: { solution: typeof solutions[0]; i
           fill
           className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-white/5 to-transparent pointer-events-none"></div>
         <div className="absolute bottom-4 left-4">
           <span className="text-xs uppercase tracking-wider text-black/60 bg-white/50 px-3 py-1 backdrop-blur-sm">
             {solution.title}

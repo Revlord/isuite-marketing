@@ -100,15 +100,15 @@ function GeometricGlobe() {
 
         projectedPoints.push({ x: x2D, y: y2D, z: z2 });
 
-        const alpha = Math.max(0.1, (z2 + GLOBE_RADIUS) / (2 * GLOBE_RADIUS));
+        const alpha = Math.max(0.4, (z2 + GLOBE_RADIUS) / (2 * GLOBE_RADIUS));
         ctx.beginPath();
         ctx.arc(x2D, y2D, DOT_RADIUS * scale, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, ${alpha * 0.8})`;
+        ctx.fillStyle = `rgba(0, 0, 0, ${Math.min(alpha * 1.1, 1)})`;
         ctx.fill();
       });
 
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
-      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
+      ctx.lineWidth = 0.9;
       
       for (let i = 0; i < projectedPoints.length; i++) {
         const p1 = projectedPoints[i];
@@ -349,7 +349,7 @@ export default function PlatformPage() {
             <CompetitiveStatCard 
               metric="10x"
               label="Faster Implementation"
-              comparison="vs. SAP/Oracle average"
+              comparison="vs. Legacy ERPs"
             />
             <CompetitiveStatCard 
               metric="<200ms"
@@ -436,7 +436,7 @@ export default function PlatformPage() {
               tagline="Your approval chains. Your rules. Your way."
               description="Multi-level approvals, conditional routing, parallel processes, automatic escalations — our workflow engine handles complexity that makes consultants nervous. And it configures in minutes, not months."
               capabilities={["Unlimited approval levels", "Conditional branching", "Auto-escalation rules", "Real-time notifications"]}
-              competitiveEdge="{Legacy ERPs} implementations take 18 months. Ours take conversations."
+              competitiveEdge="{ Legacy ERPs } implementations take 18 months. Ours take conversations."
             />
             <PowerEngineCard 
               icon={<BarChart3 className="w-10 h-10" />}
@@ -477,7 +477,7 @@ export default function PlatformPage() {
               <div className="p-6 bg-black/[0.02]"></div>
               <div className="p-6 text-center border-l border-black/10">
                 <span className="text-sm uppercase tracking-wider text-black/40">Legacy Giants</span>
-                <p className="text-xs text-black/30 mt-1">SAP, Oracle, Zoho, etc.</p>
+                <p className="text-xs text-black/30 mt-1"></p>
               </div>
               <div className="p-6 text-center border-l border-black/10 bg-black text-white">
                 <span className="text-sm uppercase tracking-wider font-medium">iSuite</span>

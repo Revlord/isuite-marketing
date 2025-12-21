@@ -66,6 +66,12 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
               <div className="space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">[ Solutions ]</h3>
                 <ul className="space-y-3">
+                  <NavItem href="/solutions" label="Explore Solutions" onClose={onClose} />
+                  <NavItem href="/solutions#dms" label="Document Management" onClose={onClose} />
+                  <NavItem href="/solutions#lms" label="Learning Management" onClose={onClose} />
+                  <NavItem href="/solutions#qms" label="Quality Management System" onClose={onClose} />
+                  <NavItem href="/solutions#plant-maintenance" label="Plant & Equipment Maintenance" onClose={onClose} />
+                  <NavItem href="/solutions#crm" label="Customer Relationship Management" onClose={onClose} />
                   <NavItem href="/solutions#financial" label="Financial Management" onClose={onClose} />
                   <NavItem href="/solutions#sales" label="Sales & Distribution" onClose={onClose} />
                   <NavItem href="/solutions#procurement" label="Procurement" onClose={onClose} />
@@ -74,6 +80,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
                   <NavItem href="/solutions#quality" label="Quality Control" onClose={onClose} />
                   <NavItem href="/solutions#service" label="Service Management" onClose={onClose} />
                   <NavItem href="/solutions#hr" label="HR & Payroll" onClose={onClose} />
+                  <NavItem href="/solutions#projects" label="Project Management" onClose={onClose} />
                 </ul>
               </div>
             </div>
@@ -83,6 +90,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
               <div className="space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">[ Industries ]</h3>
                 <ul className="space-y-3">
+                  <NavItem href="/industries" label="Explore Industries" onClose={onClose} />
                   <NavItem href="/industries#pharma" label="Pharmaceutical" onClose={onClose} />
                   <NavItem href="/industries#manufacturing" label="Manufacturing" onClose={onClose} />
                   <NavItem href="/industries#retail" label="Retail & FMCG" onClose={onClose} />
