@@ -102,19 +102,19 @@ export default function Home() {
       {/* ============================================ */}
       {/* HERO SECTION - GEOMETRIC COMMAND PRISM */}
       {/* ============================================ */}
-      <section className="hero-section relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden bg-black text-white">
+      <section className="hero-section relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden bg-white text-black">
         {/* Background */}
         <div className="hero-bg absolute inset-0 z-0">
           {/* Base */}
-          <div className="absolute inset-0 bg-black" />
+          <div className="absolute inset-0 bg-white" />
 
           {/* Conic halo (subtle but premium) */}
           <div
             aria-hidden="true"
-            className="hero-halo absolute inset-[-35%] opacity-70 blur-3xl mix-blend-screen pointer-events-none"
+            className="hero-halo absolute inset-[-35%] opacity-40 blur-3xl pointer-events-none"
             style={{
               background:
-                "conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(255,255,255,0.12) 35deg, transparent 90deg, rgba(255,255,255,0.08) 150deg, transparent 220deg, rgba(255,255,255,0.10) 300deg, transparent 360deg)",
+                "conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(0,0,0,0.08) 35deg, transparent 90deg, rgba(0,0,0,0.05) 150deg, transparent 220deg, rgba(0,0,0,0.06) 300deg, transparent 360deg)",
             }}
           />
 
@@ -127,12 +127,12 @@ export default function Home() {
           >
             <defs>
               <linearGradient id="shardA" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="rgba(255,255,255,0.10)" />
-                <stop offset="100%" stopColor="rgba(255,255,255,0.00)" />
+                <stop offset="0%" stopColor="rgba(0,0,0,0.06)" />
+                <stop offset="100%" stopColor="rgba(0,0,0,0.00)" />
               </linearGradient>
               <linearGradient id="shardB" x1="1" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="rgba(255,255,255,0.08)" />
-                <stop offset="100%" stopColor="rgba(255,255,255,0.00)" />
+                <stop offset="0%" stopColor="rgba(0,0,0,0.05)" />
+                <stop offset="100%" stopColor="rgba(0,0,0,0.00)" />
               </linearGradient>
               <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
                 <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -144,29 +144,29 @@ export default function Home() {
             </defs>
 
             {/* Big facets */}
-            <g filter="url(#softGlow)" style={{ mixBlendMode: "screen" as any }}>
+            <g filter="url(#softGlow)">
               <polygon
                 points="120,120 680,60 520,360"
                 fill="url(#shardA)"
-                stroke="rgba(255,255,255,0.22)"
+                stroke="rgba(0,0,0,0.12)"
                 strokeWidth="1"
               />
               <polygon
                 points="680,60 980,220 520,360"
                 fill="url(#shardB)"
-                stroke="rgba(255,255,255,0.18)"
+                stroke="rgba(0,0,0,0.08)"
                 strokeWidth="1"
               />
               <polygon
                 points="520,360 980,220 860,520"
                 fill="url(#shardA)"
-                stroke="rgba(255,255,255,0.20)"
+                stroke="rgba(0,0,0,0.10)"
                 strokeWidth="1"
               />
               <polygon
                 points="860,520 980,220 1320,420"
                 fill="url(#shardB)"
-                stroke="rgba(255,255,255,0.16)"
+                stroke="rgba(0,0,0,0.08)"
                 strokeWidth="1"
               />
 
@@ -174,34 +174,34 @@ export default function Home() {
               <polygon
                 points="80,620 420,520 300,860"
                 fill="url(#shardB)"
-                stroke="rgba(255,255,255,0.16)"
+                stroke="rgba(0,0,0,0.08)"
                 strokeWidth="1"
               />
               <polygon
                 points="420,520 720,700 300,860"
                 fill="url(#shardA)"
-                stroke="rgba(255,255,255,0.18)"
+                stroke="rgba(0,0,0,0.10)"
                 strokeWidth="1"
               />
             </g>
 
             {/* Thin “construction lines” */}
-            <g opacity="0.35" style={{ mixBlendMode: "screen" as any }}>
+            <g opacity="0.35">
               <path
                 d="M120 120 L520 360 L80 620"
-                stroke="rgba(255,255,255,0.25)"
+                stroke="rgba(0,0,0,0.15)"
                 strokeWidth="1"
                 fill="none"
               />
               <path
                 d="M680 60 L520 360 L980 220"
-                stroke="rgba(255,255,255,0.22)"
+                stroke="rgba(0,0,0,0.12)"
                 strokeWidth="1"
                 fill="none"
               />
               <path
                 d="M420 520 L720 700 L860 520"
-                stroke="rgba(255,255,255,0.20)"
+                stroke="rgba(0,0,0,0.10)"
                 strokeWidth="1"
                 fill="none"
               />
@@ -214,9 +214,8 @@ export default function Home() {
             className="absolute inset-0 w-full h-full pointer-events-none opacity-70"
             viewBox="0 0 1440 900"
             preserveAspectRatio="none"
-            style={{ mixBlendMode: "screen" as any }}
           >
-            <g fill="none" stroke="rgba(255,255,255,0.20)" strokeWidth="1.25">
+            <g fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="1.25">
               <path
                 className="hero-orbit"
                 d="M-120,520 C260,360 520,320 820,420 C1060,500 1240,480 1560,340"
@@ -256,7 +255,7 @@ export default function Home() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(1100px 650px at 50% 30%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.88) 100%)",
+                "radial-gradient(1100px 650px at 50% 30%, rgba(255,255,255,0) 35%, rgba(255,255,255,0.88) 100%)",
             }}
           />
         </div>
@@ -270,8 +269,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/20 text-xs font-medium uppercase tracking-[0.2em] text-white/80 bg-white/5 backdrop-blur-sm">
-              <span className="w-2 h-2 bg-white rounded-none animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-2 border border-black/10 text-xs font-medium uppercase tracking-[0.2em] text-black/80 bg-black/5 backdrop-blur-sm">
+              <span className="w-2 h-2 bg-black rounded-none animate-pulse" />
               Enterprise Operating System
             </span>
           </motion.div>
@@ -284,18 +283,18 @@ export default function Home() {
             className="text-4xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.05] mb-8"
           >
             Introducing <br />
-            <span className="text-white/40">
+            <span className="text-black/40">
               <span className="relative inline-block">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0, 1, 0] }}
                   transition={{ duration: 0.4, times: [0, 0.2, 0.5, 0.8, 1], delay: 0.2 }}
-                  className="absolute inset-0 underline decoration-1 decoration-white underline-offset-8"
+                  className="absolute inset-0 underline decoration-1 decoration-black underline-offset-8"
                   aria-hidden="true"
                 >
                   Absolute
                 </motion.span>
-                <span className="underline decoration-1 decoration-white/40 underline-offset-8">
+                <span className="underline decoration-1 decoration-black/40 underline-offset-8">
                   {"Absolute".split("").map((char, i) => (
                     <motion.span
                       key={i}
@@ -317,7 +316,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.18 }}
-            className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-light leading-relaxed mb-12"
+            className="text-xl md:text-2xl text-black/60 max-w-3xl mx-auto font-light leading-relaxed mb-12"
           >
             iSuite is the enterprise platform that molds to your operations — not the other way around.
             Deploy in weeks. Customize without limits. Scale without Fear.
@@ -332,7 +331,7 @@ export default function Home() {
           >
             <Button
               asChild
-              className="bg-white text-black hover:bg-white/90 rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-semibold group border border-white"
+              className="bg-black text-white hover:bg-black/90 rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-semibold group border border-black"
             >
               <Link href="/contact">
                 Request Demo
@@ -343,7 +342,7 @@ export default function Home() {
             <Button
               asChild
               variant="outline"
-              className="bg-transparent border-white/30 text-white hover:bg-white hover:text-black rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-medium transition-colors"
+              className="bg-transparent border-black/10 text-black hover:bg-black hover:text-white rounded-none h-14 min-w-[220px] px-8 text-sm uppercase tracking-wider font-medium transition-colors"
             >
               <Link href="/platform">Explore Platform</Link>
             </Button>
@@ -351,17 +350,17 @@ export default function Home() {
         </div>
 
         {/* Scroll indicator */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="flex flex-col items-center gap-2 text-white/30">
+          <div className="flex flex-col items-center gap-2 text-black/30">
             <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-            <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent" />
+            <div className="w-px h-12 bg-gradient-to-b from-black/30 to-transparent" />
           </div>
-        </motion.div>
+        </motion.div> */}
       </section>
 
       {/* ============================================ */}
@@ -739,7 +738,7 @@ export default function Home() {
               transition={{ 
                 repeat: Infinity, 
                 ease: "linear", 
-                duration: 20 
+                duration: 40 
               }}
             >
               {[
@@ -775,7 +774,7 @@ export default function Home() {
               transition={{ 
                 repeat: Infinity, 
                 ease: "linear", 
-                duration: 25 
+                duration: 50 
               }}
             >
               {[
