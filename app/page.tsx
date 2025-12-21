@@ -465,7 +465,7 @@ export default function Home() {
               </h3>
               <div className="space-y-6 text-lg text-black/60 leading-relaxed">
                 <p>
-                  You spend millions on big ERPs like SAP or Oracle. Then you spend years adapting your operations to match their assumptions. 
+                  You spend millions on big ERPs. Then you spend years adapting your operations to match their assumptions. 
                 </p>
                 <p>
                   When requirements change, you face impossible choices: expensive customization projects, clunky workarounds, or starting over. Worse, endless back and forth between teams with no proper expertise or communication skills.

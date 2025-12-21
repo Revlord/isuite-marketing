@@ -1,13 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const solutionLinks = [
+const solutionLinks1 = [
   { label: "Financial Management", href: "/solutions#financial" },
   { label: "Sales & Distribution", href: "/solutions#sales" },
   { label: "Procurement", href: "/solutions#procurement" },
   { label: "Inventory Management", href: "/solutions#inventory" },
   { label: "Manufacturing (MRP)", href: "/solutions#manufacturing" },
-  { label: "Project Management", href: "/solutions#pm" },
+  { label: "Fixed Asset Management", href: "/solutions#fixed-assets" },
+  { label: "Project Management", href: "/solutions#projects" },
+  { label: "Quality Control", href: "/solutions#quality" },
+  { label: "Service Management", href: "/solutions#service" },
+];
+
+const solutionLinks2 = [
+  { label: "CRM", href: "/solutions#crm" },
+  { label: "HR & Payroll", href: "/solutions#hr" },
+  { label: "Fixed Deposits", href: "/solutions#fixed-deposits" },
+  { label: "Document Management", href: "/solutions#dms" },
+  { label: "Learning Management", href: "/solutions#lms" },
+  { label: "Quality Management System", href: "/solutions#qms" },
+  { label: "Plant Maintenance", href: "/solutions#plant-maintenance" },
+  { label: "Vehicle Maintenance", href: "/solutions#vehicle-maintenance" },
 ];
 
 const industryLinks = [
@@ -29,7 +43,7 @@ const resourceLinks = [
 export default function Footer() {
   return (
     <footer className="bg-white text-black/60 py-20 px-6 border-t border-black/10 text-sm">
-      <div className="max-w-7xl mx-auto grid gap-12 grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] items-start">
+      <div className="max-w-7xl mx-auto grid gap-12 grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr] items-start">
         <div>
           <Link href="/" className="flex items-center gap-2 mb-6">
             <Image
@@ -53,11 +67,24 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="space-y-12 lg:space-y-0 lg:flex lg:items-start lg:justify-between lg:gap-12 lg:col-span-3">
+        <div className="space-y-12 lg:space-y-0 lg:flex lg:items-start lg:justify-between lg:gap-12 lg:col-span-4">
         <div>
           <h3 className="text-black font-medium mb-4 uppercase tracking-wider text-xs">Solutions</h3>
           <ul className="space-y-3">
-            {solutionLinks.map((item) => (
+            {solutionLinks1.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-black transition-colors">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-black font-medium mb-4 uppercase tracking-wider text-xs">&nbsp;</h3>
+          <ul className="space-y-3">
+            {solutionLinks2.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="hover:text-black transition-colors">
                   {item.label}

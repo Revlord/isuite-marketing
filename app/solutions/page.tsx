@@ -18,138 +18,6 @@ import Link from "next/link";
 
 const solutions = [
   {
-    id: "dms",
-    title: "Document Management",
-    icon: FileText,
-    tagline: "Every Document. Under Control.",
-    heroLine: "Version control that actually works.",
-    description: "No more 'which version is latest?' chaos. Centralized document repository with approval workflows, version history, and access controls. SOPs, policies, contracts — organized, searchable, and audit-ready.",
-    image: "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "Single source of truth for all documents",
-      "Instant retrieval during audits",
-      "Automated review and approval cycles",
-      "Complete version history and audit trails"
-    ],
-    capabilities: [
-      "Centralized Document Repository",
-      "Version Control & History",
-      "Approval Workflows",
-      "Access Control & Permissions",
-      "Document Templates",
-      "Full-Text Search",
-      "Expiry & Review Reminders",
-      "Audit Trail & Activity Log"
-    ]
-  },
-  {
-    id: "lms",
-    title: "Learning Management",
-    icon: GraduationCap,
-    tagline: "Competence. Verified.",
-    heroLine: "Train, track, certify — all in one system.",
-    description: "Employee training that's tracked, not trusted. Course assignments, completion tracking, certification management, and competency matrices. Compliance training with proof that stands up to inspection.",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "100% training compliance visibility",
-      "Automated certification renewals",
-      "Competency gaps identified proactively",
-      "Audit-ready training records"
-    ],
-    capabilities: [
-      "Course & Curriculum Management",
-      "Training Assignment & Scheduling",
-      "Progress Tracking & Completion",
-      "Assessment & Quiz Management",
-      "Certification & Expiry Tracking",
-      "Competency Matrix",
-      "Training Effectiveness Reports",
-      "Compliance Training Management"
-    ]
-  },
-  {
-    id: "qms",
-    title: "Quality Management System",
-    icon: Shield,
-    tagline: "Zero Defects. Zero Compromises.",
-    heroLine: "Enterprise-grade quality control that regulators respect.",
-    description: "Not a checkbox exercise — a complete quality ecosystem. From CAPA to calibration, from audit trails to corrective actions, iSuite QMS delivers the depth pharmaceutical, aerospace, and manufacturing leaders demand. FDA 21 CFR Part 11 ready. ISO compliant. Audit-proof.",
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "First-pass audit success with complete documentation",
-      "CAPA cycle times reduced by 60%+",
-      "Zero findings on regulatory inspections",
-      "Complete traceability from complaint to resolution",
-      "Real-time quality metrics across all operations"
-    ],
-    capabilities: [
-      "Document Control & Version Management",
-      "CAPA (Corrective & Preventive Action)",
-      "Non-Conformance & Deviation Management",
-      "Audit Management (Internal & External)",
-      "Calibration & Equipment Qualification",
-      "Training Records & Competency Tracking",
-      "Supplier Quality Management",
-      "Risk Assessment & FMEA",
-      "Change Control Management",
-      "Complaint Handling & Investigation",
-      "Statistical Process Control (SPC)",
-      "Management Review & Quality Metrics",
-      "Electronic Signatures (21 CFR Part 11)",
-      "Batch Record Review & Release"
-    ]
-  },
-  {
-    id: "plant-maintenance",
-    title: "Plant & Equipment Maintenance",
-    icon: Wrench,
-    tagline: "Uptime. Maximized.",
-    heroLine: "Preventive maintenance that prevents.",
-    description: "Equipment downtime kills margins. Our maintenance solution keeps machines running with scheduled PMs, condition monitoring, and spare parts integration. Reactive firefighting becomes proactive planning.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "Unplanned downtime reduced dramatically",
-      "Maintenance costs optimized",
-      "Equipment lifespan extended",
-      "Spare parts availability when needed"
-    ],
-    capabilities: [
-      "Equipment Master & Hierarchy",
-      "Preventive Maintenance Scheduling",
-      "Work Order Management",
-      "Breakdown & Corrective Maintenance",
-      "Spare Parts Integration",
-      "Maintenance History & Logs",
-      "MTBF & MTTR Analytics",
-      "Calibration Scheduling"
-    ]
-  },
-  {
-    id: "crm",
-    title: "Customer Relationship Management",
-    icon: UserCircle,
-    tagline: "Every Relationship. Nurtured.",
-    heroLine: "Know your customers. Grow your business.",
-    description: "Pipeline visibility, lead tracking, and customer intelligence that drives revenue. Every interaction logged, every opportunity tracked, every relationship managed with precision.",
-    image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "Complete pipeline visibility",
-      "Higher conversion rates with lead scoring",
-      "Customer lifetime value optimization",
-      "Sales team accountability and performance"
-    ],
-    capabilities: [
-      "Lead Capture & Management",
-      "Opportunity Pipeline",
-      "Contact & Account Management",
-      "Activity Tracking & Follow-ups",
-      "Quotation Integration",
-      "Sales Forecasting",
-      "Campaign Management",
-      "Customer Analytics & Segmentation"
-    ]
-  },
-  {
     id: "financial",
     title: "Financial Management",
     icon: Landmark,
@@ -275,6 +143,56 @@ const solutions = [
     ]
   },
   {
+    id: "fixed-assets",
+    title: "Fixed Asset Management",
+    icon: Building2,
+    tagline: "Every Asset. Accounted For.",
+    heroLine: "Acquisition to disposal. Complete lifecycle.",
+    description: "Assets are investments — manage them like it. Depreciation calculations, physical verification, transfers, and disposal tracking. Finance-integrated accuracy that survives any audit.",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Accurate depreciation calculations",
+      "Physical verification simplified",
+      "Asset location always known",
+      "Tax-compliant asset registers"
+    ],
+    capabilities: [
+      "Asset Acquisition & Capitalization",
+      "Depreciation Methods (SLM, WDV)",
+      "Asset Categories & Classification",
+      "Physical Verification & Tagging",
+      "Asset Transfers & Movement",
+      "Maintenance History",
+      "Disposal & Write-off",
+      "Asset Register & Reports"
+    ]
+  },
+  {
+    id: "projects",
+    title: "Project Management",
+    icon: Layers,
+    tagline: "Deliver On Time. Every Time.",
+    heroLine: "Plan, track, and deliver with confidence.",
+    description: "Gantt charts, work breakdown structures, budgets, and change orders that sync directly with finance. Budget vs. actual visibility that keeps projects on track and stakeholders informed.",
+    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "On-time delivery with dependency tracking",
+      "Budget vs. actual visibility by phase",
+      "Change control without email chaos",
+      "Resource utilization optimization"
+    ],
+    capabilities: [
+      "Work Breakdown Structure (WBS)",
+      "Task Dependencies & Critical Path",
+      "Resource Allocation",
+      "Time & Cost Tracking",
+      "Budget Management",
+      "Change Order Processing",
+      "Progress Reporting",
+      "Earned Value Analysis"
+    ]
+  },
+  {
     id: "quality",
     title: "Quality Control",
     icon: ClipboardList,
@@ -325,6 +243,31 @@ const solutions = [
     ]
   },
   {
+    id: "crm",
+    title: "Customer Relationship Management",
+    icon: UserCircle,
+    tagline: "Every Relationship. Nurtured.",
+    heroLine: "Know your customers. Grow your business.",
+    description: "Pipeline visibility, lead tracking, and customer intelligence that drives revenue. Every interaction logged, every opportunity tracked, every relationship managed with precision.",
+    image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Complete pipeline visibility",
+      "Higher conversion rates with lead scoring",
+      "Customer lifetime value optimization",
+      "Sales team accountability and performance"
+    ],
+    capabilities: [
+      "Lead Capture & Management",
+      "Opportunity Pipeline",
+      "Contact & Account Management",
+      "Activity Tracking & Follow-ups",
+      "Quotation Integration",
+      "Sales Forecasting",
+      "Campaign Management",
+      "Customer Analytics & Segmentation"
+    ]
+  },
+  {
     id: "hr",
     title: "HR & Payroll",
     icon: Users,
@@ -347,81 +290,6 @@ const solutions = [
       "Department & Designation Management",
       "Performance Management",
       "HR Reporting & Analytics"
-    ]
-  },
-  {
-    id: "projects",
-    title: "Project Management",
-    icon: Layers,
-    tagline: "Deliver On Time. Every Time.",
-    heroLine: "Plan, track, and deliver with confidence.",
-    description: "Gantt charts, work breakdown structures, budgets, and change orders that sync directly with finance. Budget vs. actual visibility that keeps projects on track and stakeholders informed.",
-    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "On-time delivery with dependency tracking",
-      "Budget vs. actual visibility by phase",
-      "Change control without email chaos",
-      "Resource utilization optimization"
-    ],
-    capabilities: [
-      "Work Breakdown Structure (WBS)",
-      "Task Dependencies & Critical Path",
-      "Resource Allocation",
-      "Time & Cost Tracking",
-      "Budget Management",
-      "Change Order Processing",
-      "Progress Reporting",
-      "Earned Value Analysis"
-    ]
-  },
-  {
-    id: "vehicle-maintenance",
-    title: "Vehicle & Fleet Maintenance",
-    icon: Car,
-    tagline: "Fleet Fitness. Guaranteed.",
-    heroLine: "Every vehicle. Every service. On schedule.",
-    description: "Fleet maintenance that keeps wheels turning. Service scheduling, fuel tracking, compliance management, and cost analysis. Whether 10 vehicles or 1,000 — complete visibility and control.",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "Fleet availability maximized",
-      "Fuel costs tracked and optimized",
-      "Compliance deadlines never missed",
-      "Total cost of ownership visibility"
-    ],
-    capabilities: [
-      "Vehicle Master & Registration",
-      "Service Scheduling & Reminders",
-      "Fuel Consumption Tracking",
-      "Insurance & Permit Management",
-      "Driver Assignment & Logs",
-      "Breakdown & Repair History",
-      "Cost Analysis by Vehicle",
-      "Compliance & Fitness Certificates"
-    ]
-  },
-  {
-    id: "fixed-assets",
-    title: "Fixed Asset Management",
-    icon: Building2,
-    tagline: "Every Asset. Accounted For.",
-    heroLine: "Acquisition to disposal. Complete lifecycle.",
-    description: "Assets are investments — manage them like it. Depreciation calculations, physical verification, transfers, and disposal tracking. Finance-integrated accuracy that survives any audit.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-    outcomes: [
-      "Accurate depreciation calculations",
-      "Physical verification simplified",
-      "Asset location always known",
-      "Tax-compliant asset registers"
-    ],
-    capabilities: [
-      "Asset Acquisition & Capitalization",
-      "Depreciation Methods (SLM, WDV)",
-      "Asset Categories & Classification",
-      "Physical Verification & Tagging",
-      "Asset Transfers & Movement",
-      "Maintenance History",
-      "Disposal & Write-off",
-      "Asset Register & Reports"
     ]
   },
   {
@@ -448,11 +316,143 @@ const solutions = [
       "Interest Accrual & Posting",
       "Portfolio Analysis & Reports"
     ]
+  },
+  {
+    id: "dms",
+    title: "Document Management",
+    icon: FileText,
+    tagline: "Every Document. Under Control.",
+    heroLine: "Version control that actually works.",
+    description: "No more 'which version is latest?' chaos. Centralized document repository with approval workflows, version history, and access controls. SOPs, policies, contracts — organized, searchable, and audit-ready.",
+    image: "https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Single source of truth for all documents",
+      "Instant retrieval during audits",
+      "Automated review and approval cycles",
+      "Complete version history and audit trails"
+    ],
+    capabilities: [
+      "Centralized Document Repository",
+      "Version Control & History",
+      "Approval Workflows",
+      "Access Control & Permissions",
+      "Document Templates",
+      "Full-Text Search",
+      "Expiry & Review Reminders",
+      "Audit Trail & Activity Log"
+    ]
+  },
+  {
+    id: "lms",
+    title: "Learning Management",
+    icon: GraduationCap,
+    tagline: "Competence. Verified.",
+    heroLine: "Train, track, certify — all in one system.",
+    description: "Employee training that's tracked, not trusted. Course assignments, completion tracking, certification management, and competency matrices. Compliance training with proof that stands up to inspection.",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "100% training compliance visibility",
+      "Automated certification renewals",
+      "Competency gaps identified proactively",
+      "Audit-ready training records"
+    ],
+    capabilities: [
+      "Course & Curriculum Management",
+      "Training Assignment & Scheduling",
+      "Progress Tracking & Completion",
+      "Assessment & Quiz Management",
+      "Certification & Expiry Tracking",
+      "Competency Matrix",
+      "Training Effectiveness Reports",
+      "Compliance Training Management"
+    ]
+  },
+  {
+    id: "qms",
+    title: "Quality Management System",
+    icon: Shield,
+    tagline: "Zero Defects. Zero Compromises.",
+    heroLine: "Enterprise-grade quality control that regulators respect.",
+    description: "Not a checkbox exercise — a complete quality ecosystem. From CAPA to calibration, from audit trails to corrective actions, iSuite QMS delivers the depth pharmaceutical, aerospace, and manufacturing leaders demand. FDA 21 CFR Part 11 ready. ISO compliant. Audit-proof.",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "First-pass audit success with complete documentation",
+      "CAPA cycle times reduced by 60%+",
+      "Zero findings on regulatory inspections",
+      "Complete traceability from complaint to resolution",
+      "Real-time quality metrics across all operations"
+    ],
+    capabilities: [
+      "Document Control & Version Management",
+      "CAPA (Corrective & Preventive Action)",
+      "Non-Conformance & Deviation Management",
+      "Audit Management (Internal & External)",
+      "Calibration & Equipment Qualification",
+      "Training Records & Competency Tracking",
+      "Supplier Quality Management",
+      "Risk Assessment & FMEA",
+      "Change Control Management",
+      "Complaint Handling & Investigation",
+      "Statistical Process Control (SPC)",
+      "Management Review & Quality Metrics",
+      "Electronic Signatures (21 CFR Part 11)",
+      "Batch Record Review & Release"
+    ]
+  },
+  {
+    id: "plant-maintenance",
+    title: "Plant & Equipment Maintenance",
+    icon: Wrench,
+    tagline: "Uptime. Maximized.",
+    heroLine: "Preventive maintenance that prevents.",
+    description: "Equipment downtime kills margins. Our maintenance solution keeps machines running with scheduled PMs, condition monitoring, and spare parts integration. Reactive firefighting becomes proactive planning.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Unplanned downtime reduced dramatically",
+      "Maintenance costs optimized",
+      "Equipment lifespan extended",
+      "Spare parts availability when needed"
+    ],
+    capabilities: [
+      "Equipment Master & Hierarchy",
+      "Preventive Maintenance Scheduling",
+      "Work Order Management",
+      "Breakdown & Corrective Maintenance",
+      "Spare Parts Integration",
+      "Maintenance History & Logs",
+      "MTBF & MTTR Analytics",
+      "Calibration Scheduling"
+    ]
+  },
+  {
+    id: "vehicle-maintenance",
+    title: "Vehicle & Fleet Maintenance",
+    icon: Car,
+    tagline: "Fleet Fitness. Guaranteed.",
+    heroLine: "Every vehicle. Every service. On schedule.",
+    description: "Fleet maintenance that keeps wheels turning. Service scheduling, fuel tracking, compliance management, and cost analysis. Whether 10 vehicles or 1,000 — complete visibility and control.",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop",
+    outcomes: [
+      "Fleet availability maximized",
+      "Fuel costs tracked and optimized",
+      "Compliance deadlines never missed",
+      "Total cost of ownership visibility"
+    ],
+    capabilities: [
+      "Vehicle Master & Registration",
+      "Service Scheduling & Reminders",
+      "Fuel Consumption Tracking",
+      "Insurance & Permit Management",
+      "Driver Assignment & Logs",
+      "Breakdown & Repair History",
+      "Cost Analysis by Vehicle",
+      "Compliance & Fitness Certificates"
+    ]
   }
 ];
 
 export default function SolutionsPage() {
-  const [activeSolution, setActiveSolution] = useState("dms");
+  const [activeSolution, setActiveSolution] = useState("financial");
 
   useEffect(() => {
     const handleScroll = () => {

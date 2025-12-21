@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitContactForm } from "./actions";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,10 @@ const companySize = [
 ];
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -42,10 +47,36 @@ export default function ContactPage() {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const result = await submitContactForm(formData);
+      
+      if (result.success) {
+        setIsSuccess(true);
+        // Optional: Reset form or keep it cleared
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          company: "",
+          industry: "",
+          size: "",
+          currentERP: "",
+          message: ""
+        });
+      } else {
+        setError(result.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -105,121 +136,151 @@ export default function ContactPage() {
               <p className="text-black/50">Fill out the form below and we'll be in touch within 24 hours.</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Name Row */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <FormField 
-                  label="First Name"
-                  required
-                  value={formData.firstName}
-                  onChange={(v) => setFormData({...formData, firstName: v})}
-                />
-                <FormField 
-                  label="Last Name"
-                  required
-                  value={formData.lastName}
-                  onChange={(v) => setFormData({...formData, lastName: v})}
-                />
-              </div>
-
-              {/* Contact Row */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <FormField 
-                  label="Work Email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(v) => setFormData({...formData, email: v})}
-                />
-                <FormField 
-                  label="Phone Number"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(v) => setFormData({...formData, phone: v})}
-                />
-              </div>
-
-              {/* Company */}
-              <FormField 
-                label="Company Name"
-                required
-                value={formData.company}
-                onChange={(v) => setFormData({...formData, company: v})}
-              />
-
-              {/* Industry & Size Row */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-black/50">
-                    Industry <span className="text-black/30">*</span>
-                  </label>
-                  <select 
-                    required
-                    value={formData.industry}
-                    onChange={(e) => setFormData({...formData, industry: e.target.value})}
-                    className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="" className="bg-white">Select Industry</option>
-                    {industries.map(ind => (
-                      <option key={ind.value} value={ind.value} className="bg-white">{ind.label}</option>
-                    ))}
-                  </select>
+            {isSuccess ? (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-green-50 border border-green-200 p-8 text-center space-y-4"
+              >
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8 text-green-600" />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-black/50">
-                    Company Size
-                  </label>
-                  <select 
-                    value={formData.size}
-                    onChange={(e) => setFormData({...formData, size: e.target.value})}
-                    className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="" className="bg-white">Select Size</option>
-                    {companySize.map(size => (
-                      <option key={size.value} value={size.value} className="bg-white">{size.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Current ERP */}
-              <FormField 
-                label="Current ERP System (if any)"
-                placeholder="e.g., SAP, Oracle, Tally, Custom, None"
-                value={formData.currentERP}
-                onChange={(v) => setFormData({...formData, currentERP: v})}
-              />
-
-              {/* Message */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-black/50">
-                  Tell Us About Your Requirements
-                </label>
-                <textarea 
-                  rows={5}
-                  placeholder="What challenges are you looking to solve? What does your ideal solution look like?"
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors resize-none placeholder:text-black/30"
-                />
-              </div>
-
-              {/* Submit */}
-              <div className="pt-4">
+                <h3 className="text-xl font-medium text-green-900">Request Received!</h3>
+                <p className="text-green-800 max-w-md mx-auto">
+                  Thank you for your interest in iSuite. We've received your request and our team will be in touch shortly.
+                </p>
                 <Button 
-                  type="submit"
-                  className="w-full md:w-auto bg-black text-white hover:bg-black/90 rounded-none h-14 px-12 text-sm uppercase tracking-wider font-semibold group"
+                  onClick={() => setIsSuccess(false)}
+                  variant="outline"
+                  className="mt-4 border-green-200 text-green-800 hover:bg-green-100"
                 >
-                  Request Demo
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  Send Another Request
                 </Button>
-              </div>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {error && (
+                  <div className="p-4 bg-red-50 border border-red-200 text-red-700 text-sm">
+                    {error}
+                  </div>
+                )}
 
-              {/* Privacy Note */}
-              <p className="text-xs text-black/30">
-                By submitting this form, you agree to our privacy policy. We'll never share your information with third parties.
-              </p>
-            </form>
+                {/* Name Row */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField 
+                    label="First Name"
+                    required
+                    value={formData.firstName}
+                    onChange={(v) => setFormData({...formData, firstName: v})}
+                  />
+                  <FormField 
+                    label="Last Name"
+                    required
+                    value={formData.lastName}
+                    onChange={(v) => setFormData({...formData, lastName: v})}
+                  />
+                </div>
+
+                {/* Contact Row */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField 
+                    label="Work Email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(v) => setFormData({...formData, email: v})}
+                  />
+                  <FormField 
+                    label="Phone Number"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(v) => setFormData({...formData, phone: v})}
+                  />
+                </div>
+
+                {/* Company */}
+                <FormField 
+                  label="Company Name"
+                  required
+                  value={formData.company}
+                  onChange={(v) => setFormData({...formData, company: v})}
+                />
+
+                {/* Industry & Size Row */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-black/50">
+                      Industry <span className="text-black/30">*</span>
+                    </label>
+                    <select 
+                      required
+                      value={formData.industry}
+                      onChange={(e) => setFormData({...formData, industry: e.target.value})}
+                      className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors appearance-none cursor-pointer"
+                    >
+                      <option value="" className="bg-white">Select Industry</option>
+                      {industries.map(ind => (
+                        <option key={ind.value} value={ind.value} className="bg-white">{ind.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-black/50">
+                      Company Size
+                    </label>
+                    <select 
+                      value={formData.size}
+                      onChange={(e) => setFormData({...formData, size: e.target.value})}
+                      className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors appearance-none cursor-pointer"
+                    >
+                      <option value="" className="bg-white">Select Size</option>
+                      {companySize.map(size => (
+                        <option key={size.value} value={size.value} className="bg-white">{size.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Current ERP */}
+                <FormField 
+                  label="Current ERP System (if any)"
+                  placeholder="e.g., SAP, Oracle, Tally, Custom, None"
+                  value={formData.currentERP}
+                  onChange={(v) => setFormData({...formData, currentERP: v})}
+                />
+
+                {/* Message */}
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-black/50">
+                    Tell Us About Your Requirements
+                  </label>
+                  <textarea 
+                    rows={5}
+                    placeholder="What challenges are you looking to solve? What does your ideal solution look like?"
+                    value={formData.message}
+                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    className="w-full bg-gray-50 border border-black/10 p-4 text-black focus:outline-none focus:border-black/30 transition-colors resize-none placeholder:text-black/30"
+                  />
+                </div>
+
+                {/* Submit */}
+                <div className="pt-4">
+                  <Button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full md:w-auto bg-black text-white hover:bg-black/90 rounded-none h-14 px-12 text-sm uppercase tracking-wider font-semibold group disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? "Sending..." : "Request Demo"}
+                    {!isSubmitting && <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />}
+                  </Button>
+                </div>
+
+                {/* Privacy Note */}
+                <p className="text-xs text-black/30">
+                  By submitting this form, you agree to our privacy policy. We'll never share your information with third parties.
+                </p>
+              </form>
+            )}
           </div>
 
           {/* Info Column */}
@@ -275,7 +336,7 @@ export default function ContactPage() {
                   <div>
                     <div className="text-black/60 text-sm mb-1">Email</div>
                     <a href="mailto:hello@isuite.com" className="text-black hover:text-black/80 transition-colors">
-                      hello@isuite.com
+                      info@isuitesolutions.com
                     </a>
                   </div>
                 </div>
@@ -283,8 +344,8 @@ export default function ContactPage() {
                   <Phone className="w-5 h-5 text-black/40 mt-1" />
                   <div>
                     <div className="text-black/60 text-sm mb-1">Phone</div>
-                    <a href="tel:+15551234567" className="text-black hover:text-black/80 transition-colors">
-                      +1 (555) 123-4567
+                    <a href="tel:+919849168879" className="text-black hover:text-black/80 transition-colors">
+                      +91 9849168879
                     </a>
                   </div>
                 </div>
@@ -293,8 +354,8 @@ export default function ContactPage() {
                   <div>
                     <div className="text-black/60 text-sm mb-1">Headquarters</div>
                     <address className="text-black not-italic">
-                      123 Innovation Drive<br/>
-                      Tech District, CA 94025
+                      3rd Floor, North East Ave<br/>
+                      Hi-Tech City, Hyderabad, India
                     </address>
                   </div>
                 </div>

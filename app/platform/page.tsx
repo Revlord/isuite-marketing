@@ -349,7 +349,7 @@ export default function PlatformPage() {
             <CompetitiveStatCard 
               metric="10x"
               label="Faster Implementation"
-              comparison="vs. SAP/Oracle average"
+              comparison="vs. Legacy ERPs"
             />
             <CompetitiveStatCard 
               metric="<200ms"
@@ -436,7 +436,7 @@ export default function PlatformPage() {
               tagline="Your approval chains. Your rules. Your way."
               description="Multi-level approvals, conditional routing, parallel processes, automatic escalations — our workflow engine handles complexity that makes consultants nervous. And it configures in minutes, not months."
               capabilities={["Unlimited approval levels", "Conditional branching", "Auto-escalation rules", "Real-time notifications"]}
-              competitiveEdge="{Legacy ERPs} implementations take 18 months. Ours take conversations."
+              competitiveEdge="{ Legacy ERPs } implementations take 18 months. Ours take conversations."
             />
             <PowerEngineCard 
               icon={<BarChart3 className="w-10 h-10" />}
