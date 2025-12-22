@@ -67,20 +67,22 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">[ Solutions ]</h3>
                 <ul className="space-y-3">
                   <NavItem href="/solutions" label="Explore Solutions" onClose={onClose} />
-                  <NavItem href="/solutions#dms" label="Document Management" onClose={onClose} />
-                  <NavItem href="/solutions#lms" label="Learning Management" onClose={onClose} />
-                  <NavItem href="/solutions#qms" label="Quality Management System" onClose={onClose} />
-                  <NavItem href="/solutions#plant-maintenance" label="Plant & Equipment Maintenance" onClose={onClose} />
-                  <NavItem href="/solutions#crm" label="Customer Relationship Management" onClose={onClose} />
                   <NavItem href="/solutions#financial" label="Financial Management" onClose={onClose} />
                   <NavItem href="/solutions#sales" label="Sales & Distribution" onClose={onClose} />
                   <NavItem href="/solutions#procurement" label="Procurement" onClose={onClose} />
                   <NavItem href="/solutions#inventory" label="Inventory Management" onClose={onClose} />
                   <NavItem href="/solutions#manufacturing" label="Manufacturing (MRP)" onClose={onClose} />
+                  <NavItem href="/solutions#fixed-assets" label="Fixed Assets" onClose={onClose} />
                   <NavItem href="/solutions#quality" label="Quality Control" onClose={onClose} />
-                  <NavItem href="/solutions#service" label="Service Management" onClose={onClose} />
+                  <NavItem href="/solutions#service" label="Customer Service" onClose={onClose} />
+                  <NavItem href="/solutions#crm" label="Customer Relation Management (CRM)" onClose={onClose} />
                   <NavItem href="/solutions#hr" label="HR & Payroll" onClose={onClose} />
-                  <NavItem href="/solutions#projects" label="Project Management" onClose={onClose} />
+                  <NavItem href="/solutions#fixed-deposits" label="Fixed Deposits" onClose={onClose} />
+                  <NavItem href="/solutions#dms" label="Document Management (DMS)" onClose={onClose} />
+                  <NavItem href="/solutions#lms" label="Learning Management (LMS)" onClose={onClose} />
+                  <NavItem href="/solutions#qms" label="Quality Management (QMS)" onClose={onClose} />
+                  <NavItem href="/solutions#plant-maintenance" label="Plant/Equipment Maintenance" onClose={onClose} />
+                  <NavItem href="/solutions#vehicle-maintenance" label="Vehicle Maintenance" onClose={onClose} />
                 </ul>
               </div>
             </div>
@@ -159,7 +161,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
               </div>
 
               {/* CTA */}
-              <div className="pt-8 border-t border-black/10">
+              <div className="pt-6 border-t border-black/10">
                 <Link 
                   href="/contact" 
                   onClick={onClose}
