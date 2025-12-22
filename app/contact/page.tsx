@@ -244,7 +244,7 @@ export default function ContactPage() {
                 {/* Current ERP */}
                 <FormField 
                   label="Current ERP System (if any)"
-                  placeholder="e.g., SAP, Oracle, Tally, Custom, None"
+                  placeholder=""
                   value={formData.currentERP}
                   onChange={(v) => setFormData({...formData, currentERP: v})}
                 />
@@ -335,7 +335,7 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5 text-black/40 mt-1" />
                   <div>
                     <div className="text-black/60 text-sm mb-1">Email</div>
-                    <a href="mailto:hello@isuite.com" className="text-black hover:text-black/80 transition-colors">
+                    <a href="mailto:info@isuitesolutions.com" className="text-black hover:text-black/80 transition-colors">
                       info@isuitesolutions.com
                     </a>
                   </div>
@@ -344,9 +344,9 @@ export default function ContactPage() {
                   <Phone className="w-5 h-5 text-black/40 mt-1" />
                   <div>
                     <div className="text-black/60 text-sm mb-1">Phone</div>
-                    <a href="tel:+919849168879" className="text-black hover:text-black/80 transition-colors">
+                    <p className="text-black hover:text-black/80 transition-colors">
                       +91 9849168879
-                    </a>
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
