@@ -354,8 +354,8 @@ export default function ContactPage() {
                   <div>
                     <div className="text-black/60 text-sm mb-1">Headquarters</div>
                     <address className="text-black not-italic">
-                      3rd Floor, North East Ave<br/>
-                      Hi-Tech City, Hyderabad, India
+                      Unit 1306, Skycity Building, Gachibowli Circle<br/>
+                      Telecom Nagar, Gachibowli, Hyderabad, Telangana 500032
                     </address>
                   </div>
                 </div>
