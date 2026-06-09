@@ -470,7 +470,7 @@ export default function Home() {
                 <p>
                   When requirements change, you face impossible choices: expensive customization projects, clunky workarounds, or starting over. Worse, endless back and forth between teams with no proper expertise or communication skills.
                 </p>
-                <p className="text-black font-medium">
+                {/* <p className="text-black font-medium">
                   <span className="inline-flex items-center gap-2 align-middle">
                     <span>There's a better way. The iSuite </span>
                     <Image
@@ -482,7 +482,7 @@ export default function Home() {
                     />
                   </span>
                   <span className="px-1"> way.</span>
-                </p>
+                </p> */}
               </div>
             </div>
 
